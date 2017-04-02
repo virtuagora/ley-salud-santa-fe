@@ -4,7 +4,7 @@ $capsule = new Illuminate\Database\Capsule\Manager;
 $capsule->addConnection([
     'driver' => 'mysql',
     'host' => 'localhost',
-    'database' => 'virtuagora_costa',
+    'database' => 'virtuagora_salud',
     'username' => 'root',
     'password' => '',
     'charset' => 'utf8',

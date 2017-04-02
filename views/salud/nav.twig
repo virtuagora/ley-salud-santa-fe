@@ -1,0 +1,78 @@
+<div class="barra-header"></div>
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container" style="position:relative;">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" aria-expanded="false" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <img class="not-toggled" src="{{ baseUrl() }}/assets-salud/img/menu.svg" alt="">
+                <img class="toggled" src="{{ baseUrl() }}/assets-salud/img/menu-toggled.svg" alt="">
+            </button>
+            <!--
+{% if user is not empty %}
+<a href="javascript:void(0)" class="common-menu user-menu-show login-btn logged pull-right hidden-xs"><span class="hidden-sm">{{ user.nombre|upper }}</span>
+{% if user.patrulla_id != null %}
+<img src="{{ baseUrl() }}/assets-costa/img/avatar/moderador.svg" class="img-circle img-avatar" >
+{% else %}
+<img src="{{ baseUrl() }}/assets-costa/img/avatar/{{user.genero}}-{{user.id % 6}}.svg" class="img-circle img-avatar" >
+{% endif %}
+<i class="fa fa-caret-down fa-fw"></i></a>
+<a href="javascript:void(0)" class="user-menu common-menu-show login-btn logged pull-right" style="display:none">VOLVER AL MENÚ<i class="fa fa-caret-up fa-fw"></i></a>
+{% else %}
+<a href="{{urlFor('shwLogin')}}" class="login-btn pull-right">INGRESAR<img class="icono-login" src="{{ baseUrl() }}/assets-costa/img/login.svg" alt=""></a>
+{% endif %}
+-->
+            <div class="clearfix">
+                <a class="navbar-brand hidden-lg hidden-md santafe-logo" href="{{urlFor('shwIndex')}}"><img src="{{ baseUrl() }}/assets-salud/img/santafe-logo.svg" class="logo img-responsive" alt=""></a>
+                <a class="navbar-brand hidden-lg hidden-md salud-logo" href="{{urlFor('shwIndex')}}"><img src="{{ baseUrl() }}/assets-salud/img/salud-logo.svg" class="logo img-responsive" alt=""></a>
+                <a class="navbar-brand hidden-xs hidden-sm santafe-logo" href="{{urlFor('shwIndex')}}"><img src="{{ baseUrl() }}/assets-salud/img/santafe-logo.svg" class="logo img-responsive" alt=""></a>
+                <a class="navbar-brand hidden-xs hidden-sm salud-logo" href="{{urlFor('shwIndex')}}"><img src="{{ baseUrl() }}/assets-salud/img/salud-logo.svg" class="logo img-responsive" alt=""></a>
+            </div>
+
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="navbar-collapse collapse" aria-expanded="false" style="height: 0px;" id="bs-example-navbar-collapse-1">
+            <a class="hidden-lg hidden-md hidden-sm santafe-logo mobile" href="{{urlFor('shwIndex')}}"><img src="{{ baseUrl() }}/assets-salud/img/santafe-logo.svg" class="logo img-responsive" alt=""></a>
+            <a class="hidden-lg hidden-md hidden-sm salud-logo mobile" href="{{urlFor('shwIndex')}}"><img src="{{ baseUrl() }}/assets-salud/img/salud-logo-blanco.svg" class="logo img-responsive" alt=""></a>
+            <!--
+{% if user is not empty %}
+<ul class="nav navbar-nav user-menu" style="display:none">
+<li><a href="{{urlFor('shwUsuario', {'idUsu': user.id})}}">Ver perfil</a></li>
+{% if user and (user.patrulla_id != null) %}
+<li><a href="{{urlFor('shwIndexAdmin')}}">Administrar</a></li>
+{% endif %}
+<li><a href="javascript:logout()">Cerrar sesión<img class="icono-login" src="{{ baseUrl() }}/assets-costa/img/logout.svg" alt=""></a></li>
+<li class="btn-ingreso hidden-sm hidden-md hidden-lg">
+<a href="javascript:void(0)" class="user-menu common-menu-show">VOLVER AL MENÚ<i class="fa fa-caret-up fa-fw"></i></a>
+</li>
+<form id="form-salir" action="{{ urlFor('runLogout') }}" method="POST"></form>
+</ul>
+{% endif %}
+-->
+            <ul class="nav navbar-nav navbar-right">
+                <li class="{{ nav == 1 ? 'active' : '' }}"><a href="{{urlFor('shwAcerca')}}">Principios y valores</a></li>
+                <li class="{{ nav == 2 ? 'active' : '' }}"><a href="{{urlFor('shwActividades')}}">Cronograma</a></li>
+                <li class="{{ nav == 3 ? 'active' : '' }}"><a href="{{urlFor('shwAreas')}}" class="participa"><b>Participá</b></a></li>
+                <li class="hidden-xs"><a href="#"><span class="boton login">Ingresá</span></a></li>
+
+                <!--
+{% if user is not empty %}
+<li class="btn-ingreso hidden-sm hidden-md hidden-lg">
+<a href="#" class="common-menu user-menu-show">{{ user.nombre }}
+{% if user.patrulla_id != null %}
+<img src="{{ baseUrl() }}/assets-costa/img/avatar/moderador.svg" class="img-circle img-avatar" >
+{% else %}
+<img src="{{ baseUrl() }}/assets-costa/img/avatar/{{user.genero}}-{{user.id % 6}}.svg" class="img-circle img-avatar" >
+{% endif %}
+<i class="fa fa-caret-down fa-fw"></i></a>
+</li>
+{% else %}
+-->
+                <li class="btn-ingreso hidden-sm hidden-md hidden-lg"><a href="{{urlFor('shwLogin')}}"><u>Registrate</u> o <u>Inicia Sesión</u></a></li>
+                {% endif %}
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>

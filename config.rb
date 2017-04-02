@@ -4,11 +4,11 @@ add_import_path "bower_components/bootstrap-sass/assets/stylesheets"
 
 # Set this to the root of your project when deployed:
 http_path = "/"
-css_dir = "public/assets-costa/css"
-sass_dir = "public/assets-costa/scss"
-images_dir = "public/assets-costa/img"
-javascripts_dir = "public/assets-costa/js"
-fonts_dir = "public/assets-costa/fonts"
+css_dir = "public/assets-salud/css"
+sass_dir = "public/assets-salud/scss"
+images_dir = "public/assets-salud/img"
+javascripts_dir = "public/assets-salud/js"
+fonts_dir = "public/assets-salud/fonts"
 
 # You can select your preferred output style here (can be overridden via the command line):
 # output_style = :expanded or :nested or :compact or :compressed

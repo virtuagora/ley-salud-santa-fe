@@ -5,42 +5,42 @@ class PortalCtrl extends Controller {
     public function verIndex() {
         $derechos = Contenido::where('contenible_type', 'Derecho')->get()->toArray();
         $testimonios = Testimonio::all()->toArray();
-        $this->render('costa/portal/inicio.twig',  [
+        $this->render('salud/portal/inicio.twig',  [
             'derechos' => $derechos,
             'testimonios' => $testimonios,
         ]);
     }
 
     public function verPortal() {
-        $this->render('costa/portal/inicio.twig');
+        $this->render('salud/portal/inicio.twig');
     }
 
     public function verLogin() {
-        $this->render('costa/registro/login-static.twig');
+        $this->render('salud/registro/login-static.twig');
     }
 
      public function verAcerca() {
-        $this->render('costa/portal/acerca.twig');
+        $this->render('salud/portal/acerca.twig');
     }
 
     // TODO Controlame si esta bien.. lo saque de listar eventos.
     // Esto se mostraria en ver actividades.. esta bien, no?
     public function verActividades() {
         $eventos = Evento::all()->sortBy('fecha');
-        $this->render('costa/portal/actividades.twig', [
+        $this->render('salud/portal/actividades.twig', [
             'actividades' => $eventos
         ]);
     }
     public function verAreas() {
         $derechos = Contenido::with('Contenible')->where('contenible_type', 'Derecho')->get()->toArray();
-        $this->render('costa/portal/areas.twig',  [
+        $this->render('salud/portal/areas.twig',  [
             'derechos' => $derechos
         ]   );
     }
 
     // No lo usamos
     public function verTos() {
-        $this->render('costa/portal/tos.twig');
+        $this->render('salud/portal/tos.twig');
     }
 
     public function login() {
@@ -68,7 +68,7 @@ class PortalCtrl extends Controller {
             'Profesional','Empleado/a en relación de dependencia','Comerciante',
             'Funcionario/a, legislador/a o autoridad gubernamental','Representante de organización social',
             'Trabajador/a doméstico/a no remunerado/a'];
-        $this->render('costa/registro/registro.twig', [
+        $this->render('salud/registro/registro.twig', [
             'departamentos' => $departamentos,
             'ocupaciones' => $ocupaciones,
         ]);
@@ -127,14 +127,14 @@ class PortalCtrl extends Controller {
         $preuser->save();
         
         $to = $preuser->email;
-        $subject = 'Confirma tu registro - A Toda Costa - Santa Fe';
+        $subject = 'Confirma tu registro - Santa Fe es Salud';
         $message = $this->view->fetch('email/registro.twig', [
             'id' => $preuser->id,
             'token' => $preuser->emailed_token
         ]);
         mail($to, $subject, $message);
         
-        $this->render('costa/registro/registro-exito.twig', array('email' => $preuser->email));
+        $this->render('salud/registro/registro-exito.twig', array('email' => $preuser->email));
     }
 
     public function verificarEmail($idPre, $token) {
@@ -163,15 +163,15 @@ class PortalCtrl extends Controller {
             $usuario->img_hash = md5($preuser->email);
             $usuario->save();
             $preuser->delete();
-            $this->render('costa/registro/validar-correo.twig', array('usuarioValido' => true,
+            $this->render('salud/registro/validar-correo.twig', array('usuarioValido' => true,
                                                                 'email' => $usuario->email));
         } else {
-            $this->render('costa/registro/validar-correo.twig', array('usuarioValido' => false));
+            $this->render('salud/registro/validar-correo.twig', array('usuarioValido' => false));
         }
     }
 
     public function verRecuperarClave() {
-        $this->render('costa/registro/recuperar-clave.twig');
+        $this->render('salud/registro/recuperar-clave.twig');
     }
     
     public function recuperarClave() {
@@ -192,7 +192,7 @@ class PortalCtrl extends Controller {
         $usuario->save();
         
         $to = $usuario->email;
-        $subject = 'Reiniciar clave - A Toda Costa - Santa Fe';
+        $subject = 'Reiniciar clave - A Toda salud - Santa Fe';
         $message = $this->view->fetch('email/recuperar.twig', [
             'id' => $usuario->id,
             'token' => $usuario->token
@@ -207,7 +207,7 @@ class PortalCtrl extends Controller {
         $vdt->test($idUsu, new Validate\Rule\NumNatural());
         $vdt->test($token, new Validate\Rule\AlphaNumeric());
         $vdt->test($token, new Validate\Rule\ExactLength(32));
-        $this->render('costa/registro/reiniciar-clave.twig', ['idUsu' => $idUsu, 'token' => $token]);
+        $this->render('salud/registro/reiniciar-clave.twig', ['idUsu' => $idUsu, 'token' => $token]);
     }
     
     public function reiniciarClave($idUsu, $token) {
@@ -237,6 +237,6 @@ class PortalCtrl extends Controller {
     }
     
     public function finReiniciarClave() {
-        $this->render('costa/registro/reiniciar-completo.twig');
+        $this->render('salud/registro/reiniciar-completo.twig');
     }
 }

@@ -1,0 +1,339 @@
+header {
+    .barra-header {
+        background-image: url("../img/line-stafe-header.png");
+        background-attachment: fixed;
+        height: 5px;
+        background-repeat: repeat-x;
+        z-index: 1000;
+        position: relative;
+    }
+    .navbar {
+        position: absolute;
+        width: 100%;
+    }
+    @media (max-width: $screen-xs-max) {
+        .navbar-collapse {
+            height: 100vh;
+            background: rgba($primary,0.9);
+            margin-top: -68px;
+            width: 100%;
+            position: absolute;
+            border: 0;
+            z-index: 5;
+            .santafe-logo.mobile{
+                position: absolute;
+                left: 15px;
+                top: 17px;
+                padding: 0;
+            }
+            .salud-logo.mobile{
+                position: absolute;
+                left: 90px;
+                top: 35px;
+                padding: 0;
+            }
+        }
+    }
+    .navbar-default {
+        background: none;
+        border: none;
+        .navbar-toggle.collapsed{
+            color: $text;
+            img.toggled{
+                display: none;
+            }
+            img.not-toggled{
+                display: block;
+            }
+            .barra-header{
+                display: none;
+            }
+        }
+        .navbar-collapse {
+            overflow: auto;
+        }
+        .navbar-toggle {
+            img{
+                height:30px;
+            }
+            &:hover, &:focus{
+                background-color: transparent;
+            }
+            @media (max-width: $screen-xs-max) {
+                z-index: 10;
+                border: 0;
+                background-color: transparent;
+                border-radius: 0;
+                margin-top: 25px;
+                padding:0;
+
+            }
+            img.toggled{
+                display: block;
+            }
+            img.not-toggled{
+                display: none;
+            }
+
+        }
+        @media (max-width: $screen-xs-max) {
+            .navbar-nav {
+                margin: 30vh 0 0;
+                height: 70vh;
+                >li {
+                    display: block;
+                    font-family: "Raleway", Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+                    font-size: 42px;
+                }
+                >li:last-child a {
+                    padding: 30.5px 0px;
+                    font-family: "Open Sans", Arial, Helvetica, sans-serif;
+                    color: #FFF;
+                    font-size: 14px;
+                    font-weight: 700;
+                    img.img-avatar {
+                        height: 32px;
+                        margin-left: 5px;
+                    }
+                }
+                img.icono-login {
+                    height: 14px;
+                    margin-left: 5px;
+                    vertical-align: top;
+                    margin-top: 4px;
+                }
+                >li a {
+                    //padding: 20.5px 0px;
+                    line-height: 38px;
+                    text-align: center;
+                    color: #FFF;
+                }
+                >li.btn-ingreso a{
+                    line-height: normal;
+                }
+            }
+        }
+        @media (min-width: $screen-sm-min) {
+            .navbar-nav {
+                >li {
+                    float: none;
+                    display: inline-block;
+                    &.active a {
+                        background: 0 !important;
+                        color: #FFF;
+                        &:hover {
+                            color: #FFF;
+                        }
+                    }
+                    a {
+                        padding-top: 40px;
+                        color: rgba(80, 79, 81, 0.5);
+                        &.participa{
+                            color: #504f51;
+                        }
+                        &:hover {
+                            color: #504f51;
+                        }
+                    }
+                }
+            }
+        }
+        a.login-btn {
+            display: none;
+            @media (min-width: $screen-sm-min) {
+                display:block;
+                color: #FFF;
+                font-size: 14px;
+                font-weight: 700;
+                position: absolute;
+                margin-top: 40px;
+                right: 0;
+                &.common-menu.logged {
+                    margin-top: 35px;
+                }
+                &.user-menu.logged {
+                    margin-top: 40px;
+                }
+                img.img-avatar {
+                    height: 32px;
+                    margin-left: 5px;
+                }
+            }
+        }
+        img.icono-login {
+            height: 14px;
+            margin-left: 5px;
+            vertical-align: top;
+            margin-top: 4px;
+        }
+    }
+    .santafe-logo{
+        padding: 12px 0 0 15px;
+        height:50px;
+        @media (min-width: $screen-sm-min) {
+            margin-top:10px;
+            padding:0;
+            height: 75px;
+        }
+        @media (min-width: $screen-md-min) {
+            margin-top:0;
+            padding:0;
+            height: 100px;
+        }
+        img{
+            height:57px;
+            @media (min-width: $screen-sm-min) {
+                height: 75px;
+            }
+              @media (min-width: $screen-md-min) {
+                height: 100px;
+            }
+        }
+    }
+    .salud-logo{
+        padding-top:30px;
+        //        height:px;
+        @media (min-width: $screen-sm-min) {
+            //            height: 100px;
+        }
+        @media (min-width: $screen-md-min) {
+            //            height: 100px;
+        }
+        img{
+            height:25px;
+
+            @media (min-width: $screen-sm-min) {
+                height: 25px;
+                margin-left: 15px;
+                margin-top:10px;
+            }
+             @media (min-width: $screen-md-min) {
+                height: 40px;
+                margin-left: 15px;
+                margin-top:0;
+            }
+        }
+    }
+    .logo {
+        height: 55px;
+        //        position: absolute;
+        //        margin-top: 0px;
+        //        z-index: 10;
+        @media (min-width: $screen-md-min) {
+            height: 43px;
+            //            position: absolute;
+            //            margin-top: 15px;
+        }
+        //    .navbar-default.navbar-black {
+        //        .navbar-toggle {
+        //            @media (max-width: $screen-xs-max) {
+        //                background-color: #413d3d;
+        //                color: #FFF;
+        //                &:hover {
+        //                    background-color: $primary;
+        //                }
+        //            }
+        //        }
+        //        @media (max-width: $screen-xs-max) {
+        //            .navbar-nav {
+        //                margin: 30vh 0 0;
+        //                height: 70vh;
+        //                >li {
+        //                    border-top: 1px solid #FFF;
+        //                }
+        //                >li:last-child a {
+        //                    color: #FFF;
+        //                }
+        //                >li a {
+        //                    color: #FFF;
+        //                }
+        //            }
+        //        }
+        //        @media (min-width: $screen-sm-min) {
+        //            .navbar-nav {
+        //                >li {
+        //                    &.active a {
+        //                        color: #413d3d;
+        //                        &:hover {
+        //                            color: $primary;
+        //                        }
+        //                    }
+        //                    a {
+        //                        color: #bfbfbf;
+        //                        &:hover {
+        //                            color: $primary;
+        //                        }
+        //                    }
+        //                }
+        //            }
+        //            a.login-btn {
+        //                color: #bfbfbf;
+        //                &:hover {
+        //                    color: $primary;
+        //                }
+        //            }
+        //        }
+        //    }
+    }
+    //-----------------------------
+    .header-bg {
+        background-size: cover;
+        background-position: center center;
+        color: #FFF;
+    }
+    #home.header-bg {
+        background-image: url("../img/home/header-bg-all.jpg");
+        padding-top: 140px;
+        background-position: center left;
+        padding-bottom: 45px;
+        //  background-attachment: fixed;
+        @media (min-width: $screen-sm-min) {
+            padding-top: 250px;
+            padding-bottom: 135px;
+        }
+        h1 {
+            font-size: 29px;
+            @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+                font-size: 42.5px;
+            }
+            @media (min-width: $screen-md-min) {
+                font-size: 60px;
+            }
+            span.ligero {
+                font-weight: 400;
+            }
+            margin-bottom:90px;
+        }
+        .btn.btn-blanco {
+            font-family: "Raleway", serif;
+            color: #fff;
+            background-color: transparent;
+            border: 1px solid #FFF;
+            font-size: 15px;
+            font-weight: 600;
+            padding: 10px 12px;
+            &:hover {
+                color: #4a999d;
+                background-color: #fff;
+            }
+        }
+    }
+    #simple.header-bg {
+        padding-top: 150px;
+        padding-bottom: 30px;
+        @media (min-width: $screen-sm-min) {
+            padding-top: 200px;
+        }
+        @media (min-width: $screen-md-min) {
+            padding-top: 385px;
+        }
+        //background-attachment: fixed;
+        h1 {
+            font-size: 40px;
+            font-weight: 900;
+            @media (min-width: $screen-sm-min) {
+                font-size: 45px;
+            }
+        }
+    }
+}
