@@ -106,6 +106,9 @@ h6 {
     font-family: "Raleway", Cambria, Cochin, Georgia, Times, Times New Roman, serif;
 }
 
+.is-raleway{
+    font-family: "Raleway", Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+}
 
 .is-paddingless{
     padding:0;
@@ -114,12 +117,20 @@ h6 {
     margin:0;
 }
 
+.is-100{font-weight: 100;}
+.is-200{font-weight: 200;}
+.is-300{font-weight: 300;}
+.is-400{font-weight: 400;}
+.is-500{font-weight: 500;}
+.is-600{font-weight: 600;}
+.is-700{font-weight: 700;}
+.is-800{font-weight: 800;}
+
 /* start da css for da buttons */
 .boton {
     border-radius: 50px;
-    padding: 5px     25px;
-    font-size: 12px;
     text-decoration: none;
+    padding: 5px 25px;
     color: #fff;
     position: relative;
     display: inline-block;
@@ -127,10 +138,38 @@ h6 {
         transform: translate(0px, 5px);
         -webkit-transform: translate(0px, 5px);
         box-shadow: none !important;
+
+    }
+    &:hover, &:focus{
+        text-decoration: none;
+    }
+    &.size-12{
+        padding: 5px 25px;
+        font-size: 12px;
+    }
+    &.size-16{
+        padding: 13px 48px;
+        font-size: 16px;
     }
     &.login{
         background: #2b3b4e;
         box-shadow: 0px 5px 0px 0px #536d8c;
+    }
+    &.blanco{
+        color: $primary;
+        background: #FFF;
+        box-shadow: 0px 5px 0px 0px darken(#FFF,20%);
+    }
+    &.blanco:hover, &.blanco:focus {
+        background-color: darken(#FFF,5%);
+    }
+    &.primary{
+        color: #FFF;
+        background: $primary;
+        box-shadow: 0px 5px 0px 0px darken($primary,20%);
+    }
+    &.primary:hover, &.primary:focus {
+        background-color: darken($primary,10%);
     }
     &.blue {
         background-color: #55acee;
@@ -189,6 +228,37 @@ h6 {
 }
 
 
+.pill{
+    padding: 8px 12px;
+    background-color: #FFF;
+    border-radius: 50px;
+    display: inline-block;
+    &:hover{
+        text-decoration: none;
+    }
+    &.blanco{
+        color:$primary;
+    }
+}
+
+.block-svg{
+    position: relative;
+    .svg{
+        position:absolute;
+        width: 80%;
+        height: 130%;
+        top: -15%;
+        left: 10%;
+        background-size: contain;
+        background-position: center center;
+        background-repeat: no-repeat;
+        z-index: -10;
+        &.comentarios{
+            background-image: url('../img/home-icon1.svg');
+        }
+    }
+
+}
 
 //.btn.btn-pill{
 //    font-family: "Raleway", Cambria, Cochin, Georgia, Times, Times New Roman, serif;

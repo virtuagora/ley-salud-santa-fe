@@ -1,3 +1,227 @@
+#introduccion{
+    margin-top: 70px;
+    padding: 50px 0 50px;
+    @media (min-width: $screen-sm-min) {
+        margin-top: 50px;
+        padding: 70px 0 30px;
+        background-image: url('../img/home-img1.jpg');
+        background-position: right bottom;
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+    @media (min-width: $screen-md-min) {
+        margin-top: 60px;
+        padding: 120px 0 60px;
+    }
+    @media (min-width: $screen-lg-min) {
+        margin-top: 50px;
+        padding: 140px 0 110px;
+    }
+    h1{
+        font-size:50px;
+        line-height: 50px;
+        margin-bottom: 30px;
+        font-weight: 400;
+        @media (min-width: $screen-lg-min) {
+            margin-bottom: 60px;
+        }
+    }
+    h2{
+        font-size: 35px;
+        line-height: 40px;
+        margin-bottom: 20px;
+        font-weight: 400;
+        text-align: center;
+        @media (min-width: $screen-sm-min) {
+            text-align: left;
+        }
+    }
+    p{
+        font-size:14px;
+        line-height: 18px;
+        text-align: center;
+        @media (min-width: $screen-sm-min) {
+            text-align: left;
+        }
+        @media (min-width: $screen-md-min) {
+            font-size:16px;
+            line-height: 21px;
+        }
+        a{
+            color: $primary;
+            font-weight: 700;
+            text-decoration: underline;
+        }
+    }
+    .file-container{
+        position:relative;
+    }
+    img.file{
+        position: absolute;
+        display:none;
+        @media (min-width: $screen-sm-min) {
+            display:block;
+            width: 90%;
+            top: 15px;
+        }
+        @media (min-width: $screen-md-min) {
+            width: 90%;
+            top: -10px;
+        }
+        @media (min-width: $screen-lg-min) {
+            width: 95%;
+            top: -30px;
+        }
+    }
+}
+.sticky{
+    background-color: $primary;
+    padding:25px 0;
+    text-align: center;
+    p{
+        font-size:16px;
+        font-weight: 400;
+        color:#FFF;
+        margin: 0;
+    }
+    .for-lg p{
+        line-height: 35px;
+    }
+    .for-lg .pill{
+        padding: 0px 12px;
+        margin-left: 10px;
+    }
+    .for-mobile .pill{
+        margin-top: 3px;
+    }
+}
+
+.affix {
+    top:0;
+    width: 100%;
+    z-index: 9999 !important;
+}
+//  .navbar {
+//      margin-bottom: 0px;
+//  }
+
+.affix ~ .container-fluid {
+    position: relative;
+    top: 50px;
+}
+#fortalecer{
+    padding:75px 0;
+    @media (min-width: $screen-md-min) {
+        padding:120px 0;
+    }
+    @media (min-width: $screen-sm-min) {
+        background-image: url('../img/home-img2-mobile.jpg');
+        background-position: center bottom;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    @media (min-width: $screen-md-min) {
+        background-image: url('../img/home-img2.jpg');
+        //    background-position: right bottom;
+        //    background-size: cover;
+        //    background-repeat: no-repeat;
+    }
+    h3{
+        font-weight: 400;
+        line-height: 35px;
+        margin-bottom: 45px;
+        text-align: center;
+        @media (min-width: $screen-sm-min) {
+            text-align: left;
+        }
+    }
+    p{
+        font-size:16px;
+        text-align: center;
+        @media (min-width: $screen-sm-min) {
+            text-align: left;
+        }
+        a{
+            color: $primary;
+            text-decoration: underline;
+            font-weight: 700;
+        }
+    }
+}
+
+
+#involucra{
+    position: relative;
+    padding:75px 0;
+    background-color: $primary;
+    background-image: url('../img/home-img3.jpg');
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    @media (min-width: $screen-md-min) {
+        padding:100px 0;
+    }
+    img{
+        width: 60%;
+        left: 20%;
+        bottom: -76px;
+        position: relative;
+        @media (min-width: $screen-sm-min) {
+            width: auto;
+            position:absolute;
+            bottom: 0;
+            left: 10%;
+            height:50%;
+
+        }
+        @media (min-width: $screen-md-min) {
+            left: 15%;
+        }
+    }
+    h3{
+        font-weight: 400;
+        line-height: 35px;
+        color: #FFF;
+        text-align: center;
+        @media (min-width: $screen-sm-min) {
+            text-align: right;
+        }
+    }
+    p{
+        font-size:16px;
+        text-align: center;
+        @media (min-width: $screen-sm-min) {
+            text-align: left;
+        }
+        a{
+            color: $primary;
+            text-decoration: underline;
+            font-weight: 700;
+        }
+    }
+}
+
+#action{
+    padding: 100px 0;
+    h2{
+        font-size:28px;
+        line-height: 35px;
+        margin-bottom: 30px;
+        text-align: center;
+        font-weight: 400;
+    }
+    p{
+        font-size:15px;
+        line-height: 20px;
+        text-align: center;
+
+    }
+    a{
+        margin-top: 60px;
+        text-align: center;
+    }
+}
+
 //    .white-dots {
 //        position: absolute;
 //        width: 100%;
