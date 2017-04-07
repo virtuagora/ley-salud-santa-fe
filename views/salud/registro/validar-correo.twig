@@ -1,0 +1,47 @@
+{% extends "salud/master.twig" %}
+{% set nav = 0 %}
+{% block titulo %}Verificación de email{% endblock titulo %}
+{% block linkhead %}
+{% endblock %}
+{% block header %}
+{% endblock header %}
+{% block body %}
+<div class="nothing-navbar"></div>
+<div id="login-box">
+    <div class="container">
+        <div class="block-svg">
+            <div class="svg registro"></div>
+            <div class="row upperbox">
+                <div class="col-xs-12 col text-center">
+                    {% if usuarioValido == true %}
+                    <h1>Su cuenta ha sido verificada</h1>
+                    {% else %}
+                    <h1>Link invalido</h1>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-3">
+                <div class="box text-center" style="z-index: 10;">
+                    {% if usuarioValido == true %}
+                    <div class="block-svg"  style="z-index: 0;">
+                        <div class="svg registro-ok" style=></div>
+                        <h2>Puede volver a la plataforma para iniciar sesión.</h2>
+                    </div>
+                    <br>
+                    <a href="{{urlFor('shwLogin')}}" class="boton primary size-14 is-raleway is-700">Iniciar Sesión</a>
+                    {% else %}
+                    <h4>El link ingresado es incorrecto. Verifique que el link que hemos enviado a su dirección de correo electrónico sea el mismo que ingresó en la barra de direcciones.</h4>
+                    <h4>Si sigue viendo este mensaje, comuníquese con un administrador.</h4>
+                    <a href="{{urlFor('shwIndex')}}" class="boton primary size-14 is-raleway is-700">Ir al Inicio</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock body %}
+{% block scripts %}
+{% endblock scripts %}

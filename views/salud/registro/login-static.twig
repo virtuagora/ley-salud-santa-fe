@@ -1,0 +1,73 @@
+{% extends "salud/master.twig" %}
+
+{% block titulo %}Iniciar Sesión{% endblock titulo %}
+{% block linkhead%}
+{% endblock %}
+{% block header %}
+{% endblock header %}
+{% block body %}
+<div class="nothing-navbar"></div>
+<div id="login-box">
+    <div class="container">
+        <div class="block-svg">
+            <div class="svg candado"></div>
+            <div class="row upperbox">
+                <div class="col-xs-12 col text-center">
+                    <h1>Inicie sesión</h1>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-3">
+                <div class="box">
+                    <div id="inicio-box">
+                        <form action="{{ urlFor('runLogin') }}" method="POST" >
+                            <div class="form-group">
+                                <input class="form-control" name="email" type="email" placeholder="Dirección de Email">
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" name="password" type="password" placeholder="Contraseña">
+                            </div>
+                            <div class="form-group text-center">
+                                <button type="submit" class="boton primary size-14 is-raleway is-700">Iniciar sesión</button>
+                            </div>
+                            <div class="form-group clearfix">
+                                <a href="{{urlFor('shwCrearUsuario')}}" class="just-link btn-registrarse pull-right"><b>REGISTRARSE</b></a>
+                                <a id="verRecuperar" href="javascript:void(0)" class="just-link pull-left">¿Olvidó su contraseña?</a>
+                            </div>
+                        </form>
+                    </div>
+                    <div id="recuperar-box" style="display:none">
+                        <p class="text-center">Le enviaremos un link de recuperación por email.<br>Revise su casilla y siga los pasos.</p>
+                        <form action="{{ urlFor('runRecuperarClave') }}" method="POST" >
+                            <div class="form-group">
+                                <input class="form-control" name="email" type="email" placeholder="Dirección de Email">
+                            </div>
+                            <div class="form-group text-center">
+                                <button type="submit" class="boton primary size-14 is-raleway is-700">Recuperar contraseña</button>
+                            </div>
+                            <div class="form-group text-center">
+                                <a id="volverInicio" href="javascript:void(0)" class="just-link"><i class="fa fa-chevron-left fa-fw"></i>Volver</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body %}
+{% block scripts %}
+<script>
+    $( document ).ready(function() {
+        $( "#volverInicio" ).click(function() {
+            $( "#inicio-box" ).slideDown("slow");
+            $( "#recuperar-box" ).slideUp("slow");
+        });
+        $( "#verRecuperar" ).click(function() {
+            $( "#inicio-box" ).slideUp("slow");
+            $( "#recuperar-box" ).slideDown("slow");
+        });
+    });
+</script>
+{% endblock scripts %}

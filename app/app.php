@@ -102,7 +102,7 @@ $app->get('/test', function () use ($app) {
     // $req = $app->request;
     // $uri = $req->headers->get('x-forwarded-host')?: $req->getUrl();
     // var_dump($uri);
-    $app->render('costa/test.twig');
+    $app->render('salud/test.twig');
 });
 
 // TODO Hice que en vez de derecho, sea /area. logicamente no lo cambies de lo que es derecho..

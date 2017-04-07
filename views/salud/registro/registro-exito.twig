@@ -1,0 +1,39 @@
+{% extends "salud/master.twig" %}
+{% set nav = 0 %}
+{% block titulo %}Verifique su identidad{% endblock titulo %}
+{% block linkhead %}
+{% endblock %}
+{% block header %}
+{% endblock header %}
+{% block body %}
+<div class="nothing-navbar"></div>
+<div id="login-box">
+    <div class="container">
+        <div class="block-svg">
+            <div class="svg registro"></div>
+            <div class="row upperbox">
+                <div class="col-xs-12 col text-center">
+                    <h1>Registrate</h1>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-3">
+                <div id="confirmacion" class="box text-center" style="z-index: 10;">
+                    <div class="block-svg"  style="z-index: 0;">
+                        <div class="svg registro-ok" style=></div>
+                        <div>
+                            <h2><b>¡Tu registro fue completado con éxito!</b> <br>
+                                Hacé clic en el enlace de activacion que acabamos de enviarte a tu cuenta de correo</h2>
+                        </div>
+                    </div>
+                    <a href="{{urlFor('shwIndex')}}" class="boton primary size-14 is-raleway is-700">Volver al Inicio</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock body %}
+{% block scripts %}
+{% endblock scripts %}

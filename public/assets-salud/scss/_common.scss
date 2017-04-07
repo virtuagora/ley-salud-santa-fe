@@ -134,6 +134,7 @@ h6 {
     color: #fff;
     position: relative;
     display: inline-block;
+    border: 0;
     &:active {
         transform: translate(0px, 5px);
         -webkit-transform: translate(0px, 5px);
@@ -146,6 +147,10 @@ h6 {
     &.size-12{
         padding: 5px 25px;
         font-size: 12px;
+    }
+    &.size-14{
+        padding: 10px 30px;
+        font-size: 14px;
     }
     &.size-16{
         padding: 13px 48px;
@@ -256,8 +261,22 @@ h6 {
         &.comentarios{
             background-image: url('../img/home-icon1.svg');
         }
+        &.candado{
+            background-image: url('../img/icon-login.svg');
+        }
+        &.registro{
+            background-image: url('../img/icon-registro.svg');
+            top: -14%;
+        }
+        &.registro-ok{
+            background-image: url('../img/icon-registro-ok.svg');
+        }
     }
 
+}
+
+.nothing-navbar{
+    margin-top:140px;
 }
 
 //.btn.btn-pill{

@@ -1,0 +1,46 @@
+
+{% extends "salud/master.twig" %}
+
+{% block titulo %}Recuperar contraseña{% endblock titulo %}
+{% block linkhead%}
+{% endblock %}
+{% block header %}
+{% endblock header %}
+{% block body %}
+<div class="nothing-navbar"></div>
+<div id="login-box">
+    <div class="container">
+        <div class="block-svg">
+            <div class="svg candado"></div>
+            <div class="row upperbox">
+                <div class="col-xs-12 col text-center">
+                    <h1>Recuperar contraseña</h1>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-3">
+                <div class="box">
+                    <div id="inicio-box">
+                        <form action="{{ urlFor('runReiniciarClave',{'idUsu': idUsu,'token': token}) }}" method="POST" data-toggle="validator">
+                            <div class="form-group">
+                                <input name="password" type="password" placeholder="Nueva contraseña" id="inputPassword" class="form-control" data-error="Complete el campo con una contraseña" required>
+                            </div>
+                            <div class="form-group">
+                                <input name="password2" type="password" placeholder="Reingrese su contraseña" class="form-control" data-match="#inputPassword"  data-error="Reingrese la contraseña que ha ingresado en el campo anterior" data-match-error="Las contraseñas no son iguales. Revisé" required>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                            <div class="form-group text-center">
+                                <button type="submit" class="boton primary size-14 is-raleway is-700">Reiniciar contraseña</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body %}
+{% block scripts %}
+<script src="{{ baseUrl() }}/assets-salud/js/validator.min.js"></script>
+{% endblock scripts %}
