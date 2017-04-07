@@ -5,7 +5,7 @@ $capsule->addConnection([
     'driver' => 'mysql',
     'host' => 'localhost',
     'database' => 'virtuagora_salud',
-    'username' => 'root',
+    'username' => 'salud',
     'password' => '',
     'charset' => 'utf8',
     'collation' => 'utf8_general_ci',
