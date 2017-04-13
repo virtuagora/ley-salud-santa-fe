@@ -43,16 +43,21 @@
                 <li class="{{ nav == 3 ? 'active' : '' }}"><a href="{{urlFor('shwAreas')}}" class="participa"><b>Participá</b></a></li>
                 {% if user is not empty %}
                 <li class="">
-                    <a href="{{urlFor('shwUsuario', {'idUsu': user.id})}}" class="user-boton">
+                    <a href="{{urlFor('shwUsuario', {'idUsu': user.id})}}" class="user-boton" title="Ver perfil">
                         {% if user.patrulla_id != null %}
                         {{ user.nombre }}<img src="{{ baseUrl() }}/assets-costa/img/avatar/moderador.svg" class="img-circle img-avatar" >
                         {% else %}
                         {{ user.nombre }}<img src="{{ baseUrl() }}/assets-costa/img/avatar/{{user.genero}}-{{user.id % 6}}.svg" class="img-circle img-avatar" >
                         {% endif %}
                     </a>
+                    {% if user.patrulla_id != null %}
+                        <a href="{{urlFor('shwIndexAdmin')}}" class="user-boton hidden-sm hidden-md hidden-lg">Administrar <i class="fa fa-cogs fa-lg"></i></a>
+                        {% endif %}
                     <a href="javascript:logout()" class="user-boton hidden-sm hidden-md hidden-lg">Salir <i class="fa fa-sign-out fa-lg"></i></a>
                 </li>
-
+                {% if user.patrulla_id != null %}
+                       <li class="{{ nav == 3 ? 'active' : '' }} hidden-xs"><a href="{{urlFor('shwIndexAdmin')}}" title="Administrar"><i class="fa fa-cogs fa-lg"></i></a></li>
+                        {% endif %}
                 <li class="{{ nav == 3 ? 'active' : '' }} hidden-xs"><a href="javascript:logout()" title="Cerrar sesión"><i class="fa fa-sign-out fa-lg"></i></a></li>
                 <form id="form-salir" action="{{ urlFor('runLogout') }}" method="POST"></form>
                 {% else %}
