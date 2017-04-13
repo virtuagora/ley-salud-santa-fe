@@ -15,6 +15,10 @@ class PortalCtrl extends Controller {
         $this->render('salud/portal/inicio.twig');
     }
 
+    public function verPrincipios() {
+        $this->render('salud/portal/principios.twig');
+    }
+
     public function verLogin() {
         $this->render('salud/registro/login-static.twig');
     }

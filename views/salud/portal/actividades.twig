@@ -26,6 +26,7 @@
                   <p class="info"><b>Mar 13/03 - 21:03 Hs -</b> Centro cultural ATE España (Rivadavia re loca)</p>
                   <h3>Presentacion del proyecto Santa Fe es Salud</h3>
                   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum voluptatem illo quam ullam modi rerum cupiditate nostrum dolor molestiae veniam nihil beatae non, rem impedit, repudiandae voluptas eos vero id.</p>
+                  <br>
                   <p class="mas-info"><b>Más info:</b> <a href="#">Archivo con el documento de esto</a></p>
               </div>
               <hr>
@@ -33,6 +34,7 @@
                   <p class="info"><b>Mar 13/03 - 21:03 Hs -</b> Centro cultural ATE España (Rivadavia re loca)</p>
                   <h3>Presentacion del proyecto Santa Fe es Salud</h3>
                   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum voluptatem illo quam ullam modi rerum cupiditate nostrum dolor molestiae veniam nihil beatae non, rem impedit, repudiandae voluptas eos vero id.</p>
+                  <br>
                   <p class="mas-info"><b>Más info:</b> <a href="#">Archivo con el documento de esto</a></p>
               </div>
             {% for actividad in actividades %}
@@ -40,6 +42,7 @@
                   <p class="info"><b>{{actividad.fecha_desde|date("d/m")}}{{ actividad.fecha_hasta|date("d/m") != actividad.created_at|date("d/m") ? ' al ' ~ actividad.fecha_hasta|date("d/m") : ''}} -</b> {{actividad.lugar}}</p>
                   <h3>{{actividad.titulo}}</h3>
                   <p>{{actividad.descripcion|nl2br}}</p>
+                  <br>
                   <p class="mas-info"><b>Más info:</b> <a href="http://{{actividad.info}}">{{actividad.info}}</a></p>
               </div>
          {% endfor %}
