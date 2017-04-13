@@ -88,7 +88,7 @@ class PortalCtrl extends Controller {
             ->addRule('email', new Validate\Rule\Email())
             ->addRule('email', new Validate\Rule\MaxLength(128))
             ->addRule('email', new Validate\Rule\Unique('usuarios'))
-            ->addRule('genero', new Validate\Rule\InArray(['f', 'm']))
+//            ->addRule('genero', new Validate\Rule\InArray(['f', 'm']))
             ->addRule('nacimiento', new Validate\Rule\Date('Y-m-d'))
             ->addRule('ocupacion', new Validate\Rule\MaxLength(128))
             ->addRule('extra', new Validate\Rule\MaxLength(128))
@@ -117,7 +117,8 @@ class PortalCtrl extends Controller {
         $preuser->password = password_hash($vdt->getData('password'), PASSWORD_DEFAULT);
         $preuser->nombre = $vdt->getData('nombre');
         $preuser->apellido = $vdt->getData('apellido');
-        $preuser->genero = $vdt->getData('genero');
+//        $preuser->genero = $vdt->getData('genero');
+        $preuser->genero = 'm';
         $preuser->nacimiento = $cumple;
         $preuser->ocupacion = $vdt->getData('ocupacion');
         $preuser->extra = $vdt->getData('extra');

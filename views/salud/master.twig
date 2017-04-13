@@ -104,6 +104,9 @@
         <script src="{{ baseUrl() }}/assets-salud/js/bootstrap.min.js"></script>
         <!--=======================-->
         <script>
+            function logout() {
+                $('#form-salir').submit();
+            }
             $( document ).ready(function() {
                 $( '.user-menu-show' ).click(function() {
                     $( '.common-menu' ).hide("slide" );
@@ -123,9 +126,6 @@
                   $('#modal-warning').modal('show');
                    {% endif %}
                    });
-                   function logout() {
-                       $('#form-salir').submit();
-                   }
         </script>
         {% block scripts %}{% endblock %}
     </body>
