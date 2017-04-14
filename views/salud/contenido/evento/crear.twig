@@ -1,0 +1,151 @@
+{% extends "salud/master.twig" %}
+{% set nav = 0 %}
+{% block titulo %}Crear Actividad{% endblock titulo %}
+{% block linkhead %}
+<link rel="stylesheet" type="text/css" href="{{ baseUrl() }}/assets-salud/css/jquery-ui/jquery-ui.min.css" />
+<link rel="stylesheet" type="text/css" href="{{ baseUrl() }}/assets-salud/css/timepicker/jquery.timepicker.css" />
+{% endblock %}
+{% block header %}
+{% endblock header %}
+{% block body %}
+<div class="nothing-navbar"></div>
+<div id="" class="form derecho">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 text-center">
+                <h1>Nueva Actividad</h1>
+                <hr>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <form action="{{ urlFor('runCrearEvento') }}" method="POST">
+            <div class="row">
+                <div class="col-xs-12 col-md-8 col-md-offset-2">
+                    <div class="form-group">
+                        <h3>Nombre de la actividad</h3>
+                        <h6 class="text-info"><b>Nota:</b> Evite un titulo excesivamente largo</h6>
+                        <input name="titulo" class="form-control input-lg" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-md-4 col-md-offset-2">
+                    <div class="form-group">
+                        <h3>Desde</h3>
+                        <h6 class="text-info"><b>Nota:</b> Dia que es el evento o que comienza el evento.
+                            <br>
+                            <br>
+                        </h6>
+                        <div id="datepicker" style="margin: 10px auto 10px;"></div>
+                        <input id="guardarFecha" hidden>
+                        <input id="fecha-final" name="fecha_desde" type="text" style="display:none;" />
+                        <input id="txt-fecha" type="text" class="form-control text-center input-lg" placeholder="Seleccione la fecha" readonly />
+
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-4">
+                    <div class="form-group">
+                        <h3>Hasta</h3>
+                        <h6 class="text-info"><b>Nota:</b> Dia en que termina el evento.<br>Si es un evento que dura 1 dia NO COMPLETE NADA.</h6>
+                        <div id="datepicker2" style="margin: 10px auto 10px;"></div>
+                        <input id="guardarFecha2" hidden>
+                        <input id="fecha-final2" name="fecha_hasta" type="text" style="display:none;" />
+                        <input id="txt-fecha2" type="text" class="form-control text-center input-lg" placeholder="Seleccione la fecha" readonly />
+                        <br>
+                        <a id="limpiar-hasta" href="javascript:void(0)" class="btn btn-default btn-sm">Limpiar fecha "Hasta"</a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-md-8 col-md-offset-2">
+                    <div class="form-group">
+                        <h3>Lugar y hora del evento</h3>
+                        <h6 class="text-info"><b>Ejemplo:</b> Desde las 16Hs en 25 de Mayo 1682</h6>
+                        <input name="lugar" class="form-control" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-md-8 col-md-offset-2">
+                    <div class="form-group">
+                        <h3>Descripción del evento</h3>
+                        <h6 class="text-info"><b>Nota:</b></h6>
+                        <textarea name="descripcion" rows="1" class="form-control"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-md-8 col-md-offset-2">
+                    <div class="form-group">
+                        <h3>URL a mas info</h3>
+                        <h6 class="text-info"><b>Nota:</b> Coloque la URL a una web distinta. Ej: http://www.google.com.ar</h6>
+                        <div class="input-group">
+                            <span class="input-group-addon">http://</span>
+                            <input name="info" type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="clearfix">
+                        <a href="{{urlFor('shwIndexAdmin')}}" class="btn btn-submit btn-default ">Cancelar</a>
+                        <button type="submit" class="btn btn-submit pull-right"><i class="fa fa-check fa-fw"></i> Crear</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<br>
+<br>
+{% endblock body %}
+{% block scripts %}
+<script src="{{ baseUrl() }}/assets-salud/js/autosize.min.js"></script>
+<script src="{{ baseUrl() }}/assets-salud/js/jquery-ui/jquery-ui.min.js"></script>
+<script src="{{ baseUrl() }}/assets-salud/js/jquery-ui/datepicker-es.js"></script>
+<script>
+    var segundaFecha = false;
+    $(document).ready(function () {
+        autosize($('textarea'));
+        $("#datepicker").datepicker({
+            numberOfMonths: 1,
+            dateFormat: 'DD, dd MM yy',
+            altField: "#guardarFecha",
+            altFormat: "yy-mm-dd",
+            //minDate: 0,
+            onSelect: function () {
+                $('#txt-fecha').val(this.value);
+            }
+        });
+        $("#datepicker2").datepicker({
+            numberOfMonths: 1,
+            dateFormat: 'DD, dd MM yy',
+            altField: "#guardarFecha2",
+            altFormat: "yy-mm-dd",
+            //minDate: 0,
+            onSelect: function () {
+                $('#txt-fecha2').val(this.value);
+                segundaFecha = true;
+            }
+        });
+    });
+
+    $('#limpiar-hasta').click(function () {
+        segundaFecha = false;
+        $("#guardarFecha2").val('0000-00-00');
+        $('#txt-fecha2').val('0000-00-00');
+        $('#fecha-final2').val('');
+    });
+
+
+    $('form').submit(function (e) {
+
+        var fecha = $("#guardarFecha").val()
+        var fecha2 = $("#guardarFecha2").val()
+        if( segundaFecha == false ){
+            fecha2 = '';
+        }
+        $('#fecha-final').val(fecha);
+        $('#fecha-final2').val(fecha2);
+
+    })
+</script>
+{% endblock scripts %}

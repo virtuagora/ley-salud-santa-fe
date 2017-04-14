@@ -19,7 +19,7 @@ class DerechoCtrl extends Controller {
             }
         }
         
-        $this->render('costa/contenido/derecho/ver.twig', [
+        $this->render('salud/contenido/derecho/ver.twig', [
             'derecho' => $datosDer,
             'voto' => $votosUsr
         ]);
@@ -32,7 +32,7 @@ class DerechoCtrl extends Controller {
         $contenido = $derecho->contenido;
         $datosDer = array_merge($contenido->toArray(), $derecho->toArray());
         
-        $this->render('costa/contenido/derecho/verAccion.twig', [
+        $this->render('salud/contenido/derecho/verAccion.twig', [
             'derecho' => $datosDer,
             'seccionMostrar' => $idAcc            
         ]);
@@ -40,7 +40,7 @@ class DerechoCtrl extends Controller {
 
 
     public function verCrear() {
-        $this->render('costa/contenido/derecho/crear.twig');
+        $this->render('salud/contenido/derecho/crear.twig');
     }
     // TODO Este es el listado que te paso con su nombre
     // titulo - input text
@@ -84,7 +84,7 @@ class DerechoCtrl extends Controller {
         $derecho = Derecho::with('contenido')->findOrFail($idDer);
         $contenido = $derecho->contenido;
         $datos = array_merge($contenido->toArray(), $derecho->toArray());
-        $this->render('costa/contenido/derecho/editar.twig', [
+        $this->render('salud/contenido/derecho/editar.twig', [
             'derecho' => $datos,
         ]);
     }

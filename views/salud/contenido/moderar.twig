@@ -1,0 +1,48 @@
+<div id="moderarModal" class="modal fade">
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Moderar usuario</h4>
+            </div>
+            <div class="modal-body">
+                <h6><img src="" class="img-circle sancionando-img" style="margin-right:10px;" alt=""><span class="sancionando-nombre"></span> <span class="sancionando-apellido"></span></h6>
+                <hr>
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="Suspensión">
+                        <a href="javascript:void(0)" class="btn btn-danger btn-block btn-sm" data-toggle="modal" data-target="#moderarModalConfirmar">Suspender usuario indefinidamente</a>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-link btn-block btn-sm" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="moderarModalConfirmar" class="modal fade">
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">¿Esta seguro?</h4>
+            </div>
+            <div class="modal-body">
+                <form id="form-susp" action="" class="form-sancion" method="POST">
+                    <h6><img src="" class="img-circle sancionando-img" style="margin-right:10px;" alt=""><span class="sancionando-nombre"></span> <span class="sancionando-apellido"></span></h6>
+                    <p class="lead">¿Esta seguro que desea suspender indefinidamente al usuario? Esta accion es irreversible.</p>
+                    <input hidden name="tipo" value="Suspension">
+                    <input hidden name="cantidad" value="0">
+                    <button type="submit" href="javascript:void(0)" class="btn btn-danger btn-block btn-sm">Suspender usuario indefinidamente</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-link btn-block btn-sm" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+ <form id="eliminarComentario" action="{{ urlFor('runElimiComenta') }}" method="POST">
+    <input type="hidden" type="text" name="id">
+</form>

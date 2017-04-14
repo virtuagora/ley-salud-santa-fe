@@ -1,0 +1,117 @@
+{% extends "salud/master.twig" %}
+{% set nav = 0 %}
+{% block titulo %}Cronograma de actividades{% endblock titulo %}
+{% block linkhead %}
+
+{% endblock %}
+{% block header %}
+{% endblock header %}
+{% block body %}
+               <img class="corazon-ejes" src="{{baseUrl()}}/assets-salud/img/icon-ejes-header.svg" alt="">
+<div class="nothing-navbar"></div>
+<div id="ejes">
+    <div class="container">
+        <div class="row header-ejes">
+            <div class="col-xs-12 col-sm-8 col-md-8">
+                <h1>¿Como puedo <b>participar</b>?</h1>
+                <p>A continuación encontrarás 8 ejes en torno al derecho a la salud para el debate; cada uno tiene un desarrollo y algunas preguntas que van a orientarte para que puedas participar. Ahí mismo, luego de registrarte, podrás dejar tu comentario. Podés comentar solo en un eje, en dos o en los ocho.<br><br>
+Recordá que es muy importante tu participacion segun tu experiencia. <b>Podés participar las veces que quieras,</b> e incluso sumarte tambien a nuestros Foros Presenciales. Visitá el <a href="{{urlFor('shwActividades')}}"><b>cronograma de actividades</b></a> para conocer cúando es el próximo.</p>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid box">
+        <div class="container">
+            <div class="row listado-ejes">
+                <div class="col-xs-12 col-md-6">
+                    <div class="eje-container">
+                        <div class="block-svg">
+                            <div class="svg eje1"></div>
+                            <div class="informacion">
+                            <h2><b>Integración</b> del sistema provincial de salud</h2>
+                            <p>La participación es uno de los principios fundamentales del Sistema de Salud, a partir de la intervención de la comunidad en las decisiones relacionadas con los servicios de salud de su comunidad. Para fomentar la participación se generarán espacios plurales en todo. </p>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <a href="javascript:void(0)" class="boton primary size-16  is-raleway is-700">Participá</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-6">
+                    <div class="eje-container">
+                        <div class="block-svg">
+                            <div class="svg eje2"></div>
+                            <div class="informacion">
+                            <h2>Modelo de <b>financiación del sistema</b> y <b>ejecución presupuestaria</b></h2>
+                            <p>La participación es uno de los principios fundamentales del Sistema de Salud, a partir de la intervención de la comunidad en las decisiones relacionadas con los servicios de salud de su comunidad. Para fomentar la participación se generarán espacios plurales en todo. </p>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <a href="javascript:void(0)" class="boton primary size-16  is-raleway is-700">Participá</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-6">
+                    <div class="eje-container">
+                        <div class="block-svg">
+                            <div class="svg eje3"></div>
+                            <div class="informacion">
+                                <h2><b>Estrategia, gestión y organización</b> del sistema.</h2>
+                            <p>La participación es uno de los principios fundamentales del Sistema de Salud, a partir de la intervención de la comunidad en las decisiones relacionadas con los servicios de salud de su comunidad. Para fomentar la participación se generarán espacios plurales en todo. </p>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <a href="javascript:void(0)" class="boton primary size-16  is-raleway is-700">Participá</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-6">
+                    <div class="eje-container">
+                        <div class="block-svg">
+                            <div class="svg eje4"></div>
+                            <div class="informacion">
+                                <h2>Niveles de <b>atención</b></h2>
+                            <p>La participación es uno de los principios fundamentales del Sistema de Salud, a partir de la intervención de la comunidad en las decisiones relacionadas con los servicios de salud de su comunidad. Para fomentar la participación se generarán espacios plurales en todo. </p>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <a href="javascript:void(0)" class="boton primary size-16  is-raleway is-700">Participá</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-6">
+                    <div class="eje-container">
+                        <div class="block-svg">
+                            <div class="svg eje5"></div>
+                            <div class="informacion">
+                            <h2><b>Participación</b> social</h2>
+                            <p>La participación es uno de los principios fundamentales del Sistema de Salud, a partir de la intervención de la comunidad en las decisiones relacionadas con los servicios de salud de su comunidad. Para fomentar la participación se generarán espacios plurales en todo. </p>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <a href="javascript:void(0)" class="boton primary size-16  is-raleway is-700">Participá</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-6">
+                    <div class="eje-container">
+                        <div class="block-svg">
+                            <div class="svg eje6"></div>
+                            <div class="informacion">
+                                <h2><b>Calidad</b> en los servicios</h2>
+                            <p>La participación es uno de los principios fundamentales del Sistema de Salud, a partir de la intervención de la comunidad en las decisiones relacionadas con los servicios de salud de su comunidad. Para fomentar la participación se generarán espacios plurales en todo. </p>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <a href="javascript:void(0)" class="boton primary size-16  is-raleway is-700">Participá</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body %}
+{% block scripts %}
+
+{% endblock scripts %}

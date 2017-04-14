@@ -1,0 +1,104 @@
+{% extends "salud/master.twig" %}
+{% set nav = 0 %}
+{% block titulo %}Administración{% endblock titulo %}
+{% block linkhead %}
+{% endblock %}
+{% block header %}
+{% endblock header %}
+{% block body %}
+<div class="nothing-navbar"></div>
+<div id="" class="admin-container">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 text-center">
+                <h1>Menú de administrador</h1>
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+           <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+                <ul class="list-group">
+                    <li class="list-group-item active">
+                        <span class="badge" style="margin: 0 3px;"><a href="{{urlFor('shwCrearDerecho')}}"> <i class="fa fa-plus"></i> Nuevo </a></span> Ejes de participación
+                    </li>
+                    {% for derecho in derechos %}
+                    <li class="list-group-item">
+                        <a href="{{ urlFor('shwModifDerecho', {'idDer': derecho.contenible_id}) }}" class="pull-right" style="margin: 0 3px;"><span class="badge"><i class="fa fa-pencil"></i> Edit </span></a>
+                        {{ derecho.orden }}. {{ derecho.titulo }}
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+                <ul class="list-group">
+                    <li class="list-group-item active">
+                        <span class="badge" style="margin: 0 3px;"><a href="{{urlFor('shwCrearEvento')}}"> <i class="fa fa-plus"></i> Nuevo </a></span> Cronograma de Actividades
+                    </li>
+                    {% for actividad in actividades %}
+                    <li class="list-group-item">
+                        <form action="{{ urlFor('runElimiEvento', {'idEve': actividad.id }) }}" method="POST">
+                            <button type="submit" class="pull-right" style="padding: 0;border: 0;background-color: transparent;margin: 0 2px;"><span class="badge" style="background-color:red;"><i class="fa fa-times"></i></span></button>
+                        </form>
+                        {{actividad.titulo}}
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+                <ul class="list-group">
+                    <li class="list-group-item active">
+                        Administrar sitio
+                    </li>
+                    <li class="list-group-item">
+                        <a href="{{ urlFor('shwCrearModerad') }}" class="pull-right"><span class="badge"><i class="fa fa-pencil"></i> Editar</span></a>
+                        Moderadores
+                    </li>
+                </ul>
+            </div>
+            <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+                <ul class="list-group">
+                    <li class="list-group-item active">
+                        <span class="badge" style="margin: 0 3px;"><a href="{{urlFor('shwEstadi')}}"> <i class="fa fa-eye"></i> Ver </a></span> Estadisticas
+                    </li>
+                </ul>
+            </div>
+            <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+                <ul class="list-group">
+                    <li class="list-group-item active">
+                        Exportar
+                    </li>
+                    <li class="list-group-item">
+                        <a href="{{ urlFor('shwEmails') }}" class="pull-right"><span class="badge"><i class="fa fa-download"></i>Ver</span></a>
+                        Email Usuarios
+                    </li>
+                    <li class="list-group-item">
+                        Comentarios<br>
+                        {% for derecho in derechos %}
+                        <a href="{{ urlFor('shwComments', {'idDer': derecho.id}) }}" class=""><span class="badge"><i class="fa fa-download"></i> {{derecho.id}}</span></a>
+                        {% endfor %}
+                    </li>
+                </ul>
+            </div>
+<!--
+            <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+                <ul class="list-group">
+                    <li class="list-group-item active">
+                        <span class="badge" style="margin: 0 3px;"><a href="{{urlFor('shwCrearOpinion')}}"> <i class="fa fa-plus"></i> Nuevo </a></span> Testimonios
+                    </li>
+                    {% for testimonio in testimonios %}
+                    <li class="list-group-item">
+                        <form action="{{ urlFor('runEliminarOpinion', {'idOpi': testimonio.id }) }}" method="POST">
+                            <button type="submit" class="pull-right" style="padding: 0;border: 0;background-color: transparent;margin: 0 2px;"><span class="badge" style="background-color:red;"><i class="fa fa-times"></i></span></button>
+                        </form>
+                        {{testimonio.orden}}. {{testimonio.persona}}
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+-->
+        </div>
+    </div>
+</div>
+{% endblock body %}
+{% block scripts %}
+{% endblock scripts %}

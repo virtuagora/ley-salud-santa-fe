@@ -35,9 +35,9 @@ class PortalCtrl extends Controller {
             'actividades' => $eventos
         ]);
     }
-    public function verAreas() {
+    public function verEjes() {
         $derechos = Contenido::with('Contenible')->where('contenible_type', 'Derecho')->get()->toArray();
-        $this->render('salud/portal/areas.twig',  [
+        $this->render('salud/portal/ejes.twig',  [
             'derechos' => $derechos
         ]   );
     }

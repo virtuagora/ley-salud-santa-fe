@@ -1,0 +1,133 @@
+
+.corazon-ejes{
+    position:fixed;
+    z-index: -10;
+    right: -25%;
+    top: 100px;
+    width: 80vh;
+    height: auto;
+    @media (min-width: $screen-sm-min) {
+        right: -7%;
+        top: 40px;
+        height: 100vh;
+        width: auto;
+    }
+}
+#ejes{
+    .header-ejes{
+        padding: 0 0 300px;
+        @media (min-width: $screen-sm-min) {
+            padding: 40px 0 400px;
+        }
+        h1{
+            font-size:50px;
+            line-height: 50px;
+            margin-bottom: 30px;
+            font-weight: 400;
+            text-align: center;
+            @media (min-width: $screen-sm-min) {
+                text-align: left;
+            }
+            @media (min-width: $screen-lg-min) {
+                margin-bottom: 60px;
+            }
+        }
+        p{
+            font-size:14px;
+            line-height: 18px;
+            text-align: center;
+            @media (min-width: $screen-sm-min) {
+                text-align: left;
+            }
+            @media (min-width: $screen-md-min) {
+                font-size:16px;
+                line-height: 21px;
+            }
+            a{
+                color: $primary;
+                font-weight: 700;
+                text-decoration: underline;
+            }
+        }
+    }
+
+    .box{
+        background-color: #eeeeee;
+    }
+    .listado-ejes{
+        margin-top:-260px;
+        margin-bottom:60px;
+    }
+    .eje-container{
+        text-align: center;
+        background-color: #FFF;
+        padding:60px;
+        border:2px solid $primary;
+        border-radius: 15px;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        h2{
+            margin-bottom:30px;
+            min-height: 100px;
+        }
+        p{
+            font-size:14px;
+            line-height: 18px;
+            text-align: center;
+            @media (min-width: $screen-md-min) {
+                font-size:16px;
+                line-height: 21px;
+            }
+            min-height: 170px;
+        }
+        .informacion{
+            position:relative;
+            z-index: 10;
+        }
+    }
+    .block-svg{
+        position: relative;
+        .svg{
+            //        position:absolute;
+            //        width: 80%;
+            //        height: 130%;
+            //        top: -15%;
+            //        left: 10%;
+            //        background-size: contain;
+            //        background-position: center center;
+            //        background-repeat: no-repeat;
+            z-index: 0;
+            //        &.comentarios{
+            //            background-image: url('../img/home-icon1.svg');
+            //        }
+            //        &.candado{
+            //            background-image: url('../img/icon-login.svg');
+            //        }
+            //        &.registro{
+            //            background-image: url('../img/icon-registro.svg');
+            //            top: -14%;
+            //        }
+            //        &.registro-ok{
+            //            background-image: url('../img/icon-registro-ok.svg');
+            //        }
+            &.eje1{
+                background-image: url('../img/icon-eje1.svg');
+            }
+            &.eje2{
+                background-image: url('../img/icon-eje2.svg');
+            }
+            &.eje3{
+                background-image: url('../img/icon-eje3.svg');
+            }
+            &.eje4{
+                background-image: url('../img/icon-eje4.svg');
+            }
+            &.eje5{
+                background-image: url('../img/icon-eje5.svg');
+            }
+            &.eje6{
+                background-image: url('../img/icon-eje6.svg');
+            }
+        }
+    }
+}

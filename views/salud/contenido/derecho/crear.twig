@@ -1,0 +1,164 @@
+{% extends "salud/master.twig" %}
+{% set nav = 0 %}
+{% block titulo %}Crear eje de participación{% endblock titulo %}
+{% block linkhead %}
+{% endblock %}
+{% block header %}
+{% endblock header %}
+{% block body %}
+<div class="nothing-navbar"></div>
+<div id="" class="admin-container">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 text-center">
+                <h1>Nuevo eje de participación</h1>
+                <hr>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <form id="crearDerecho" action="{{ urlFor('runCrearDerecho') }}" method="POST" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+                    <div class="form-group">
+                        <h3>Titulo del eje</h3>
+                        <h6 class="text-info"><b>Nota:</b> Evite que sea muy largo</h6>
+                        <input name="titulo" class="form-control input-lg" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+                    <div class="form-group">
+                        <h3>Orden</h3>
+                        <h6 class="text-info"><b>Nota:</b> El orden es importante, no solo para ordenarlos, sino tambien para asignarles el icono correspondiente al eje (Los que han presentado para manejar en la plataforma).
+                          <br>
+                          <br>
+                           Elija que icono se le asigna al eje eligiendo entre entre 1 y 6
+                           <br>
+                           <br>
+                            <ul class="list-inline">
+                               {% for i in 1..6 %}
+                                <li>{{i}} - <img src="{{baseUrl()}}/assets-salud/img/icon-eje{{i}}.svg" class="icono-ilustrativo" alt=""></li>
+                                {% endfor %}
+                            </ul>
+                        </h6>
+                        <input name="orden" min="1" max="6" type="number" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+                    <div class="form-group">
+                        <h3>Breve descripción para el listado de Ejes</h3>
+                         <p><b>¡Importante!</b> El siguiente extracto sirve para el listado de ejes de participacion, le pedimos que sea concreto, no se explaye, para eso tendrá el proximo campo de descripcion que sea del Eje en si.</p>
+                        <h6 class="text-info"><b>Nota:</b> La siguiente descripción aparecerá en el listado de <b>Ejes de participacion</b>.</h6>
+                        <textarea name="resumen" rows="1" class="form-control"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+                    <div class="form-group">
+                        <h3>Descripción del Eje</h3>
+                        <textarea name="descripcion"  rows="1" class="form-control"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div id="derecho" class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+                    <div id="descripcion">
+                    </div>
+                    <h3>Preguntas</h3>
+                    <h6 class="text-info"><b>Nota:</b> No le coloque numeración a la pregunta. Nosotros lo mostramos por usted.</h6>
+                    <h6 class="text-info"><b>Nota:</b> A cada eje ademas de las preguntas ira agregado la opcion de marcar el eje como "Muy importante", "Importante", "Poco Importante", "No me interesa"</h6>
+                    <div class="lista-acciones">
+                        <div class="accion-container color-0">
+                            <textarea name="cuerpo" class="pregunta form-control" rows="1" placeholder="Pregunta..."></textarea>
+                        </div>
+                    </div>
+                    <a id="nuevaAccion" href="javascript:void(0)" class="btn btn-sm btn-default btn-block"><i class="fa fa-plus "></i> Agregar una pregunta</a>
+                </div>
+                <input type="text" name="secciones" value="" hidden>
+                <input type="text" name="categoria" value="1" hidden>
+                <input type="text" name="tags" value="" hidden>
+                <input type="text" name="video" value="" hidden>
+                <input type="text" name="imagen" value="0" hidden>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+                    <div class="form-group">
+                        <h3>Link a mas informacion (Opcional)</h3>
+                        <h5>Si no tiene que llenar este campo, puede dejarlo vacio</h5>
+                        <h6 class="text-info"><b>Nota:</b> Si va a ser un archivo, lamentablemente no podemos proveerles subirlo al servidor. Sin embargo, puede optar por usar una alternativa como <i class="fa fa-google"></i> Google Drive, <i class="fa fa-dropbox"></i> Dropbox o <i class="fa fa-windows"></i> OneDrive o cualquiera que le provea un link público</h6>
+                       <div class="input-group">
+                            <span class="input-group-addon">http://</span>
+                            <input name="info" type="text" class="form-control">
+                        </div>
+                    </div>
+                     <div class="form-group">
+                       <h5>Etiqueta del link</h5>
+                        <h6 class="text-info"><b>Ejemplo:</b> Descargue documento sobre el tema</h6>
+                        <input name="titulo" class="form-control" />
+                    </div>
+                    <hr>
+                    <div class="clearfix">
+                        <a href="{{urlFor('shwIndexAdmin')}}" class="btn btn-large btn-default ">Cancelar</a>
+                        <button type="submit" class="btn btn-submit pull-right"><i class="fa fa-check fa-fw"></i> Subir</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<br>
+<br>
+{% endblock body %} {% block scripts %}
+<script src="{{ baseUrl() }}/assets-salud/js/autosize.min.js"></script>
+<script id="accionTemplate" type="text/template">
+    <div class="accion-container color-numColor">
+        <a id="eliminar-numAccion" href="javascript:void(0)" data-idaccion='numAccion' class="eliminarAccion pull-right" style="font-size:20px;"><i class="fa fa-times fa-lg"></i></a>
+        <textarea name="cuerpo" class="pregunta dinamic form-control" rows="1" placeholder="Pregunta..."></textarea>
+    </div>
+</script>
+<script>
+    var numeroAccion = 2;
+    $(document).ready(function() {
+        //Events
+        // $("a.eliminarArticulo").on("click", eliminarArticulo);
+        autosize($('textarea'));
+    });
+
+    $("#nuevaAccion").click(function(e) {
+        var nuevaAccion = $("#accionTemplate").html().replace(new RegExp('numAccion', 'g'), numeroAccion).replace(new RegExp('numColor', 'g'), (numeroAccion-1)%3 );
+        $(".lista-acciones").append(nuevaAccion)
+        numeroAccion += 1
+        autosize($('textarea'));
+    });
+    $(document.body).on('click', '.eliminarAccion', function() {
+        var i = $(this).data('idaccion') + 1
+        $(this).closest(".accion-container").remove();
+        for (; i <= numeroAccion + 1; i++) {
+            $('#eliminar-' + i).attr('data-idaccion', (i - 1)).attr('id', "eliminar-" + (i - 1));;
+            $("textarea[name='cuerpo-" + i + "']").attr('name', "cuerpo-" + (i - 1))
+        }
+        numeroAccion -= 1;
+    });
+    var eliminarAccion = function(e) {
+        $(this).closest(".li-accion").remove();
+    }
+
+
+    $( "form" ).submit(function( event ) {
+        var secciones = [];
+        $( "textarea[name=cuerpo]" ).each(function( index ) {
+            secciones.push($( this ).val());
+        });
+        var seccionesString = secciones.join("&&")
+        $('input[name=secciones]').val(seccionesString);
+        return true;
+    });
+
+
+</script>
+{% endblock scripts %}

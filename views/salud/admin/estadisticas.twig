@@ -1,0 +1,53 @@
+{% extends "costa/master-clean.twig" %} {% set nav = 0 %} {% block titulo %}Query{% endblock titulo %} {% block linkhead
+%} {% endblock %} {% block header %} {% endblock header %} {% block body %}
+<div id="" class="form derecho">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-12 text-center">
+        <h1>Estadisticas</h1>
+        <hr>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+        <table class="table table-striped table-hover table-bordered">
+          <thead>
+            <tr>
+              <th>Dato</th>
+              <th>Valor</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Cant. de Masculinos Registrados</td>
+              <td>{{ datosUsuarios.hombres }}</td>
+            </tr>
+            <tr>
+              <td>Cant. de Femeninas Registrados</td>
+              <td>{{ datosUsuarios.mujeres }}</td>
+            </tr>
+            <tr>
+              <td>Cant. de Usuarios Registrados</td>
+              <td>{{ datosUsuarios.participantes }}</td>
+            </tr>
+            <tr>
+              <td>Cant. de Usuarios que comentan</td>
+              <td>{{ datosUsuarios.comentadores }}</td>
+            </tr>
+            <tr>
+              <td>Cant. de Comentarios</td>
+              <td>{{ datosComentarios.aportes }}</td>
+            </tr>
+            <tr>
+              <td>Cant. de Respuestas</td>
+              <td>{{ datosComentarios.respuestas }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock body %} {% block scripts %} {% endblock scripts %}

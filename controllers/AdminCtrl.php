@@ -4,11 +4,11 @@ class AdminCtrl extends Controller {
 
     public function verAdminAjustes() {
         $ajustes = Ajuste::all();
-        $this->render('costa/admin/ajustes.twig', array('ajustes' => $ajustes->toArray()));
+        $this->render('salud/admin/ajustes.twig', array('ajustes' => $ajustes->toArray()));
     }
 
     public function verExportar() {
-        $this->render('costa/admin/exportar.twig');
+        $this->render('salud/admin/exportar.twig');
     }
 
     public function verEmails() {
@@ -42,7 +42,7 @@ class AdminCtrl extends Controller {
             'aportes' => Comentario::where('comentable_type', 'Seccion')->count(),
             'respuestas' => Comentario::where('comentable_type', 'Comentario')->count(),
         ];
-        $this->render('costa/admin/estadisticas.twig', [
+        $this->render('salud/admin/estadisticas.twig', [
             'datosUsuarios' => $usrData,
             'datosComentarios' => $comData,
         ]);
@@ -73,7 +73,7 @@ class AdminCtrl extends Controller {
     
     public function verCrearModerador() {
         $mods = Usuario::whereNotNull('patrulla_id')->get()->toArray();
-        $this->render('costa/admin/moderadores.twig', ['moderadores' => $mods]);
+        $this->render('salud/admin/moderadores.twig', ['moderadores' => $mods]);
     }
     
     public function crearModerador() {
@@ -134,7 +134,7 @@ class AdminCtrl extends Controller {
         $derechos = Contenido::where('contenible_type', 'Derecho')->get()->toArray();
         $testimonios = Testimonio::all()->toArray();
         $actividades = Evento::all()->toArray();
-        $this->render('costa/admin/indexAdmin.twig', [
+        $this->render('salud/admin/indexAdmin.twig', [
             'derechos' => $derechos,
             'testimonios' => $testimonios,
             'actividades' => $actividades,

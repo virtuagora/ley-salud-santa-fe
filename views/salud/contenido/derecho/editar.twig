@@ -1,0 +1,119 @@
+{% extends "costa/master-clean.twig" %} {% set nav = 0 %} {% block titulo %}Editar area{% endblock titulo %} {% block linkhead
+%} {% endblock %} {% block header %} {% endblock header %} {% block body %}
+<div id="" class="form derecho">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-xs-12 text-center">
+				<h1>Editar area</h1>
+				<hr>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<form id="editar" action="{{ urlFor('runModifDerecho', {'idDer':derecho.id}) }}" method="POST" enctype="multipart/form-data">
+		<div class="row">
+			<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+				<div class="form-group">
+					<h3>Titulo del area</h3>
+					<h6 class="text-info"><b>Nota:</b> Evite que sea muy largo</h6>
+					<input name="titulo" class="form-control input-lg" />
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+				<div class="form-group">
+					<h3>Orden</h3>
+					<h6 class="text-info"><b>Nota:</b> Numero entre 1 y 6
+					<br>Es muy importante este dato ya que con este numero podemos asociar su icono correspondiente.
+					<br>1 - Calidad social
+					<br>2 - Cultura e identidad
+					<br>3 - Habitad, vivienda y ambiente
+					<br>4 - Infraestructura y ambiente
+					<br>5 - Produccion y trabajo
+					<br>6 - Turismo</h6>
+					<input name="orden" min="1" max="6" type="number" class="form-control">
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+				<div class="form-group">
+					<h3>Breve descripción para el Home <small>(Max: 150 caracteres)</small></h3>
+					<h6 class="text-info"><b>Nota:</b> La siguiente descripcion es la que se muestra en una parte del Home. Le sugerimos que no superen los 150 caracteres, o que todas las areas tenga.</h6>
+					<textarea name="resumen" onkeyup="checkLength(this)" onchange="checkLength(this)" rows="1" class="form-control"></textarea>
+					<h6 class="text-info"><span class="restantes">150</span> Caracteres restantes</h6>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+				<div class="form-group">
+					<h3>Descripción del area</h3>
+					<h6 class="text-info"><b>Nota:</b> La siguiente descripción aparecerá en el listado de Areas de Acción.</h6>
+					<textarea name="descripcion"  rows="1" class="form-control"></textarea>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div id="derecho" class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+				<h3>Acciones</h3>
+				<h6 class="text-info"><b>Nota:</b> No le coloque numeración a la descripción. Nosotros lo haremos por usted.</h6>
+				<div class="lista-acciones">
+					{% for seccion in derecho.secciones %}
+					<div class="accion-container color-{{(seccion.id-1) % 3}}">
+						<textarea name="cuerpo" class="accion form-control" rows="1" placeholder="Describa la acción...">{{seccion.descripcion|nl2br}}</textarea>
+					</div>
+                    {% endfor %}
+				</div>
+				<br>
+				<hr>
+				<div class="clearfix">
+					<a href="{{urlFor('shwIndexAdmin')}}" class="btn btn-large btn-default ">Cancelar</a>
+					<button type="submit" class="btn btn-submit pull-right"><i class="fa fa-check fa-fw"></i> Editar</button>
+				</div>
+			</div>
+			<input type="text" name="secciones" value="" hidden>
+			<input type="text" name="categoria" value="1" hidden>
+			<input type="text" name="tags" value="" hidden>
+		</div>
+		</form>
+	</div>
+</div>
+{% endblock body %} {% block scripts %}
+<script src="{{ baseUrl() }}/assets-costa/js/autosize.min.js"></script>
+<script id="accionTemplate" type="text/template">
+    <div class="accion-container color-numColor">
+        <a id="eliminar-numAccion" href="javascript:void(0)" data-idaccion='numAccion' class="eliminarAccion pull-right" style="font-size:20px;"><i class="mdi mdi-close"></i></a>
+        <textarea name="cuerpo" class="accion form-control" rows="1" placeholder="Describa la acción..."></textarea>
+    </div>
+</script>
+<script>
+    $(document).ready(function() {
+	$('[name="titulo"]').val('{{derecho.titulo}}');
+	$('[name="orden"]').val('{{derecho.orden}}');
+	$('[name="resumen"]').val('{{derecho.resumen}}');
+	$('[name="descripcion"]').val('{{derecho.descripcion}}');
+    autosize($('textarea'));
+    });
+
+    $( "form" ).submit(function( event ) {
+        var secciones = [];
+        $( "textarea[name=cuerpo]" ).each(function( index ) {
+        secciones.push($( this ).val());
+        });
+        var seccionesString = secciones.join("&&")
+        $('input[name=secciones]').val(seccionesString);
+        return true;
+});
+
+	function checkLength(control) {
+				// if (control.value.length > 150) {
+				// 	control.value = control.value.substr(0, 150);
+				// }
+				$('span.restantes').html(control.value.length);
+			}
+
+
+</script>
+{% endblock scripts %}

@@ -106,7 +106,7 @@ $app->get('/test', function () use ($app) {
 });
 
 // TODO Hice que en vez de derecho, sea /area. logicamente no lo cambies de lo que es derecho..
-$app->group('/area', function () use ($app, $checkRole) {
+$app->group('/eje', function () use ($app, $checkRole) {
     $app->get('/crear', $checkRole('mod'), 'DerechoCtrl:verCrear')->name('shwCrearDerecho');
     $app->post('/crear', $checkRole('mod'), 'DerechoCtrl:crear')->name('runCrearDerecho');
     $app->get('/:idDer', 'DerechoCtrl:ver')->name('shwDerecho');
@@ -177,7 +177,7 @@ $app->get('/tos', 'PortalCtrl:verTos')->name('shwTos');
 //$app->get('/acerca', 'PortalCtrl:verAcerca')->name('shwAcerca');
 $app->get('/principios', 'PortalCtrl:verPrincipios')->name('shwPrincipios');
 $app->get('/actividades', 'PortalCtrl:verActividades')->name('shwActividades');
-$app->get('/areas', 'PortalCtrl:verAreas')->name('shwAreas');
+$app->get('/ejes', 'PortalCtrl:verEjes')->name('shwEjes');
 //$app->get('/fundamentos', 'PortalCtrl:verFundamentos')->name('shwFundamen');
 //$app->get('/tutorial', 'PortalCtrl:verTutorial')->name('shwTutorial');
 $app->get('/login', $checkNoSession, 'PortalCtrl:verLogin')->name('shwLogin');

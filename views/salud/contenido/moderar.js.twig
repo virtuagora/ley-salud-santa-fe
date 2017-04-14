@@ -1,0 +1,42 @@
+<script>
+    var actionURLmodel = '{{ urlFor("runSanUsuario") }}';
+	var imgURL = "{{ urlFor('shwImgUsuario',{'res':32})}}"
+	var sancionar = function(idUsuario){
+		completarModalSancion(idUsuario);
+		$('.modal').modal('hide')
+        $('#moderarModal').modal('show')
+	}
+
+    $('#moderarModalConfirmar').on('show.bs.modal', function (e) {
+     $('#moderarModal').modal('hide')
+    })
+
+	var completarModalSancion = function(idUsuario){
+		var request = $.ajax({
+			url: '{{ baseUrl() }}/usuario/'+idUsuario,
+			cache: false,
+			dataType: "json"
+		}).done(function(resultado) {
+			var actionURLform = actionURLmodel.replace(':IdUsu',idUsuario);
+            $('#form-sancion').attr('action',actionURLform);
+			$('.sancionando-img').removeAttr('src');
+			$('.sancionando-img').attr('src', imgURL.replace(':idUsu',resultado.id));
+			$('.sancionando-nombre').html(resultado.nombre);
+			$('.sancionando-apellido').html(resultado.apellido);
+			return true;
+		}).fail(function(jqXHR, textStatus) {
+			alert("Request failed: " + textStatus);
+			return false;
+		});
+	}
+
+	$( "#b-susp-indf" ).click(function() {
+		$('#dias-susp').val("0");
+		$( "#form-susp" ).submit();
+	});
+
+	 var eliminarComentario = function(id) {
+        $('#eliminarComentario').find('input[name="id"]').val(id)
+        $('#eliminarComentario').submit();
+    }
+</script>

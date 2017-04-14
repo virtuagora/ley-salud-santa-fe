@@ -1,0 +1,145 @@
+{% if seccion.comentarios|length > 0 %}
+                        <div class="grid">
+                            <div class="grid-sizer"></div>
+                            {% if user is not null %}
+                            <div class="grid-item">
+                                <div class="comentario-container">
+                                    <a href="{{ urlFor('shwUsuario',{'idUsu': comentario.autor.id}) }}" class="pull-left">
+                                        <img alt="image" class="img-circle" src="{{ baseUrl() }}/assets-costa/img/avatar/m-{{respuesta.autor.id % 6}}.svg">
+                                    </a>
+                                    <div class="media-body ">
+                                        <strong>{{ comentario.autor.es_moderador ? "<i class='fa fa-shield fa-fw' title='Moderador'></i>" }} {{ user.nombre|upper }} {{ user.apellido|upper }}</strong>
+                                        <form class="form-horizontal" action="{{ urlFor('runComentar', {'tipoRaiz': 'seccion' , 'idRaiz': seccion.id}) }}" method="POST">
+                                            <textarea name="cuerpo" class="form-control input-sm" rows="1" placeholder="Escriba aqui su comentario..." style="resize: none;"></textarea>
+                                            <div class="clearfix" style="margin-top: 10px">
+                                                <button type="submit" class=" pull-right btn btn-primary btn-xs">Enviar comentario</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <hr>
+                            </div>
+                            {% else %}
+                            <div class="grid-item">
+                                <div class="no-login color-{{(seccion.id-1) % 3}}">
+                                    <h3>¿Desea participar comentando?</h3>
+                                    <h3><a href="{{urlFor('shwCrearUsuario')}}" class="btn btn-default">Registrese</a> o <a href="{{urlFor('shwLogin')}}"
+                                            class="btn btn-default">Inicie sesión</a></h3>
+                                </div>
+                            </div>
+
+                            {% endif %} {% for comentario in seccion.comentarios|slice(0,5) %}
+                            <div class="grid-item">
+                                <div class="comentario-container">
+                                    <a href="{{ urlFor('shwUsuario',{'idUsu': comentario.autor.id}) }}" class="pull-left">
+                                        <img alt="image" class="img-circle" src="{{ baseUrl() }}/assets-costa/img/avatar/m-{{comentario.autor.id % 6}}.svg">
+                                    </a>
+                                    <div class="media-body ">
+                                        <strong>{{ comentario.autor.es_moderador ? "<i class='fa fa-shield fa-fw' title='Moderador'></i>" }} {{ comentario.autor.nombre|upper }} {{ comentario.autor.apellido|upper }}</strong>                                        hizo un comentario {% if user and (user.es_moderador) %}
+                                        <a href="javascript:eliminarComentario({{comentario.id}})" class="btn btn-xs btn-warning pull-right" style="margin-left:5px;"
+                                            data-toggle="tooltip" data-placement="bottom" data-original-title="Eliminar"><i class="fa fa-times"></i></a>                                        {% endif %}
+                                        <br>
+                                        <small class="text-muted">{{ comentario.created_at|date("d-M-Y") }}</small>
+                                        <div class="comment-cuerpo" style="margin-top:5px; margin-bottom:5px;">
+                                            {{ comentario.cuerpo|nl2br }}
+                                        </div>
+                                        <div class="text-right" style="margin-top:3px;">
+                                            {% if user is not empty %}
+                                            <a href="javascript:votarComentario({{comentario.id}},1)" class="btn btn-xs btn-primary" data-toggle="tooltip" data-placement="bottom"
+                                                data-original-title="Me gusta"><i class="fa fa-thumbs-up"></i> <b>{{comentario.karma}}</b></a>
+                                            <a href="javascript:votarComentario({{comentario.id}},-1)" class="btn btn-xs btn-default" data-toggle="tooltip" data-placement="bottom"
+                                                data-original-title="No me gusta"><i class="fa fa-thumbs-up fa-flip-vertical fa-flip-horizontal"></i></a>
+                                            <a href="javascript:verBoxResponder({{comentario.id}})" class="btn btn-xs btn-default" data-toggle="tooltip" data-placement="bottom"
+                                                data-original-title="Responder"><i class="fa fa-reply"></i> <b>{{comentario.respuestas|length}}</b></a>                                            {% else %}
+                                            <a href="{{urlFor('shwLogin')}}" class="btn btn-xs btn-primary" data-toggle="tooltip" data-placement="bottom" data-original-title="Me gusta"><i class="fa fa-thumbs-up"></i> <b>{{comentario.karma}}</b></a>
+                                            <a href="{{urlFor('shwLogin')}}" class="btn btn-xs btn-default" data-toggle="tooltip" data-placement="bottom" data-original-title="No me gusta"><i class="fa fa-thumbs-up fa-flip-vertical fa-flip-horizontal"></i></a>
+                                            <a href="{{urlFor('shwLogin')}}" class="btn btn-xs btn-default" data-toggle="tooltip" data-placement="bottom" data-original-title="Responder"><i class="fa fa-reply"></i> <b>{{comentario.respuestas|length}}</b></a>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="lista-respuestas" style="margin-top:20px; padding-left:40px;">
+                                    <form class="form-horizontal" action="{{ urlFor('runComentar', {'tipoRaiz': 'comentario', 'idRaiz': comentario.id }) }}"
+                                        method="POST">
+                                        <div id="respComentario-{{comentario.id}}" class="comentario-container" style="display:none;">
+                                            <a href="{{ urlFor('shwUsuario',{'idUsu': user.id}) }}" class="pull-left">
+                                                <img alt="image" class="img-rounded" src="{{ baseUrl() }}/assets-costa/img/avatar/m-{{user.id % 6}}.svg" style="width:20px;">
+                                            </a>
+                                            <div class="media-body">
+                                                <strong>{{ user.es_moderador ? "<i class='fa fa-shield fa-fw' title='Moderador'></i>" }} {{ user.nombre|upper }} {{ user.apellido|upper }}</strong>
+                                                <small class="text-muted">en respuesta a {{ comentario.autor.nombre|upper }} {{ comoentario.autor.apellido|upper }}</small>
+                                                <textarea name="cuerpo" class="form-control respuesta" rows="1"></textarea>
+                                                <div class="clearfix" style="margin: 10px 0;">
+                                                    <button type="submit" class="pull-right btn btn-xs btn-success "><i class="fa fa-check fa-fw"></i> Enviar</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    {% if comentario.respuestas|length > 0 %} {% for respuesta in comentario.respuestas %}
+                                    <div class="comentario-container" style="margin-bottom:10px;">
+                                        <a href="{{ urlFor('shwUsuario',{'idUsu': respuesta.autor.id}) }}" class="pull-left">
+                                            <img alt="image" class="img-rounded" src="{{ baseUrl() }}/assets-costa/img/avatar/m-{{respuesta.autor.id % 6}}.svg" style="width:20px;">
+                                        </a>
+                                        <div class="media-body">
+                                            <div class="btn-group-vertical btn-group-xs pull-right" style="margin-left: 5px;">
+                                                {% if user is not empty %} {% if user and (user.es_moderador) %}
+                                                <a href="javascript:eliminarComentario({{respuesta.id}})" class="btn btn-warning"><i class="fa fa-times"></i></a>                                                {% endif %}
+                                                <a href="javascript:votarComentario({{respuesta.id}},1)" class="btn btn-default"><i class="fa fa-thumbs-up"></i> <b>{{respuesta.karma}}</b></a>
+                                                <a href="javascript:votarComentario({{respuesta.id}},-1)" class="btn btn-default"><i class="fa fa-thumbs-up fa-flip-vertical fa-flip-horizontal"></i></a>                                                {% else %}
+                                                <a href="{{urlFor('shwLogin')}}" class="btn btn-default"><i class="fa fa-thumbs-up"></i> <b>{{respuesta.karma}}</b></a>
+                                                <a href="{{urlFor('shwLogin')}}" class="btn btn-default"><i class="fa fa-thumbs-up fa-flip-vertical fa-flip-horizontal"></i></a>                                                {% endif %}
+                                            </div>
+                                            <strong>{{ respuesta.autor.es_moderador ? "<i class='fa fa-shield fa-fw' title='Moderador'></i>" }} {{ respuesta.autor.nombre|upper }} {{ respuesta.autor.apellido|upper }}</strong><i> <span class="respuesta">{{ respuesta.cuerpo|nl2br }}</span></i>
+                                        </div>
+                                    </div>
+                                    {% endfor %} {% endif %}
+                                </div>
+                                <hr>
+                            </div>
+                            {% endfor %}
+                            <div class="grid-item">
+                                <a href="#" class="ver-mas">
+                                    <div class="ver-mas-container color-{{(seccion.id-1) % 3}}">
+                                        <h4>Ver todos los comentarios</h4>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        {% else %}
+                        <div class="grid">
+                            <div class="grid-sizer"></div>
+                            <div class="grid-item">
+                                <div class="text-center">
+                                    <h3 class="black gris">No hay comentarios<br><small>¡Sea el primero dejando su comentario!</small></h3>
+                                </div>
+                            </div>
+                            {% if user is not null %}
+                            <div class="grid-item">
+                                <div class="comentario-container">
+                                    <a href="{{ urlFor('shwUsuario',{'idUsu': comentario.autor.id}) }}" class="pull-left">
+                                        <img alt="image" class="img-circle" src="{{ baseUrl() }}/assets-costa/img/avatar/m-{{respuesta.autor.id % 6}}.svg">
+                                    </a>
+                                    <div class="media-body ">
+                                        <strong>{{ comentario.autor.es_moderador ? "<i class='fa fa-shield fa-fw' title='Moderador'></i>" }} {{ user.nombre|upper }} {{ user.apellido|upper }}</strong>
+                                        <form class="form-horizontal" action="{{ urlFor('runComentar', {'tipoRaiz': 'seccion' , 'idRaiz': seccion.id}) }}" method="POST">
+                                            <textarea name="cuerpo" class="form-control input-sm" rows="1" placeholder="Escriba aqui su comentario..." style="resize: none;"></textarea>
+                                            <div class="clearfix" style="margin-top: 10px">
+                                                <button type="submit" class=" pull-right btn btn-primary btn-xs">Enviar comentario</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <hr>
+                            </div>
+                            {% else %}
+                            <div class="grid-item">
+                                <div class="no-login color-{{(seccion.id-1) % 3}}">
+                                    <h3>¿Desea participar comentando?</h3>
+                                    <h3><a href="{{urlFor('shwCrearUsuario')}}" class="btn btn-default">Registrese</a> o <a href="{{urlFor('shwLogin')}}"
+                                            class="btn btn-default">Inicie sesión</a></h3>
+                                </div>
+                            </div>
+
+                            {% endif %}
+                        </div>
+                        {% endif %}

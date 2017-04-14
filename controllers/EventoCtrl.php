@@ -1,33 +1,33 @@
 <?php use Augusthur\Validation as Validate;
 
 class EventoCtrl extends Controller {
-    public function ver($idEve) {
-        $vdt = new Validate\QuickValidator([$this, 'notFound']);
-        $vdt->test($idEve, new Validate\Rule\NumNatural());
-        $evento = Evento::with('comentarios')->findOrFail($idEve);
-        $participe = $evento->usuarios()->where('usuario_id', $this->session->user('id'))->first();
-        $participantes = $evento->usuarios()->toArray();
-        $comentarios = $evento->comentarios->toArray();
-        $datosEven = $evento->toArray();
-        $datosEven['interesados'] = $evento->usuarios()->count();
-        $datosPart = $participe? $participe->toArray(): null;
-        $this->render('lpe/contenido/evento/ver.twig', [
-            'evento' => $datosEven,
-            'comentarios' =>  $comentarios,
-            'participacion' => $datosPart,
-            'participantes' => $participantes
-        ]);
-    }
+//    public function ver($idEve) {
+//        $vdt = new Validate\QuickValidator([$this, 'notFound']);
+//        $vdt->test($idEve, new Validate\Rule\NumNatural());
+//        $evento = Evento::with('comentarios')->findOrFail($idEve);
+//        $participe = $evento->usuarios()->where('usuario_id', $this->session->user('id'))->first();
+//        $participantes = $evento->usuarios()->toArray();
+//        $comentarios = $evento->comentarios->toArray();
+//        $datosEven = $evento->toArray();
+//        $datosEven['interesados'] = $evento->usuarios()->count();
+//        $datosPart = $participe? $participe->toArray(): null;
+//        $this->render('lpe/contenido/evento/ver.twig', [
+//            'evento' => $datosEven,
+//            'comentarios' =>  $comentarios,
+//            'participacion' => $datosPart,
+//            'participantes' => $participantes
+//        ]);
+//    }
     
-    public function listar() {
-        $eventos = Evento::all()->sortBy('fecha');
-        $this->render('lpe/contenido/evento/listar.twig', [
-            'eventos' => $eventos
-        ]);
-    }
+//    public function listar() {
+//        $eventos = Evento::all()->sortBy('fecha');
+//        $this->render('lpe/contenido/evento/listar.twig', [
+//            'eventos' => $eventos
+//        ]);
+//    }
 
     public function verCrear() {
-        $this->render('costa/contenido/evento/crear.twig');
+        $this->render('salud/contenido/evento/crear.twig');
     }
 
     public function crear() {

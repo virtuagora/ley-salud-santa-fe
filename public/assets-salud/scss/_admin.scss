@@ -1,0 +1,71 @@
+.admin-container{
+    .list-group-item.active{
+        background-color: $primary;
+        border-color: $primary;
+    }
+    .icono-ilustrativo{
+        width: 50px;
+    }
+    #nuevaAccion{
+        margin: 20px 0;
+        background-color: $primary;
+        color: #FFF;
+        &:hover{
+        background-color: $text;
+        }
+    }
+    .form-control.pregunta{
+        margin: 20px 0;
+        &.dinamic{
+            width: 93%;
+        }
+    }
+    position: relative;
+	margin-top: 5px;
+	.twitter-typeahead {
+		width: 100%;
+	}
+	.icono{
+		position: absolute;
+		z-index: 2;
+		top: 7px;
+		left: 15px;
+	}
+	.tt-input, .tt-hint{
+		margin-bottom: 0;
+		font-size: rem-calc(13);
+		border-radius: 20px;
+		height: 30px;
+		padding: 5px;
+		color: #000;
+		&.hint{color: #CACACA}
+	}
+	.tt-input{
+		color: #222;
+	}
+	.tt-hint{
+		color: #CACACA;
+	}
+	.tt-menu{
+		width: 100%;
+		border: 1px solid #CACACA;
+		background-color: #FFF;
+		box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+	}
+	.tt-suggestion, .tt-empty{
+		font-size: rem-calc(13);
+		text-align: left;
+		padding: 10px;
+	}
+	.tt-suggestion{
+		border-bottom: 1px solid #CACACA;
+		&:hover{
+			color: #FFF;
+			background-color: #2F6DC1;
+			cursor: pointer;
+		}
+		&:last-child{
+			border-bottom: 0;
+		}
+	}
+}
