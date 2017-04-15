@@ -36,9 +36,9 @@ class PortalCtrl extends Controller {
         ]);
     }
     public function verEjes() {
-        $derechos = Contenido::with('Contenible')->where('contenible_type', 'Derecho')->get()->toArray();
+        $ejes = Contenido::with('Contenible')->where('contenible_type', 'Derecho')->get()->toArray();
         $this->render('salud/portal/ejes.twig',  [
-            'derechos' => $derechos
+            'ejes' => $ejes
         ]   );
     }
 

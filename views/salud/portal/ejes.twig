@@ -22,13 +22,14 @@ Recordá que es muy importante tu participacion segun tu experiencia. <b>Podés 
     <div class="container-fluid box">
         <div class="container">
             <div class="row listado-ejes">
+                   {% for eje in ejes %}
                 <div class="col-xs-12 col-md-6">
                     <div class="eje-container">
                         <div class="block-svg">
                             <div class="svg eje1"></div>
                             <div class="informacion">
-                            <h2><b>Integración</b> del sistema provincial de salud</h2>
-                            <p>La participación es uno de los principios fundamentales del Sistema de Salud, a partir de la intervención de la comunidad en las decisiones relacionadas con los servicios de salud de su comunidad. Para fomentar la participación se generarán espacios plurales en todo. </p>
+                            <h2>{{eje.titulo|bbCode}}</h2>
+                            <p>{{eje.resumen|bbCode}}</p>
                             </div>
                         </div>
                         <div class="text-center">
@@ -36,6 +37,21 @@ Recordá que es muy importante tu participacion segun tu experiencia. <b>Podés 
                         </div>
                     </div>
                 </div>
+                <div class="col-xs-12 col-md-6">
+                    <div class="eje-container">
+                        <div class="block-svg">
+                            <div class="svg eje1"></div>
+                            <div class="informacion">
+                            <h2>{{eje.titulo|bbCode}}</h2>
+                            <p>{{eje.resumen|bbCode}}</p>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <a href="javascript:void(0)" class="boton primary size-16  is-raleway is-700">Participá</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
                 <div class="col-xs-12 col-md-6">
                     <div class="eje-container">
                         <div class="block-svg">

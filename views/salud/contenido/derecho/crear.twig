@@ -2,6 +2,7 @@
 {% set nav = 0 %}
 {% block titulo %}Crear eje de participación{% endblock titulo %}
 {% block linkhead %}
+<link rel="stylesheet" href="{{ baseUrl() }}/assets-salud/css/sceditor/default.css">
 {% endblock %}
 {% block header %}
 {% endblock header %}
@@ -23,7 +24,7 @@
                     <div class="form-group">
                         <h3>Titulo del eje</h3>
                         <h6 class="text-info"><b>Nota:</b> Evite que sea muy largo</h6>
-                        <input name="titulo" class="form-control input-lg" />
+                        <textarea name="titulo" class="form-control editor small"></textarea>
                     </div>
                 </div>
             </div>
@@ -61,7 +62,7 @@
                 <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
                     <div class="form-group">
                         <h3>Descripción del Eje</h3>
-                        <textarea name="descripcion"  rows="1" class="form-control"></textarea>
+                        <textarea name="descripcion"  rows="1" class="form-control editor large"></textarea>
                     </div>
                 </div>
             </div>
@@ -93,13 +94,13 @@
                         <h6 class="text-info"><b>Nota:</b> Si va a ser un archivo, lamentablemente no podemos proveerles subirlo al servidor. Sin embargo, puede optar por usar una alternativa como <i class="fa fa-google"></i> Google Drive, <i class="fa fa-dropbox"></i> Dropbox o <i class="fa fa-windows"></i> OneDrive o cualquiera que le provea un link público</h6>
                        <div class="input-group">
                             <span class="input-group-addon">http://</span>
-                            <input name="info" type="text" class="form-control">
+                            <input name="url" type="text" class="form-control">
                         </div>
                     </div>
                      <div class="form-group">
                        <h5>Etiqueta del link</h5>
                         <h6 class="text-info"><b>Ejemplo:</b> Descargue documento sobre el tema</h6>
-                        <input name="titulo" class="form-control" />
+                        <input name="etiqueta" class="form-control" />
                     </div>
                     <hr>
                     <div class="clearfix">
@@ -115,6 +116,7 @@
 <br>
 {% endblock body %} {% block scripts %}
 <script src="{{ baseUrl() }}/assets-salud/js/autosize.min.js"></script>
+<script src="{{ baseUrl() }}/assets-salud/js/sceditor/jquery.sceditor.bbcode.js"></script>
 <script id="accionTemplate" type="text/template">
     <div class="accion-container color-numColor">
         <a id="eliminar-numAccion" href="javascript:void(0)" data-idaccion='numAccion' class="eliminarAccion pull-right" style="font-size:20px;"><i class="fa fa-times fa-lg"></i></a>
@@ -128,6 +130,33 @@
         // $("a.eliminarArticulo").on("click", eliminarArticulo);
         autosize($('textarea'));
     });
+
+    $(function() {
+		$("textarea.editor.small").sceditor({
+			plugins: "bbcode",
+			emoticonsEnabled: false,
+			toolbar: "bold,italic,underline|source",
+			height: '80',
+			width: '98%',
+			id: 'editor',
+			style: "{{ baseUrl() }}/assets-salud/css/sceditor/jquery.sceditor.default.large.css",
+			resizeEnabled: false,
+			resizeHeight: true,
+			autoExpand: true
+		});
+        $("textarea.editor.large").sceditor({
+			plugins: "bbcode",
+			emoticonsEnabled: false,
+			toolbar: "bold,italic,underline|source",
+			height: '200',
+			width: '98%',
+			id: 'editor',
+			style: "{{ baseUrl() }}/assets-salud/css/sceditor/jquery.sceditor.default.css",
+			resizeEnabled: false,
+			resizeHeight: true,
+			autoExpand: true
+		});
+	});
 
     $("#nuevaAccion").click(function(e) {
         var nuevaAccion = $("#accionTemplate").html().replace(new RegExp('numAccion', 'g'), numeroAccion).replace(new RegExp('numColor', 'g'), (numeroAccion-1)%3 );

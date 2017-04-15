@@ -8,46 +8,154 @@
 {% endblock header %}
 {% block body %}
 <div class="nothing-navbar"></div>
-<div id="static-box">
+<a href="#" class="control-pagina izquierda">
+    <i class="fa fa-chevron-left fa-3x fa-pull-left"></i><h5 class="texto-izquierda pull-right" style="display:none"><b>Integración</b> del sistema provincial</h5>
+</a>
+<a href="#" class="control-pagina derecha">
+    <i class="fa fa-chevron-right fa-3x fa-pull-right"></i><h5 class="texto-derecha pull-left" style="display:none"><b>Integración</b> del sistema provincial</h5>
+</a>
+<div id="eje-box">
     <div class="container">
         <div class="block-svg">
-            <div class="svg cronograma"></div>
+            <div class="svg eje1"></div>
             <div class="row upperbox">
-                <div class="col-xs-12 col text-center">
-                    <h1><b>Cronograma</b> de actividades</h1>
+                <div class="col-xs-12 text-center">
+                    <h1><b>Integración</b> del sistema provincial</h1>
                 </div>
             </div>
         </div>
     </div>
     <div class="container-fluid box">
-        <div class="row">
-            <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-3 lista-actividades">
-              <div class="actividad">
-                  <p class="info"><b>Mar 13/03 - 21:03 Hs -</b> Centro cultural ATE España (Rivadavia re loca)</p>
-                  <h3>Presentacion del proyecto Santa Fe es Salud</h3>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum voluptatem illo quam ullam modi rerum cupiditate nostrum dolor molestiae veniam nihil beatae non, rem impedit, repudiandae voluptas eos vero id.</p>
-                  <p class="mas-info"><b>Más info:</b> <a href="#">Archivo con el documento de esto</a></p>
-              </div>
-              <hr>
-              <div class="actividad">
-                  <p class="info"><b>Mar 13/03 - 21:03 Hs -</b> Centro cultural ATE España (Rivadavia re loca)</p>
-                  <h3>Presentacion del proyecto Santa Fe es Salud</h3>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum voluptatem illo quam ullam modi rerum cupiditate nostrum dolor molestiae veniam nihil beatae non, rem impedit, repudiandae voluptas eos vero id.</p>
-                  <p class="mas-info"><b>Más info:</b> <a href="#">Archivo con el documento de esto</a></p>
-              </div>
-            {% for actividad in actividades %}
-            <div class="actividad">
-                  <p class="info"><b>{{actividad.fecha_desde|date("d/m")}}{{ actividad.fecha_hasta|date("d/m") != actividad.created_at|date("d/m") ? ' al ' ~ actividad.fecha_hasta|date("d/m") : ''}} -</b> {{actividad.lugar}}</p>
-                  <h3>{{actividad.titulo}}</h3>
-                  <p>{{actividad.descripcion|nl2br}}</p>
-                  <p class="mas-info"><b>Más info:</b> <a href="http://{{actividad.info}}">{{actividad.info}}</a></p>
-              </div>
-         {% endfor %}
+        <div class="container">
+
+            <div class="row">
+                <div class="col-xs-12 col-md-10 col-md-offset-1 eje-container">
+                    <div class="descripcion-eje">
+                        <p>
+                            El sistema de salud de la Provincia es una construcción compleja, producto de la suma de todas las organizaciones, instituciones y recursos, y está constituido por tres subsistemas: el Subsistema Público, el Subsistema de la Seguridad Social y el Subsistema Privado
+                        </p>
+                        <p>
+                            Deben ser consideradas parte del Subsistema Público: los efectores, dispositivos, programas públicos y redes que dirijan o presten servicios de salud, ya sean del orden provincial y/o  municipal;
+                        </p>
+                        <p>
+                            Deben ser consideradas parte del Subsistema de la Seguridad Social: las entidades o instituciones sindicales y de la seguridad social, en lo pertinente a la prestación de servicios de salud;
+                        </p>
+                        <p>
+                            Deben ser consideradas parte del Subsistema Privado: las entidades o personas privadas que presten servicios de salud, como ser: Entidades o instituciones privadas, asociaciones civiles con fines de lucro, empresas de medicina prepaga y Personas físicas o jurídicas
+                        </p>
+                        <br>
+                        <br>
+                        <p>
+                            <b>Descargar material de consulta:</b>
+                            <br>
+                            <br>
+                            <i class="fa fa-link fa-fw fa-lg"></i><a href="#">Documentación para la unificación territorial</a>
+                        </p>
+                        <div class="participacion-container">
+                            <div class="block-svg">
+                                <div class="svg participar-comment"></div>
+                                <div class="row upperbox small">
+                                    <div class="col-xs-12 text-center">
+                                        <h2><b>¡Tu opinión nos interesa!</b><br>Queremos que participes<br><b>respondiendo estas preguntas</b></h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="questions">
+                                <form action="" method="POST">
+                                    <div class="form-group">
+                                        <label for="txt1">1. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate repudiandae quae rerum facilis ipsum et voluptatem explicabo, beatae quas hic molestias repellat tenetur amet, harum illo veritatis fugiat cumque laborum.</label>
+                                        <textarea name="" class="form-control" id="txt1" rows="1"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="txt1">1. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate repudiandae quae rerum facilis ipsum et voluptatem explicabo, beatae quas hic molestias repellat tenetur amet, harum illo veritatis fugiat cumque laborum.</label>
+                                        <textarea name="" class="form-control" id="txt1" rows="1"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="txt1">1. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate repudiandae quae rerum facilis ipsum et voluptatem explicabo, beatae quas hic molestias repellat tenetur amet, harum illo veritatis fugiat cumque laborum.</label>
+                                        <textarea name="" class="form-control" id="txt1" rows="1"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="txt1">4. ¿Que tan importante te parece este eje?</label>
+                                        <br>
+                                        <br>
+                                        <div class="btn-interes btn-group btn-group-justified hidden-xs" data-toggle="buttons">
+                                            <label class="interes btn btn-primary btn-lg" data-numero="3">
+                                                <input type="radio" name="interes" value="3" autocomplete="off"> Muy importante
+                                            </label>
+                                            <label class="interes btn btn-primary btn-lg " data-numero="2">
+                                                <input type="radio" name="interes" value="2" autocomplete="off"> Importante
+                                            </label>
+                                            <label class="interes btn btn-primary btn-lg " data-numero="1">
+                                                <input type="radio" name="interes" value="1" autocomplete="off"> Poco importante
+                                            </label>
+                                            <label class="interes btn btn-primary btn-lg " data-numero="0">
+                                                <input type="radio" name="interes" value="0" autocomplete="off"> No me interesa
+                                            </label>
+                                        </div>
+                                        <div class="btn-interes btn-group-vertical hidden-sm hidden-md hidden-lg" data-toggle="buttons">
+                                            <label class="interes btn btn-primary btn-lg" data-numero="3">
+                                                <input type="radio" name="interes" value=3 autocomplete="off"> Muy importante
+                                            </label>
+                                            <label class="interes btn btn-primary btn-lg " data-numero="2">
+                                                <input type="radio" name="interes" value="2" autocomplete="off"> Importante
+                                            </label>
+                                            <label class="interes btn btn-primary btn-lg " data-numero="1">
+                                                <input type="radio" name="interes" value="1" autocomplete="off"> Poco importante
+                                            </label>
+                                            <label class="interes btn btn-primary btn-lg " data-numero="0">
+                                                <input type="radio" name="interes" value="0" autocomplete="off"> No me interesa
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group text-center">
+                                        <br>
+                                        <br>
+                                        <button type="submit" href="javascript:void(0)" class="boton primary size-16 is-raleway is-700">Enviar</button>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <a href="javascript:void(0)" class="ver-comentarios-link">Ver respuestas de otros usuarios</a>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
 {% endblock body %}
 {% block scripts %}
+<script src="{{ baseUrl() }}/assets-salud/js/autosize.min.js"></script>
+<script>
+    $(document).ready(function() {
+        autosize($('textarea'));
+    });
 
+    $(".interes").click(function(e) {
+        $(".interes").removeClass('active focus');
+        $(".interes[data-numero=" + $(this).data('numero') + "]").addClass('active focus');
+        console.log( $(this).data('numero'));
+        $("input[type=radio]").prop("checked", false);
+        $("input[value=" + $(this).data('numero') + "]").prop("checked", true);
+    });
+    $('form').submit(function(e) {
+        $('button[type=submit]').html('<i class="fa fa-spin fa-gear fa-lg"></i>')
+    })
+    $( ".control-pagina.izquierda" ).hover(  function() {
+        $( ".control-pagina.izquierda .texto-izquierda" ).show( 200 );
+    }, function() {
+        $( ".control-pagina.izquierda .texto-izquierda" ).hide( 200 );
+    });
+    $( ".control-pagina.derecha" ).hover(  function() {
+        $( ".control-pagina.derecha .texto-derecha" ).show( 200 );
+    }, function() {
+        $( ".control-pagina.derecha .texto-derecha" ).hide( 200 );
+    });
+    //    $('control-pagina.izquierda')
+    //    texto-izquierdo
+    //
+</script>
 {% endblock scripts %}

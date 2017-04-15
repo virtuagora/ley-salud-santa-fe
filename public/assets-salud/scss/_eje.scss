@@ -1,0 +1,177 @@
+#eje-box{
+    .block-svg{
+        position: relative;
+        margin-bottom:200px;
+        .svg{
+            position:absolute;
+            width: 80%;
+            height: 100%;
+            top: 0;
+            left: 10%;
+            background-size: contain;
+            background-position: center center;
+            background-repeat: no-repeat;
+            z-index: 0;
+            &.eje1{
+                background-image: url('../img/icon-eje1.svg');
+            }
+            &.eje2{
+                background-image: url('../img/icon-eje2.svg');
+            }
+            &.eje3{
+                background-image: url('../img/icon-eje3.svg');
+            }
+            &.eje4{
+                background-image: url('../img/icon-eje4.svg');
+            }
+            &.eje5{
+                background-image: url('../img/icon-eje5.svg');
+            }
+            &.eje6{
+                background-image: url('../img/icon-eje6.svg');
+            }
+            &.participar-comment{
+                background-image: url('../img/icon-comment.svg');
+            }
+        }
+
+    }
+    .upperbox{
+        padding: 125px 0;
+        h1{
+            font-family: 'Raleway', Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+            //font-weight:700;
+            margin:0;
+        }
+        &.small{
+            padding: 25px 0;
+        }
+    }
+    .box{
+        background-color: #eeeeee;
+    }
+
+    .eje-container{
+        margin-top: -150px;
+        border-radius: 20px;
+        margin-bottom: 50px;
+        background-color: #53b5ba;
+        padding:15px;
+        @media (min-width: $screen-sm-min) {
+            padding:30px;
+        }
+        @media (min-width: $screen-md-min) {
+            padding:80px;
+        }
+        color: #FFF;
+        p{
+            text-align: center;
+            @media (min-width: $screen-md-min) {
+                font-size:14px;
+                line-height: 18px;
+            }
+            a{
+                color:#FFF;
+                text-decoration: underline;
+            }
+        }
+        .participacion-container{
+            margin-top: 60px;
+            background-color: #FFF;
+            padding:15px;
+            border-radius: 15px;
+            color: $text;
+            @media (min-width: $screen-sm-min) {
+                padding:30px;
+            }
+            @media (min-width: $screen-md-min) {
+                padding:50px;
+            }
+            .block-svg{
+                margin-bottom: 30px;
+            }
+            a.ver-comentarios-link{
+                font-size:14px;
+                color: $primary;
+                text-decoration: underline;
+            }
+        }
+        form{
+            label{
+                font-family: 'Raleway', serif;
+                font-weight: normal;
+                font-size: 16px;
+            }
+            .form-control{
+                border: 0;
+                border-bottom: 2px dashed $primary;
+                border-radius: 0;
+                box-shadow: none;
+                padding-left:0;
+                padding-right:0;
+                resize: none;
+            }
+            .btn-interes{
+                width: 100%;
+                .btn-primary{
+                    background-color: #FFF;
+                    color:$primary;
+                    border-color: $primary;
+                    &.active{
+                        background-color: $primary;
+                        color:#FFF;
+                        font-weight: 600;
+                    }
+                }
+
+            }
+        }
+    }
+
+}
+.control-pagina{
+    background-color: #feab57;
+    position:fixed;
+    top: 40%;
+    z-index: 100;
+    padding: 10px 15px;
+    line-height: 0;
+    border-radius: 30px;
+    color: $text;
+    display: none;
+    &:hover{
+            color: $text;
+        }
+    &.izquierda{
+        @media (min-width: $screen-sm-min) {
+            display: block;
+            left:5%;
+        }
+        @media (min-width: $screen-md-min) {
+            display: block;
+            left:8%;
+        }
+    }
+    &.derecha{
+        @media (min-width: $screen-sm-min) {
+            display: block;
+            right:5%;
+        }
+        @media (min-width: $screen-md-min) {
+            display: block;
+            right:8%;
+        }
+    }
+    .texto-izquierdo{
+        display: none;
+    }
+    .texto-derecha{
+        display: none;
+    }
+    .fa-pull-left{
+        margin-right: 5px;
+    }
+    .fa-pull-right{
+        margin-left: 5px;
+    }
+}
