@@ -110,38 +110,6 @@ try {
             $table->string('extra')->nullable();
             $table->timestamps();
         });
-        Capsule::schema()->create('partidos', function($table) {
-            $table->engine = 'InnoDB';
-            $table->increments('id');
-            $table->string('nombre')->unique();
-            $table->string('acronimo');
-            $table->text('descripcion');
-            $table->string('huella')->nullable();
-            $table->string('fundador')->nullable();
-            $table->date('fecha_fundacion')->nullable();
-            $table->integer('creador_id')->unsigned();
-            $table->timestamps();
-            $table->softDeletes();
-        });
-        Capsule::schema()->create('organismos', function($table) {
-            $table->engine = 'InnoDB';
-            $table->increments('id');
-            $table->string('nombre');
-            $table->text('descripcion');
-            $table->integer('cupo')->unsigned();
-            $table->string('huella')->nullable();
-            $table->timestamps();
-            $table->softDeletes();
-        });
-        Capsule::schema()->create('funcionarios', function($table) {
-            $table->engine = 'InnoDB';
-            $table->increments('id');
-            $table->integer('usuario_id')->unsigned();
-            $table->integer('organismo_id')->unsigned();
-            $table->foreign('usuario_id')->references('id')->on('usuarios')->onDelete('cascade');
-            $table->timestamps();
-            $table->softDeletes();
-        });
         Capsule::schema()->create('acciones', function($table) {
             $table->engine = 'InnoDB';
             $table->string('id', 10)->primary();
@@ -155,14 +123,6 @@ try {
             $table->integer('actor_id')->unsigned();
             $table->foreign('actor_id')->references('id')->on('usuarios')->onDelete('cascade');
             $table->timestamps();
-        });
-        Capsule::schema()->create('notificaciones', function($table) {
-            $table->engine = 'InnoDB';
-            $table->increments('id');
-            $table->morphs('notificable');
-            $table->integer('usuario_id')->unsigned();
-            $table->foreign('usuario_id')->references('id')->on('usuarios')->onDelete('cascade');
-            $table->softDeletes();
         });
         Capsule::schema()->create('patrullas', function($table) {
             $table->engine = 'InnoDB';
@@ -210,39 +170,26 @@ try {
             $table->timestamps();
             $table->softDeletes();
         });
-        Capsule::schema()->create('derechos', function($table) {
+        Capsule::schema()->create('ejes', function($table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->text('descripcion');
-            $table->string('video');
-            $table->boolean('imagen');
+            $table->text('links')->nullable();
+            $table->text('preguntas')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
-        Capsule::schema()->create('secciones', function($table) {
+        Capsule::schema()->create('respuestas', function($table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->string('descripcion', 1024);
-            $table->integer('derecho_id')->unsigned();
-            $table->foreign('derecho_id')->references('id')->on('derechos');
-            $table->timestamps();
-        });
-        Capsule::schema()->create('seccion_votos', function($table) {
-            $table->engine = 'InnoDB';
-            $table->increments('id');
-            $table->integer('postura');
+            $table->integer('valoracion');
+            $table->text('respuestas')->nullable();
+            $table->integer('puntos')->default(0);
             $table->integer('usuario_id')->unsigned();
             $table->foreign('usuario_id')->references('id')->on('usuarios')->onDelete('cascade');
-            $table->integer('seccion_id')->unsigned();
-            $table->foreign('seccion_id')->references('id')->on('secciones')->onDelete('cascade');
+            $table->integer('eje_id')->unsigned();
+            $table->foreign('eje_id')->references('id')->on('ejes')->onDelete('cascade');
             $table->timestamps();
-        });
-        Capsule::schema()->create('novedades', function($table) {
-            $table->engine = 'InnoDB';
-            $table->increments('id');
-            $table->text('cuerpo');
-            $table->timestamps();
-            $table->softDeletes();
         });
         Capsule::schema()->create('eventos', function($table) {
             $table->engine = 'InnoDB';
@@ -279,15 +226,13 @@ try {
             $table->foreign('comentario_id')->references('id')->on('comentarios')->onDelete('cascade');
             $table->timestamps();
         });
-        Capsule::schema()->create('testimonios', function($table) {
+        Capsule::schema()->create('principios', function($table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->text('testimonio');
-            $table->string('persona');
-            $table->string('cargo');
+            $table->string('titulo');
+            $table->text('descripcion');
             $table->integer('orden');
             $table->timestamps();
-            $table->softDeletes();
         });
         Capsule::table('nodos')->insert([
             ['region' => 1, 'nombre' => 'Reconquista'],

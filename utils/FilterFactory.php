@@ -46,4 +46,17 @@ class FilterFactory {
         };
     }
 
+    public static function validateUrl() {
+        return function($v) {
+            return filter_var($v, FILTER_VALIDATE_URL) !== false;
+        };
+    }
+
+    public static function validateLength($min, $max) {
+        return function($v) use ($min, $max) {
+            $l = mb_strlen($v);
+            return ($l >= $min) && ($l <= $max);
+        };
+    }
+
 }
