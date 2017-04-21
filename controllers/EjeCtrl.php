@@ -1,39 +1,40 @@
 <?php use Augusthur\Validation as Validate;
 
-class DerechoCtrl extends Controller {
+class EjeCtrl extends Controller {
 
     public function ver($idEje) {
         $vdt = new Validate\QuickValidator([$this, 'notFound']);
         $vdt->test($idEje, new Validate\Rule\NumNatural());
         $eje = Eje::with('contenido')->findOrFail($idEje);
+//        var_dump($eje);
         $contenido = $eje->contenido;
         $datosEje = array_merge($contenido->toArray(), $eje->toArray());
         $rta = $this->session->user('id')?
             $eje->respuestas()->where('usuario_id', $this->session->user('id'))->first():
             null;
-        $this->render('salud/contenido/derecho/ver.twig', [
+        $this->render('salud/contenido/eje/ver.twig', [
             'eje' => $datosEje,
             'respuesta' => $rta
         ]);
     }
 
     //TODO esto que onda?
-    public function verAccion($idDer,$idAcc) {
-        $vdt = new Validate\QuickValidator([$this, 'notFound']);
-        $vdt->test($idDer, new Validate\Rule\NumNatural());
-        $derecho = Derecho::with('contenido')->findOrFail($idDer);
-        $contenido = $derecho->contenido;
-        $datosDer = array_merge($contenido->toArray(), $derecho->toArray());
-        
-        $this->render('salud/contenido/derecho/verAccion.twig', [
-            'derecho' => $datosDer,
-            'seccionMostrar' => $idAcc            
-        ]);
-    }
+//    public function verAccion($idDer,$idAcc) {
+//        $vdt = new Validate\QuickValidator([$this, 'notFound']);
+//        $vdt->test($idDer, new Validate\Rule\NumNatural());
+//        $derecho = Derecho::with('contenido')->findOrFail($idDer);
+//        $contenido = $derecho->contenido;
+//        $datosDer = array_merge($contenido->toArray(), $derecho->toArray());
+//
+//        $this->render('salud/contenido/derecho/verAccion.twig', [
+//            'derecho' => $datosDer,
+//            'seccionMostrar' => $idAcc
+//        ]);
+//    }
 
 
     public function verCrear() {
-        $this->render('salud/contenido/derecho/crear.twig');
+        $this->render('salud/contenido/eje/crear.twig');
     }
     
     public function crear() {
@@ -63,7 +64,7 @@ class DerechoCtrl extends Controller {
         $eje = Eje::with('contenido')->findOrFail($idEje);
         $contenido = $eje->contenido;
         $datos = array_merge($contenido->toArray(), $eje->toArray());
-        $this->render('salud/contenido/derecho/editar.twig', [
+        $this->render('salud/contenido/eje/editar.twig', [
             'eje' => $datos,
         ]);
     }
@@ -78,7 +79,7 @@ class DerechoCtrl extends Controller {
         $vdt = $this->validarEje($req->post());
         $eje->descripcion = $vdt->getData('descripcion');
         $eje->links = $vdt->getData('links');
-        $eje->preguntas = $vdt->getData('preguntas');
+//        $eje->preguntas = $vdt->getData('preguntas');
         $eje->save();
         $contenido->titulo = $vdt->getData('titulo');
         $contenido->resumen = $vdt->getData('resumen');
@@ -112,7 +113,7 @@ class DerechoCtrl extends Controller {
         $contenido->puntos = $eje->respuestas()->sum('valoracion');
         $contenido->save();
         $this->flash('success', 'Su respuesta fue registrada exitosamente.');
-        $this->redirectTo('shwEje', ['idEje' => $eje->id]);
+        $this->redirectTo('shwEje', ['idEje' => $eje->id . '#exito']);
     }
 
     private function validarEje($data) {
@@ -136,24 +137,24 @@ class DerechoCtrl extends Controller {
         return $vdt;
     }
     
-    private function subirImagen($nombre) {
-        $exito = true;
-        $dir = __DIR__ . '/../public/img/derecho';
-        if (!is_dir($dir)) {
-            mkdir($dir, 0777, true);
-        }
-        $storage = new \Upload\Storage\FileSystem($dir, true);
-        $file = new \Upload\File('archivo', $storage);
-        $file->setName($nombre);
-        $file->addValidations([
-            new \Upload\Validation\Mimetype(['image/jpg', 'image/jpeg']),
-            new \Upload\Validation\Size('2M')
-        ]);
-        try {
-            $file->upload();
-        } catch (\Exception $e) {
-            $exito = false;
-        }
-        return $exito;
-    }
+//    private function subirImagen($nombre) {
+//        $exito = true;
+//        $dir = __DIR__ . '/../public/img/derecho';
+//        if (!is_dir($dir)) {
+//            mkdir($dir, 0777, true);
+//        }
+//        $storage = new \Upload\Storage\FileSystem($dir, true);
+//        $file = new \Upload\File('archivo', $storage);
+//        $file->setName($nombre);
+//        $file->addValidations([
+//            new \Upload\Validation\Mimetype(['image/jpg', 'image/jpeg']),
+//            new \Upload\Validation\Size('2M')
+//        ]);
+//        try {
+//            $file->upload();
+//        } catch (\Exception $e) {
+//            $exito = false;
+//        }
+//        return $exito;
+//    }
 }
