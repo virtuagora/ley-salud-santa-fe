@@ -19,12 +19,12 @@
            <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
                 <ul class="list-group">
                     <li class="list-group-item active">
-                        <span class="badge" style="margin: 0 3px;"><a href="{{urlFor('shwCrearDerecho')}}"> <i class="fa fa-plus"></i> Nuevo </a></span> Ejes de participación
+                        <span class="badge" style="margin: 0 3px;"><a href="{{urlFor('shwCrearEje')}}"> <i class="fa fa-plus"></i> Nuevo </a></span> Ejes de participación
                     </li>
-                    {% for derecho in derechos %}
+                    {% for eje in ejes %}
                     <li class="list-group-item">
-                        <a href="{{ urlFor('shwModifDerecho', {'idDer': derecho.contenible_id}) }}" class="pull-right" style="margin: 0 3px;"><span class="badge"><i class="fa fa-pencil"></i> Edit </span></a>
-                        {{ derecho.orden }}. {{ derecho.titulo }}
+                        <a href="{{ urlFor('shwModifEje', {'idEje': eje.contenible_id}) }}" class="pull-right" style="margin: 0 3px;"><span class="badge"><i class="fa fa-pencil"></i> Edit </span></a>
+                        {{ eje.orden }}. {{ eje.titulo|bbCode }}
                     </li>
                     {% endfor %}
                 </ul>
@@ -79,23 +79,21 @@
                     </li>
                 </ul>
             </div>
-<!--
             <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
                 <ul class="list-group">
-                    <li class="list-group-item active">
-                        <span class="badge" style="margin: 0 3px;"><a href="{{urlFor('shwCrearOpinion')}}"> <i class="fa fa-plus"></i> Nuevo </a></span> Testimonios
-                    </li>
-                    {% for testimonio in testimonios %}
-                    <li class="list-group-item">
-                        <form action="{{ urlFor('runEliminarOpinion', {'idOpi': testimonio.id }) }}" method="POST">
-                            <button type="submit" class="pull-right" style="padding: 0;border: 0;background-color: transparent;margin: 0 2px;"><span class="badge" style="background-color:red;"><i class="fa fa-times"></i></span></button>
-                        </form>
-                        {{testimonio.orden}}. {{testimonio.persona}}
-                    </li>
-                    {% endfor %}
-                </ul>
+            <li class="list-group-item active">
+                <span class="badge" style="margin: 0 3px;"><a href="{{urlFor('shwCrearPrincipio')}}"> <i class="fa fa-plus"></i> Nuevo </a></span> Principio
+            </li>
+            {% for principio in principios %}
+            <li class="list-group-item">
+                <form action="{{ urlFor('runEliminarPrincipio', {'idPri': principio.id }) }}" method="POST">
+                    <button type="submit" class="pull-right" style="padding: 0;border: 0;background-color: transparent;margin: 0 2px;"><span class="badge" style="background-color:red;"><i class="fa fa-times"></i></span></button>
+                </form>
+                {{principio.orden}}. <b>{{principio.titulo}}</b> <small>{{principio.descripcion}}</small>
+            </li>
+            {% endfor %}
+        </ul>
             </div>
--->
         </div>
     </div>
 </div>

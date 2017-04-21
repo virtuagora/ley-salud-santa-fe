@@ -1,0 +1,237 @@
+{% extends "salud/master.twig" %}
+{% set nav = 0 %}
+{% block titulo %}Editar eje de participación{% endblock titulo %}
+{% block linkhead %}
+<link rel="stylesheet" href="{{ baseUrl() }}/assets-salud/css/sceditor/default.css">
+{% endblock %}
+{% block header %}
+{% endblock header %}
+{% block body %}
+<div class="nothing-navbar"></div>
+<div id="" class="admin-container">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 text-center">
+                <h1>Editar eje de participación</h1>
+                <hr>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <form id="editar" action="{{ urlFor('runModifEje', {'idEje':eje.id}) }}" method="POST" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+                    <div class="form-group">
+                        <h3>Titulo del eje</h3>
+                        <h6 class="text-info"><b>Nota:</b> Evite que sea muy largo</h6>
+                        <textarea name="titulo" class="form-control editor small"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+                    <div class="form-group">
+                        <h3>Orden</h3>
+                        <h6 class="text-info"><b>Nota:</b> El orden es importante, no solo para ordenarlos, sino tambien para asignarles el icono correspondiente al eje (Los que han presentado para manejar en la plataforma).
+                            <br>
+                            <br>
+                            Elija que icono se le asigna al eje eligiendo entre entre 1 y 7
+                            <br>
+                            <br>
+                            <ul class="list-inline">
+                                {% for i in 1..7 %}
+                                <li>{{i}} - <img src="{{baseUrl()}}/assets-salud/img/icon-eje{{i}}.svg" class="icono-ilustrativo" alt=""></li>
+                                {% endfor %}
+                            </ul>
+                            <ol>
+                                <li>Funciones y obligaciones del estado provincial</li>
+                                <li>Integración del sistema provincial de salud</li>
+                                <li>Estrategia, gestión y organización del sistema</li>
+                                <li>Niveles de atención</li>
+                                <li>Participación social</li>
+                                <li>Calidad de los servicios</li>
+                                <li>Modelo de financiación del sistema y ejecución presupuestaria</li>
+                            </ol>
+                        </h6>
+                        <input name="orden" min="1" max="6" type="number" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+                    <div class="form-group">
+                        <h3>Breve descripción para el listado de Ejes</h3>
+                        <p><b>¡Importante!</b> El siguiente extracto sirve para el listado de ejes de participacion, le pedimos que sea concreto, no se explaye, para eso tendrá el proximo campo de descripcion que sea del Eje en si.</p>
+                        <h6 class="text-info"><b>Nota:</b> La siguiente descripción aparecerá en el listado de <b>Ejes de participacion</b>.</h6>
+                        <textarea name="resumen" rows="1" class="form-control"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+                    <div class="form-group">
+                        <h3>Descripción del Eje</h3>
+                        <textarea name="descripcion"  rows="1" class="form-control editor large">
+                        </textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div id="derecho" class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+                    <h3>Preguntas (No editable)</h3>
+                    <ol>
+                        {% for pregunta in eje.preguntas %}
+                        <li><p>{{pregunta|nl2br}}</p></li>
+                        <input type="text" name="cuerpo" value="{{pregunta}}" hidden>
+                        {% endfor %}
+                    </ol>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+                    <div class="form-group">
+                        <h3>Link a mas informacion</h3>
+                        <h5>Si no tiene que llenar este campo, puede dejar los campos vacios</h5>
+                        <h4><b>Si quiere eliminar una URL, deje vacio los campos URL/Etiqueta.</b></h4>
+                        <h6 class="text-info"><b>Nota:</b> Si va a ser un archivo, lamentablemente no podemos proveerles subirlo al servidor. Sin embargo, puede optar por usar una alternativa como <i class="fa fa-google"></i> Google Drive, <i class="fa fa-dropbox"></i> Dropbox o <i class="fa fa-windows"></i> OneDrive o cualquiera que le provea un link público</h6>
+                    </div>
+                    <div class="lista-links">
+                        {% for link in eje.links %}
+                        <div class="form-inline nuevo-link" style="margin-bottom:5px;">
+                            <div class="form-group" style="width:49%;padding-right:1%">
+                                <div class="input-group" style="width:100%;">
+                                    <span class="input-group-addon">URL</span>
+                                    <input name="url" type="text" value="{{link.url}}" class="form-control" placeholder="https://docs.google.com/etcetcetc...">
+                                </div>
+                            </div>
+                            <div class="form-group" style="width:50%;">
+                                <div class="input-group" style="width:100%;">
+                                    <span class="input-group-addon">Etiqueta</span>
+                                    <input name="label" type="text" value="{{link.label}}" class="form-control" placeholder="Documentación anexa">
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <br>
+                    <a id="nuevoLink" href="javascript:void(0)" class="btn btn-sm btn-default btn-block"><i class="fa fa-plus "></i> Nuevo Link</a>
+                    <hr>
+                    <div class="clearfix">
+                        <a href="{{urlFor('shwIndexAdmin')}}" class="btn btn-large btn-default ">Cancelar</a>
+                        <button type="submit" class="btn btn-submit pull-right"><i class="fa fa-check fa-fw"></i> Editar</button>
+                    </div>
+                    <br>
+                </div>
+            </div>
+            <input type="text" name="preguntas" value="" hidden>
+            <input type="text" name="links" value="" hidden>
+        </form>
+    </div>
+</div>
+{% endblock body %} {% block scripts %}
+<script src="{{ baseUrl() }}/assets-salud/js/autosize.min.js"></script>
+<script src="{{ baseUrl() }}/assets-salud/js/sceditor/jquery.sceditor.bbcode.js"></script>
+<script id="accionTemplate" type="text/template">
+    <div class="accion-container color-numColor">
+        <a id="eliminar-numAccion" href="javascript:void(0)" data-idaccion='numAccion' class="eliminarAccion pull-right" style="font-size:20px;"><i class="mdi mdi-close"></i></a>
+        <textarea name="cuerpo" class="accion form-control" rows="1" placeholder="Describa la acción..."></textarea>
+    </div>
+</script>
+<script id="linkTemplate" type="text/template">
+<div class="form-inline nuevo-link" style="margin-bottom:5px;">
+                            <div class="form-group" style="width:49%;padding-right:1%">
+                                <div class="input-group" style="width:100%;">
+                                    <span class="input-group-addon">URL</span>
+                                    <input name="url" type="text" class="form-control">
+    </div>
+    </div>
+                            <div class="form-group" style="width:50%;">
+                                <div class="input-group" style="width:100%;">
+                                    <span class="input-group-addon">Etiqueta</span>
+                                    <input name="label" type="text" class="form-control">
+    </div>
+    </div>
+    </div>
+</script>
+<script>
+    $(document).ready(function() {
+        $('[name="orden"]').val('{{eje.orden}}');
+        $('[name="resumen"]').val('{{eje.resumen}}');
+        $("textarea[name=titulo]").sceditor({
+            plugins: "bbcode",
+            emoticonsEnabled: false,
+            toolbar: "bold,italic,underline|source",
+            height: '80',
+            width: '98%',
+            id: 'editor',
+            style: "{{ baseUrl() }}/assets-salud/css/sceditor/jquery.sceditor.default.large.css",
+            resizeEnabled: false,
+            resizeHeight: true,
+            autoExpand: true
+        });
+        $("textarea[name=titulo]").sceditor('instance').val('{{ eje.titulo|bbCode }}', false);
+        $("textarea[name=descripcion]").sceditor({
+            plugins: "bbcode",
+            emoticonsEnabled: false,
+            toolbar: "bold,italic,underline|source",
+            height: '200',
+            width: '98%',
+            id: 'editor',
+            style: "{{ baseUrl() }}/assets-salud/css/sceditor/jquery.sceditor.default.css",
+            resizeEnabled: false,
+            resizeHeight: true,
+            autoExpand: true
+        });
+        $("textarea[name=descripcion]").sceditor('instance').val('{{ eje.descripcion|bbCode }}', false)
+        autosize($('textarea'));
+    });
+    $("#nuevoLink").click(function(e) {
+        var nuevoLink = $("#linkTemplate").html()
+        $(".lista-links").append(nuevoLink)
+        autosize($('textarea'));
+    });
+    $( "form" ).submit(function( event ) {
+        var secciones = [];
+        var urls = [];
+        var labels = [];
+        var links = []
+        $("input[name=url]").each(function() {
+            var url = $(this).val();
+            if(url != ''){
+                urls.push(url);
+            }
+        });
+        console.log(urls);
+        $("input[name=label]").each(function() {
+            var label = $(this).val();
+            if(label != ''){
+                labels.push(label);
+            }
+        });
+        console.log(labels);
+        $.each(urls, function( index, value ) {
+
+            var link = {}
+            link ["url"] = value;
+            link ["label"] = labels[index];
+            links.push(link);
+        });
+        $('input[name=links]').val(JSON.stringify(links))
+        $( "textarea[name=cuerpo]" ).each(function( index ) {
+            secciones.push($( this ).val());
+        });
+        var seccionesString = secciones.join("&&")
+        $('input[name=preguntas]').val(seccionesString);
+        return true;
+    });
+
+    function checkLength(control) {
+        // if (control.value.length > 150) {
+        // 	control.value = control.value.substr(0, 150);
+        // }
+        $('span.restantes').html(control.value.length);
+    }
+
+
+</script>
+{% endblock scripts %}

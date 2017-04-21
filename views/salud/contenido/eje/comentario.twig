@@ -1,5 +1,4 @@
 {% if seccion.comentarios|length > 0 %}
-
     {% if user is not null %}
     <div class="col-xs-12">
         <div class="comentario-container">
@@ -33,7 +32,7 @@
         </div>
     </div>
 
-    {% endif %} {% for comentario in comentariosListar %}
+    {% endif %}     {% for comentario in comentariosListar %}
     <div class="col-xs-12">
         <div class="comentario-container">
             <a href="{{ urlFor('shwUsuario',{'idUsu': comentario.autor.id}) }}" class="pull-left">

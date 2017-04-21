@@ -22,16 +22,16 @@
         }
         img {
 
-             @media (min-width: $screen-sm-min) {
-            float: left;
-        }
+            @media (min-width: $screen-sm-min) {
+                float: left;
+            }
             margin-right: 10px;
             height: 65px;
         }
         h1 {
-             @media (min-width: $screen-sm-min) {
-            padding-top: 15px;
-        }
+            @media (min-width: $screen-sm-min) {
+                padding-top: 15px;
+            }
             color: $amarillo;
             font-weight: 800;
             a {
@@ -88,7 +88,7 @@
                 line-height: 20px;
                 display: inline-block;
                 &.importante {
-                line-height: 0;
+                    line-height: 0;
                     margin-top: 18px;
                     font-family: "Open Sans", Arial, Helvetica, sans-serif;
                     font-weight: 400;
@@ -98,10 +98,10 @@
                         font-weight: 600;
                     }
                 }
-                    img{
-                        height:20px;
-                        margin-left: 35px;
-                    }
+                img{
+                    height:20px;
+                    margin-left: 35px;
+                }
                 i.fa {
                     margin-left: 36px;
                 }
@@ -145,8 +145,8 @@
                 }
                 textarea{
                     font-size: 12px;
-line-height: 20px;
-                font-family:"Open Sans", Arial, Helvetica, sans-serif;
+                    line-height: 20px;
+                    font-family:"Open Sans", Arial, Helvetica, sans-serif;
 
                 }
             }
@@ -166,35 +166,35 @@ line-height: 20px;
                 color: $verde;
             }
         }
-         .btn.btn-submit{
+        .btn.btn-submit{
             border-radius: 2px;
-border: 0;
-background-color: #379dc9;
-padding: 6px 20px;
-color: #FFF;
-font-family: 'Raleway', Cambria, Cochin, Georgia, Times, Times New Roman, serif;
-font-weight: 400;
-font-size: 13px;
-        &:hover {
-            background-color: darken($azul, 10%);
-        }
+            border: 0;
+            background-color: #379dc9;
+            padding: 6px 20px;
+            color: #FFF;
+            font-family: 'Raleway', Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+            font-weight: 400;
+            font-size: 13px;
+            &:hover {
+                background-color: darken($azul, 10%);
+            }
         }
     }
     .no-login{
-            padding: 20px;
-    text-align: center;
-    border: 1px solid #a2a2a2;
-    border-radius: 3px;
+        padding: 20px;
+        text-align: center;
+        border: 1px solid #a2a2a2;
+        border-radius: 3px;
         margin: 15px 0;
-            &.color-0 {
-                border-color: $amarillo;
-            }
-            &.color-1 {
-                border-color: $azul;
-            }
-            &.color-2 {
-                border-color: $verde;
-            }
+        &.color-0 {
+            border-color: $amarillo;
+        }
+        &.color-1 {
+            border-color: $azul;
+        }
+        &.color-2 {
+            border-color: $verde;
+        }
     }
     a.ver-mas{
         color:#FFF;
@@ -203,7 +203,7 @@ font-size: 13px;
             text-decoration: none;
         }
         .ver-mas-container{
-        border-radius:3px;
+            border-radius:3px;
             padding: 15px;
             &.color-0 {
                 background-color: $amarillo;
@@ -239,26 +239,26 @@ font-size: 13px;
         box-shadow: none;
     }
     .grid-sizer,
-.grid-item {
+    .grid-item {
         margin: 15px 1%;
-         hr{
+        hr{
             margin-bottom: 0;
         }
-    @media (max-width: $screen-xs-max) {
-        width: 100%;
-    }
-    @media (min-width: $screen-sm-min) {
-        width: 48%;
-    }
-    @media (min-width: $screen-md-min) {
-        //width: 23%;
-        width: 48%;
+        @media (max-width: $screen-xs-max) {
+            width: 100%;
+        }
+        @media (min-width: $screen-sm-min) {
+            width: 48%;
+        }
+        @media (min-width: $screen-md-min) {
+            //width: 23%;
+            width: 48%;
 
+        }
+        //&.w2 {
+        //    @media (min-width: $screen-md-min) {
+        //        width: 75%;
+        //    }
+        //}
     }
-    //&.w2 {
-    //    @media (min-width: $screen-md-min) {
-    //        width: 75%;
-    //    }
-    //}
-}
 }

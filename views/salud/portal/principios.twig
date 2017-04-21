@@ -25,12 +25,12 @@
             <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-3 over-top">
                 <div id="" class="text-center" style="z-index: 10;">
                     <div class="carrousel-container">
-                        <h3 class="first-title">Qué decimos cuando decimos:</h3>
+                        <h3 class="first-title">Qué decimos cuando decimos la salud como...</h3>
                         <div class="carrousel-definiciones">
-                            {% for i in 0..10 %}
+                            {% for principio in principios %}
                             <div class="definicion">
-                                <h3>Salud como la la la</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea iste eum nostrum fugit voluptas neque molestiae sed aliquid animi omnis numquam esse quia libero, dolores sunt. Deserunt ut omnis, dignissimos!</p>
+                                <h3>{{principio.titulo}}</h3>
+                                <p>{{principio.descripcion}}</p>
                             </div>
                             {% endfor %}
                         </div>
@@ -40,16 +40,28 @@
         </div>
         <div class="row">
             <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 white-container">
-             <div class="white-container-svg">
-            <div class="svg principios-valores"></div>
-        </div>
-              <div class="text-center titulo-container">
-               <h2><b>Derechos de las personas</b><br>en relacion con la salud</h2>
-              </div>
-                <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
-                <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
-                <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
-                <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
+                <div class="white-container-svg">
+                    <div class="svg principios-valores"></div>
+                </div>
+                <div class="text-center titulo-container">
+                    <h2><b>Derechos de las personas</b><br>en relacion con la salud</h2>
+                </div>
+                <p><i class="fa fa-caret-right"></i>&nbsp;El respeto a su persona, dignidad humana, identidad individual y cultural;</p>
+                <p><i class="fa fa-caret-right"></i>&nbsp;La no discriminación por razones de género, económicas, culturales, sociales, religiosas, raciales o de cualquier otra naturaleza;</p>
+                <p><i class="fa fa-caret-right"></i>&nbsp;La privacidad, intimidad y confidencialidad absolutas de la información atinente a su enfermedad, diagnóstico, tratamiento, pronóstico y/o proceso de recuperación; salvo que su enfermedad revista carácter de riesgo de la salud pública, donde le corresponde la obligación de denunciar la misma ante las autoridades correspondientes de salud pública más cercanas a su domicilio.</p>
+                <p><i class="fa fa-caret-right"></i>&nbsp;El derecho a la información completa y comprensible sobre su proceso de salud/enfermedad, diagnóstico, pronóstico y alternativas de tratamiento, secuelas y discapacidad, el acceso irrestricto a su historia clínica, y a la recepción de la información por escrito al ingresar/ egresar de los centros asistenciales;</p>
+                <p><i class="fa fa-caret-right"></i>&nbsp;La facultad de rehusarse al tratamiento, en pleno conocimiento de su enfermedad, con garantía de información recibida (consentimiento informado), asumiendo absoluta la responsabilidad de su decisión, con constancia escrita en historia clínica, salvo en los casos de inconciencia-coma, alteraciones de sus facultades mentales o de riesgo para su vida o para la salud pública; cuando sea mayor de edad. En el caso de niñas, niños y adolescentes, sus padres, tutores o curadores, fehacientemente acreditado.</p>
+                <p><i class="fa fa-caret-right"></i>&nbsp;La negativa a ser sometido a tratamiento médico o quirúrgico que implique riesgo para su integridad física, su salud o su vida, sin su consentimiento previo o el de la persona llamada a darlo legalmente si la primera estuviera impedida de hacerlo, salvo en los casos de emergencia/ urgencia o cuando exista riesgo para la salud pública;</p>
+                <p><i class="fa fa-caret-right"></i>&nbsp;La participación voluntaria en las actividades de salud, conforme los mecanismos que fije la reglamentación;</p>
+                <p><i class="fa fa-caret-right"></i>&nbsp;La gratuidad y accesibilidad de los servicios de promoción, atención, rehabilitación y protección de la salud y prevención de enfermedades;</p>
+                <p><i class="fa fa-caret-right"></i>&nbsp;La recepción de servicios de emergencia y urgencias, primeros auxilios y de atención médica en la vía pública, cuando lo necesite y mientras subsista el estado de riesgo para su vida o su salud;</p>
+                <p><i class="fa fa-caret-right"></i>&nbsp;El acceso a su efector de georeferencia garantizando la continuidad asistencial entre los diferentes niveles de complejidad</p>
+                <p><i class="fa fa-caret-right"></i>&nbsp;Solicitud por el profesional actuante del consentimiento informado y fehaciente del paciente, previo a la realización de cualquier estudio y/o tratamiento, o para ser parte de actividades docentes o de investigación;</p>
+                <p><i class="fa fa-caret-right"></i>&nbsp;La internación conjunta del responsable a cargo  y el niño; salvo en aquellos casos en que se requiera de internaciones en terapia intensiva neonatal o pediátrica</p>
+                <p><i class="fa fa-caret-right"></i>&nbsp;La optimización de la calidad de vida hasta el fallecimiento, en caso de enfermedades terminales; con implementación de cuidados paliativos previa evaluación y sugerencia de los comités de bioéticas, con constancia y certificación en la historia clínica</p>
+                <p><i class="fa fa-caret-right"></i>&nbsp;La posibilidad de acceder a vías de reclamos, quejas, sugerencias y propuestas expeditas y habilitadas en el efector en que se atiende, y ante instancias superiores, en caso de resultar necesario;</p>
+                <p><i class="fa fa-caret-right"></i>&nbsp;La libertad absoluta de ejercer sus derechos reproductivos, garantizada por el acceso a información correcta, certera y actualizada, capacitación/educación para la toma de decisiones, atención especializada; y la provisión de los distintos tratamientos/métodos elegidos para el ejercicio de la misma, que no impliquen riesgo de vida para las/los usuarios.</p>
+
             </div>
         </div>
     </div>

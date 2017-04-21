@@ -10,7 +10,7 @@ use Illuminate\Database\Capsule\Manager as Capsule;
 <head>
     <meta charset="utf-8">
     <title>Asistente de instalación Virtuágora</title>
-    <link rel="stylesheet" href="assets-lpe/css/lpe.css" />
+    <link rel="stylesheet" href="assets-salud/css/salud.css" />
 </head>
 <body>
 <div class="container" style="margin-top:20px";>

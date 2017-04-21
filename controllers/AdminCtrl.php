@@ -131,12 +131,12 @@ class AdminCtrl extends Controller {
     }
 
     public function verIndexAdmin() {
-        $derechos = Contenido::where('contenible_type', 'Derecho')->get()->toArray();
-        $testimonios = Testimonio::all()->toArray();
+        $ejes = Contenido::where('contenible_type', 'Eje')->get()->toArray();
+        $principios = Principio::all()->toArray();
         $actividades = Evento::all()->toArray();
         $this->render('salud/admin/indexAdmin.twig', [
-            'derechos' => $derechos,
-            'testimonios' => $testimonios,
+            'ejes' => $ejes,
+            'principios' => $principios,
             'actividades' => $actividades,
         ]);
     }

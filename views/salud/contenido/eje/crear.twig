@@ -18,7 +18,7 @@
         </div>
     </div>
     <div class="container">
-        <form id="crearDerecho" action="{{ urlFor('runCrearDerecho') }}" method="POST" enctype="multipart/form-data">
+        <form id="crearDerecho" action="{{ urlFor('runCrearEje') }}" method="POST" enctype="multipart/form-data">
             <div class="row">
                 <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
                     <div class="form-group">
@@ -33,18 +33,27 @@
                     <div class="form-group">
                         <h3>Orden</h3>
                         <h6 class="text-info"><b>Nota:</b> El orden es importante, no solo para ordenarlos, sino tambien para asignarles el icono correspondiente al eje (Los que han presentado para manejar en la plataforma).
-                          <br>
-                          <br>
-                           Elija que icono se le asigna al eje eligiendo entre entre 1 y 6
-                           <br>
-                           <br>
+                            <br>
+                            <br>
+                            Elija que icono se le asigna al eje eligiendo entre entre 1 y 7
+                            <br>
+                            <br>
                             <ul class="list-inline">
-                               {% for i in 1..6 %}
+                                {% for i in 1..7 %}
                                 <li>{{i}} - <img src="{{baseUrl()}}/assets-salud/img/icon-eje{{i}}.svg" class="icono-ilustrativo" alt=""></li>
                                 {% endfor %}
                             </ul>
+                            <ol>
+                                <li>Funciones y obligaciones del estado provincial</li>
+                                <li>Integración del sistema provincial de salud</li>
+                                <li>Estrategia, gestión y organización del sistema</li>
+                                <li>Niveles de atención</li>
+                                <li>Participación social</li>
+                                <li>Calidad de los servicios</li>
+                                <li>Modelo de financiación del sistema y ejecución presupuestaria</li>
+                            </ol>
                         </h6>
-                        <input name="orden" min="1" max="6" type="number" class="form-control">
+                        <input name="orden" min="1" max="7" type="number" class="form-control">
                     </div>
                 </div>
             </div>
@@ -52,7 +61,7 @@
                 <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
                     <div class="form-group">
                         <h3>Breve descripción para el listado de Ejes</h3>
-                         <p><b>¡Importante!</b> El siguiente extracto sirve para el listado de ejes de participacion, le pedimos que sea concreto, no se explaye, para eso tendrá el proximo campo de descripcion que sea del Eje en si.</p>
+                        <p><b>¡Importante!</b> El siguiente extracto sirve para el listado de ejes de participacion, le pedimos que sea concreto, no se explaye, para eso tendrá el proximo campo de descripcion que sea del Eje en si.</p>
                         <h6 class="text-info"><b>Nota:</b> La siguiente descripción aparecerá en el listado de <b>Ejes de participacion</b>.</h6>
                         <textarea name="resumen" rows="1" class="form-control"></textarea>
                     </div>
@@ -62,53 +71,59 @@
                 <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
                     <div class="form-group">
                         <h3>Descripción del Eje</h3>
-                        <textarea name="descripcion"  rows="1" class="form-control editor large"></textarea>
+                        <textarea name="descripcion"  rows="1" class="form-control editor large">
+                        </textarea>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div id="derecho" class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
-                    <div id="descripcion">
-                    </div>
                     <h3>Preguntas</h3>
                     <h6 class="text-info"><b>Nota:</b> No le coloque numeración a la pregunta. Nosotros lo mostramos por usted.</h6>
                     <h6 class="text-info"><b>Nota:</b> A cada eje ademas de las preguntas ira agregado la opcion de marcar el eje como "Muy importante", "Importante", "Poco Importante", "No me interesa"</h6>
                     <div class="lista-acciones">
                         <div class="accion-container color-0">
-                            <textarea name="cuerpo" class="pregunta form-control" rows="1" placeholder="Pregunta..."></textarea>
+                            <textarea name="cuerpo" class="pregunta form-control" rows="1" placeholder="Pregunta...">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur et sollicitudin neque. Nunc et rutrum.     </textarea>
                         </div>
                     </div>
                     <a id="nuevaAccion" href="javascript:void(0)" class="btn btn-sm btn-default btn-block"><i class="fa fa-plus "></i> Agregar una pregunta</a>
                 </div>
-                <input type="text" name="secciones" value="" hidden>
-                <input type="text" name="categoria" value="1" hidden>
-                <input type="text" name="tags" value="" hidden>
-                <input type="text" name="video" value="" hidden>
-                <input type="text" name="imagen" value="0" hidden>
             </div>
             <div class="row">
                 <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
                     <div class="form-group">
-                        <h3>Link a mas informacion (Opcional)</h3>
-                        <h5>Si no tiene que llenar este campo, puede dejarlo vacio</h5>
+                        <h3>Link a mas informacion</h3>
+                        <h5>Si no tiene que llenar este campo, puede dejar los campos vacios</h5>
                         <h6 class="text-info"><b>Nota:</b> Si va a ser un archivo, lamentablemente no podemos proveerles subirlo al servidor. Sin embargo, puede optar por usar una alternativa como <i class="fa fa-google"></i> Google Drive, <i class="fa fa-dropbox"></i> Dropbox o <i class="fa fa-windows"></i> OneDrive o cualquiera que le provea un link público</h6>
-                       <div class="input-group">
-                            <span class="input-group-addon">http://</span>
-                            <input name="url" type="text" class="form-control">
+                    </div>
+                    <div class="lista-links">
+                        <div class="form-inline nuevo-link" style="margin-bottom:5px;">
+                            <div class="form-group" style="width:49%;padding-right:1%">
+                                <div class="input-group" style="width:100%;">
+                                    <span class="input-group-addon">URL</span>
+                                    <input name="url" type="text" class="form-control" placeholder="https://docs.google.com/etcetcetc...">
+                                </div>
+                            </div>
+                            <div class="form-group" style="width:50%;">
+                                <div class="input-group" style="width:100%;">
+                                    <span class="input-group-addon">Etiqueta</span>
+                                    <input name="label" type="text" class="form-control" placeholder="Documentación anexa">
+                                </div>
+                            </div>
                         </div>
                     </div>
-                     <div class="form-group">
-                       <h5>Etiqueta del link</h5>
-                        <h6 class="text-info"><b>Ejemplo:</b> Descargue documento sobre el tema</h6>
-                        <input name="etiqueta" class="form-control" />
-                    </div>
+                    <br>
+                    <a id="nuevoLink" href="javascript:void(0)" class="btn btn-sm btn-default btn-block"><i class="fa fa-plus "></i> Nuevo Link</a>
                     <hr>
                     <div class="clearfix">
                         <a href="{{urlFor('shwIndexAdmin')}}" class="btn btn-large btn-default ">Cancelar</a>
                         <button type="submit" class="btn btn-submit pull-right"><i class="fa fa-check fa-fw"></i> Subir</button>
                     </div>
                 </div>
+                <br>
             </div>
+            <input type="text" name="preguntas" value="" hidden>
+            <input type="text" name="links" value="" hidden>
         </form>
     </div>
 </div>
@@ -123,6 +138,22 @@
         <textarea name="cuerpo" class="pregunta dinamic form-control" rows="1" placeholder="Pregunta..."></textarea>
     </div>
 </script>
+<script id="linkTemplate" type="text/template">
+<div class="form-inline nuevo-link" style="margin-bottom:5px;">
+                            <div class="form-group" style="width:49%;padding-right:1%">
+                                <div class="input-group" style="width:100%;">
+                                    <span class="input-group-addon">URL</span>
+                                    <input name="url" type="text" class="form-control">
+    </div>
+    </div>
+                            <div class="form-group" style="width:50%;">
+                                <div class="input-group" style="width:100%;">
+                                    <span class="input-group-addon">Etiqueta</span>
+                                    <input name="label" type="text" class="form-control">
+    </div>
+    </div>
+    </div>
+</script>
 <script>
     var numeroAccion = 2;
     $(document).ready(function() {
@@ -132,36 +163,41 @@
     });
 
     $(function() {
-		$("textarea.editor.small").sceditor({
-			plugins: "bbcode",
-			emoticonsEnabled: false,
-			toolbar: "bold,italic,underline|source",
-			height: '80',
-			width: '98%',
-			id: 'editor',
-			style: "{{ baseUrl() }}/assets-salud/css/sceditor/jquery.sceditor.default.large.css",
-			resizeEnabled: false,
-			resizeHeight: true,
-			autoExpand: true
-		});
+        $("textarea.editor.small").sceditor({
+            plugins: "bbcode",
+            emoticonsEnabled: false,
+            toolbar: "bold,italic,underline|source",
+            height: '80',
+            width: '98%',
+            id: 'editor',
+            style: "{{ baseUrl() }}/assets-salud/css/sceditor/jquery.sceditor.default.large.css",
+            resizeEnabled: false,
+            resizeHeight: true,
+            autoExpand: true
+        });
         $("textarea.editor.large").sceditor({
-			plugins: "bbcode",
-			emoticonsEnabled: false,
-			toolbar: "bold,italic,underline|source",
-			height: '200',
-			width: '98%',
-			id: 'editor',
-			style: "{{ baseUrl() }}/assets-salud/css/sceditor/jquery.sceditor.default.css",
-			resizeEnabled: false,
-			resizeHeight: true,
-			autoExpand: true
-		});
-	});
+            plugins: "bbcode",
+            emoticonsEnabled: false,
+            toolbar: "bold,italic,underline|source",
+            height: '200',
+            width: '98%',
+            id: 'editor',
+            style: "{{ baseUrl() }}/assets-salud/css/sceditor/jquery.sceditor.default.css",
+            resizeEnabled: false,
+            resizeHeight: true,
+            autoExpand: true
+        });
+    });
 
     $("#nuevaAccion").click(function(e) {
         var nuevaAccion = $("#accionTemplate").html().replace(new RegExp('numAccion', 'g'), numeroAccion).replace(new RegExp('numColor', 'g'), (numeroAccion-1)%3 );
         $(".lista-acciones").append(nuevaAccion)
         numeroAccion += 1
+        autosize($('textarea'));
+    });
+    $("#nuevoLink").click(function(e) {
+        var nuevoLink = $("#linkTemplate").html()
+        $(".lista-links").append(nuevoLink)
         autosize($('textarea'));
     });
     $(document.body).on('click', '.eliminarAccion', function() {
@@ -180,11 +216,36 @@
 
     $( "form" ).submit(function( event ) {
         var secciones = [];
+        var urls = [];
+        var labels = [];
+        var links = []
+        $("input[name=url]").each(function() {
+            var url = $(this).val();
+            if(url != ''){
+                urls.push(url);
+            }
+        });
+        console.log(urls);
+        $("input[name=label]").each(function() {
+            var label = $(this).val();
+            if(label != ''){
+                labels.push(label);
+            }
+        });
+        console.log(labels);
+        $.each(urls, function( index, value ) {
+
+            var link = {}
+            link ["url"] = value;
+            link ["label"] = labels[index];
+            links.push(link);
+        });
+        $('input[name=links]').val(JSON.stringify(links))
         $( "textarea[name=cuerpo]" ).each(function( index ) {
             secciones.push($( this ).val());
         });
         var seccionesString = secciones.join("&&")
-        $('input[name=secciones]').val(seccionesString);
+        $('input[name=preguntas]').val(seccionesString);
         return true;
     });
 

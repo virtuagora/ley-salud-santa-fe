@@ -1,6 +1,6 @@
 <?php use Illuminate\Database\Eloquent\Model as Eloquent;
 
-class Testimonio extends Eloquent {
+class Principio extends Eloquent {
 
     protected $table = 'principios';
     protected $visible = ['id', 'orden', 'titulo', 'descripcion'];

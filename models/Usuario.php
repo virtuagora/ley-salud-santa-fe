@@ -8,9 +8,9 @@ class Usuario extends Eloquent {
     protected $hidden = ['password', 'emailed_token', 'updated_at', 'deleted_at'];
     protected $with = ['localidad'];
 
-    public function partido() {
-        return $this->belongsTo('Partido');
-    }
+//    public function partido() {
+//        return $this->belongsTo('Partido');
+//    }
 
     public function Localidad() {
         return $this->belongsTo('Localidad');

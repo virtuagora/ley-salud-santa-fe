@@ -5,7 +5,7 @@ endblock titulo %} {% block opengraph %}
 <meta property="og:type" content="article" />
 <meta property="og:title" content="{{ derecho.titulo }} - A toda Costa" />
 <meta property="og:description" content="Un plan de desarrollo sustentable para Garay y San Javier. Enterate más acerca de esta area de acción. Te invitamos a saber más y a que realices tu aporte directamente o a través de la organización de la que formes parte."
-/>
+      />
 <meta property="og:image" content="{{ baseUrl() }}/assets-costa/img/sharer.png" /> {% endblock %} {% block linkhead %} {% endblock %} {% block header %}
 <div id="simple" class="header-bg area">
     <div class="container">
@@ -30,64 +30,67 @@ endblock titulo %} {% block opengraph %}
         </div>
         <div class="row area">
             <div class="col-xs-12">
-                {% for seccion in derecho.secciones %} {% set comentariosListar = seccion.comentarios|slice(0,8) %}
+                {% for seccion in derecho.secciones %}
+                {% set comentariosListar = seccion.comentarios|slice(0,8) %}
                 {% set botonVerTodos = true %}
-                {% set comentariosSeccion = seccion.comentarios|length %} {% for comentario in seccion.comentarios
-                %} {% set comentariosSeccion = comentariosSeccion + comentario.respuestas|length %} {% endfor %}
+                {% set comentariosSeccion = seccion.comentarios|length %}
+                {% for comentario in seccion.comentarios %}
+                {% set comentariosSeccion = comentariosSeccion + comentario.respuestas|length %}
+                {% endfor %}
                 {% set seccionColor = loop.index - 1 %}
                 <div class="box color-{{(loop.index-1) % 3}}">
 
-                        <div class="row">
-                            <div class="col col-sm-5 col-md-6 col-sm-offset-1">
-                                <h3>{{loop.index}}. {{seccion.descripcion}}</h3>
-                                <div class="compartir-box hidden-xs hidden-sm">
-                                    <p>Compartir:
-                                        <a href="#" class="hidden-md hidden-lg hidden-sm" data-toggle="tooltip" title="Whatsapp"><img src="{{baseUrl()}}/assets-costa/img/sharer/phone.svg" alt="Whatsapp"></a>
-                                        <a href="https://www.facebook.com/sharer.php?u={{ share_link }}" target="_blank" data-toggle="tooltip" title="Facebook"><img src="{{baseUrl()}}/assets-costa/img/sharer/facebook.svg" alt="facebook"></a>
-                                        <a href="https://plus.google.com/share?url={{ share_link }}" target="_blank" data-toggle="tooltip" title="Google+"><img src="{{baseUrl()}}/assets-costa/img/sharer/googleplus.svg" alt="Google+"></a>
-                                        <a href="https://twitter.com/share?text={{ twitter_txt }}&url={{ share_link }}" target="_blank" data-toggle="tooltip"
-                                            title="Twitter"><img src="{{baseUrl()}}/assets-costa/img/sharer/twitter.svg" alt="Twitter"></a>
-                                    </p>
-                                </div>
+                    <div class="row">
+                        <div class="col col-sm-5 col-md-6 col-sm-offset-1">
+                            <h3>{{loop.index}}. {{seccion.descripcion}}</h3>
+                            <div class="compartir-box hidden-xs hidden-sm">
+                                <p>Compartir:
+                                    <a href="#" class="hidden-md hidden-lg hidden-sm" data-toggle="tooltip" title="Whatsapp"><img src="{{baseUrl()}}/assets-costa/img/sharer/phone.svg" alt="Whatsapp"></a>
+                                    <a href="https://www.facebook.com/sharer.php?u={{ share_link }}" target="_blank" data-toggle="tooltip" title="Facebook"><img src="{{baseUrl()}}/assets-costa/img/sharer/facebook.svg" alt="facebook"></a>
+                                    <a href="https://plus.google.com/share?url={{ share_link }}" target="_blank" data-toggle="tooltip" title="Google+"><img src="{{baseUrl()}}/assets-costa/img/sharer/googleplus.svg" alt="Google+"></a>
+                                    <a href="https://twitter.com/share?text={{ twitter_txt }}&url={{ share_link }}" target="_blank" data-toggle="tooltip"
+                                       title="Twitter"><img src="{{baseUrl()}}/assets-costa/img/sharer/twitter.svg" alt="Twitter"></a>
+                                </p>
                             </div>
-                            <div class="col col-sm-5 col-md-4 hidden-xs">
-                                <a href="javascript:toggleComments({{ seccion.id }})" class="btn-pill pull-right">Participá <img src="{{baseUrl()}}/assets-costa/img/area/comments.svg" alt=""> {{ comentariosSeccion }}</a>
-                                <div class="clearfix">
-                                    <a href="{{ user ? 'javascript:votarSeccion(' ~ seccion.id ~',3)' : urlFor('shwLogin')}}" class="btn-pill importante pull-right">Muy importante&nbsp;&nbsp;&nbsp;<span class="bold">{{seccion.votos_alta}}</span></a>
-                                </div>
-                                <div class="clearfix">
-                                    <div class="pull-right">
-                                        <a href="{{ user ? 'javascript:votarSeccion(' ~ seccion.id ~',2)' : urlFor('shwLogin')}}" class="btn-pill importante">Importante&nbsp;&nbsp;&nbsp;<span class="bold">{{seccion.votos_media}}</span></a>
-                                        <a href="{{ user ? 'javascript:votarSeccion(' ~ seccion.id ~',1)' : urlFor('shwLogin')}}" class="btn-pill importante">Poco importante&nbsp;&nbsp;&nbsp;<span class="bold">{{seccion.votos_baja}}</span></a>
-                                    </div>
-                                </div>
+                        </div>
+                        <div class="col col-sm-5 col-md-4 hidden-xs">
+                            <a href="javascript:toggleComments({{ seccion.id }})" class="btn-pill pull-right">Participá <img src="{{baseUrl()}}/assets-costa/img/area/comments.svg" alt=""> {{ comentariosSeccion }}</a>
+                            <div class="clearfix">
+                                <a href="{{ user ? 'javascript:votarSeccion(' ~ seccion.id ~',3)' : urlFor('shwLogin')}}" class="btn-pill importante pull-right">Muy importante&nbsp;&nbsp;&nbsp;<span class="bold">{{seccion.votos_alta}}</span></a>
                             </div>
-                            <div class="col col-md-4 col-sm-12 hidden-sm hidden-md hidden-lg">
-                                <a href="javascript:toggleComments({{ seccion.id }})" class="btn-pill" style="margin-top:15px">Participá <img src="{{baseUrl()}}/assets-costa/img/area/comments.svg" alt=""> {{ comentariosSeccion }}</a>
-                                <div class="clearfix">
-                                    <a href="{{ user ? 'javascript:votarSeccion(' ~ seccion.id ~',3)' : urlFor('shwLogin')}}" class="btn-pill importante">Muy importante&nbsp;&nbsp;&nbsp;<span class="bold">{{seccion.votos_alta}}</span></a>
-                                </div>
-                                <div class="clearfix">
-                                    <div class="">
-                                        <a href="{{ user ? 'javascript:votarSeccion(' ~ seccion.id ~',2)' : urlFor('shwLogin')}}" class="btn-pill importante">Importante&nbsp;&nbsp;&nbsp;<span class="bold">{{seccion.votos_media}}</span></a>
-                                        <a href="{{ user ? 'javascript:votarSeccion(' ~ seccion.id ~',1)' : urlFor('shwLogin')}}" class="btn-pill importante">Poco importante&nbsp;&nbsp;&nbsp;<span class="bold">{{seccion.votos_baja}}</span></a>
-                                    </div>
-                                </div>
-                                <div class="compartir-box hidden-md hidden-lg" style="margin-top:25px">
-                                    <p>Compartir:
-                                        <a href="whatsapp://send?text={{ twitter_txt|url_encode }}%20{{ share_link }}" class="hidden-md hidden-lg hidden-sm" data-toggle="tooltip" title="Whatsapp"><img src="{{baseUrl()}}/assets-costa/img/sharer/phone.svg" alt="Whatsapp"></a>
-                                        <a href="https://www.facebook.com/sharer.php?u={{ share_link }}" target="_blank" data-toggle="tooltip" title="Facebook"><img src="{{baseUrl()}}/assets-costa/img/sharer/facebook.svg" alt="facebook"></a>
-                                        <a href="https://plus.google.com/share?url={{ share_link }}" target="_blank" data-toggle="tooltip" title="Google+"><img src="{{baseUrl()}}/assets-costa/img/sharer/googleplus.svg" alt="Google+"></a>
-                                        <a href="https://twitter.com/share?text={{ twitter_txt }}&url={{ share_link }}" target="_blank" data-toggle="tooltip"
-                                            title="Twitter"><img src="{{baseUrl()}}/assets-costa/img/sharer/twitter.svg" alt="Twitter"></a>
-                                    </p>
+                            <div class="clearfix">
+                                <div class="pull-right">
+                                    <a href="{{ user ? 'javascript:votarSeccion(' ~ seccion.id ~',2)' : urlFor('shwLogin')}}" class="btn-pill importante">Importante&nbsp;&nbsp;&nbsp;<span class="bold">{{seccion.votos_media}}</span></a>
+                                    <a href="{{ user ? 'javascript:votarSeccion(' ~ seccion.id ~',1)' : urlFor('shwLogin')}}" class="btn-pill importante">Poco importante&nbsp;&nbsp;&nbsp;<span class="bold">{{seccion.votos_baja}}</span></a>
                                 </div>
                             </div>
                         </div>
+                        <div class="col col-md-4 col-sm-12 hidden-sm hidden-md hidden-lg">
+                            <a href="javascript:toggleComments({{ seccion.id }})" class="btn-pill" style="margin-top:15px">Participá <img src="{{baseUrl()}}/assets-costa/img/area/comments.svg" alt=""> {{ comentariosSeccion }}</a>
+                            <div class="clearfix">
+                                <a href="{{ user ? 'javascript:votarSeccion(' ~ seccion.id ~',3)' : urlFor('shwLogin')}}" class="btn-pill importante">Muy importante&nbsp;&nbsp;&nbsp;<span class="bold">{{seccion.votos_alta}}</span></a>
+                            </div>
+                            <div class="clearfix">
+                                <div class="">
+                                    <a href="{{ user ? 'javascript:votarSeccion(' ~ seccion.id ~',2)' : urlFor('shwLogin')}}" class="btn-pill importante">Importante&nbsp;&nbsp;&nbsp;<span class="bold">{{seccion.votos_media}}</span></a>
+                                    <a href="{{ user ? 'javascript:votarSeccion(' ~ seccion.id ~',1)' : urlFor('shwLogin')}}" class="btn-pill importante">Poco importante&nbsp;&nbsp;&nbsp;<span class="bold">{{seccion.votos_baja}}</span></a>
+                                </div>
+                            </div>
+                            <div class="compartir-box hidden-md hidden-lg" style="margin-top:25px">
+                                <p>Compartir:
+                                    <a href="whatsapp://send?text={{ twitter_txt|url_encode }}%20{{ share_link }}" class="hidden-md hidden-lg hidden-sm" data-toggle="tooltip" title="Whatsapp"><img src="{{baseUrl()}}/assets-costa/img/sharer/phone.svg" alt="Whatsapp"></a>
+                                    <a href="https://www.facebook.com/sharer.php?u={{ share_link }}" target="_blank" data-toggle="tooltip" title="Facebook"><img src="{{baseUrl()}}/assets-costa/img/sharer/facebook.svg" alt="facebook"></a>
+                                    <a href="https://plus.google.com/share?url={{ share_link }}" target="_blank" data-toggle="tooltip" title="Google+"><img src="{{baseUrl()}}/assets-costa/img/sharer/googleplus.svg" alt="Google+"></a>
+                                    <a href="https://twitter.com/share?text={{ twitter_txt }}&url={{ share_link }}" target="_blank" data-toggle="tooltip"
+                                       title="Twitter"><img src="{{baseUrl()}}/assets-costa/img/sharer/twitter.svg" alt="Twitter"></a>
+                                </p>
+                            </div>
+                        </div>
                     </div>
+                </div>
                 <div id="comments-{{ seccion.id }}" class="row" style="display:none">
                     <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
-                         {% include 'costa/contenido/derecho/comentario.twig' %}
+                        {% include 'costa/contenido/derecho/comentario.twig' %}
                     </div>
                 </div>
                 {% endfor %}

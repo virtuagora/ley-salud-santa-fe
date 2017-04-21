@@ -3,11 +3,11 @@
 class PortalCtrl extends Controller {
 
     public function verIndex() {
-        $derechos = Contenido::where('contenible_type', 'Derecho')->get()->toArray();
-        $testimonios = Testimonio::all()->toArray();
+//        $derechos = Contenido::where('contenible_type', 'Derecho')->get()->toArray();
+//        $testimonios = Testimonio::all()->toArray();
         $this->render('salud/portal/inicio.twig',  [
-            'derechos' => $derechos,
-            'testimonios' => $testimonios,
+//            'derechos' => $derechos,
+//            'testimonios' => $testimonios,
         ]);
     }
 
@@ -16,7 +16,10 @@ class PortalCtrl extends Controller {
     }
 
     public function verPrincipios() {
-        $this->render('salud/portal/principios.twig');
+        $principios = Principio::all()->toArray();
+        $this->render('salud/portal/principios.twig',  [
+            'principios' => $principios,
+        ]);
     }
 
     public function verLogin() {
@@ -36,7 +39,7 @@ class PortalCtrl extends Controller {
         ]);
     }
     public function verEjes() {
-        $ejes = Contenido::with('Contenible')->where('contenible_type', 'Derecho')->get()->toArray();
+        $ejes = Contenido::with('Contenible')->where('contenible_type', 'Eje')->get()->toArray();
         $this->render('salud/portal/ejes.twig',  [
             'ejes' => $ejes
         ]   );

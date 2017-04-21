@@ -107,22 +107,24 @@ $app->get('/test', function () use ($app) {
 
 // TODO Hice que en vez de derecho, sea /area. logicamente no lo cambies de lo que es derecho..
 $app->group('/eje', function () use ($app, $checkRole) {
-    $app->get('/crear', $checkRole('mod'), 'DerechoCtrl:verCrear')->name('shwCrearDerecho');
-    $app->post('/crear', $checkRole('mod'), 'DerechoCtrl:crear')->name('runCrearDerecho');
-    $app->get('/:idDer', 'DerechoCtrl:ver')->name('shwDerecho');
-    $app->get('/:idDer/:idAcc', 'DerechoCtrl:verAccion')->name('shwAccion');
-    $app->post('/votar/:idSec', $checkRole('usr'), 'DerechoCtrl:votar')->name('runVotarSeccion');
-    $app->get('/:idDer/modificar', $checkRole('mod'), 'DerechoCtrl:verModificar')->name('shwModifDerecho');
-    $app->post('/:idDer/modificar', $checkRole('mod'), 'DerechoCtrl:modificar')->name('runModifDerecho');
+    $app->get('/crear', $checkRole('mod'), 'EjeCtrl:verCrear')->name('shwCrearEje');
+    $app->post('/crear', $checkRole('mod'), 'EjeCtrl:crear')->name('runCrearEje');
+    $app->get('/:idEje', 'EjeCtrl:ver')->name('shwEje');
+//    $app->get('/:idDer/:idAcc', 'DerechoCtrl:verAccion')->name('shwAccion');
+    $app->post('/votar/:idSec', $checkRole('usr'), 'EjeCtrl:votar')->name('runVotarRespuesta');
+    $app->get('/:idEje/modificar', $checkRole('mod'), 'EjeCtrl:verModificar')->name('shwModifEje');
+    $app->post('/:idEje/modificar', $checkRole('mod'), 'EjeCtrl:modificar')->name('runModifEje');
+    $app->post('/:idEje/responder', $checkRole('mod'), 'EjeCtrl:responder')->name('runResponderEje');
 });
 
 // TODO Hice que en vez de opinion, sea /testimonio. logicamente no lo cambies de lo que es derecho..
-$app->group('/testimonio', function () use ($app, $checkRole) {
-    $app->get('/crear', $checkRole('mod'), 'TestimonioCtrl:verCrear')->name('shwCrearOpinion');
-    $app->post('/crear', $checkRole('mod'), 'TestimonioCtrl:crear')->name('runCrearOpinion');
-    $app->post('/:idOpi/eliminar', $checkRole('mod'), 'TestimonioCtrl:eliminar')->name('runEliminarOpinion');    
-    $app->get('/:idOpi/modificar', $checkRole('mod'), 'OpinionCtrl:verModificar')->name('shwModifOpinion');
-    $app->post('/:idOpi/modificar', $checkRole('mod'), 'OpinionCtrl:modificar')->name('runModifOpinion');
+$app->group('/principio', function () use ($app, $checkRole) {
+    $app->get('/crear', $checkRole('mod'), 'PrincipioCtrl:verCrear')->name('shwCrearPrincipio');
+    $app->post('/crear', $checkRole('mod'), 'PrincipioCtrl:crear')->name('runCrearPrincipio');
+    $app->post('/:idPri/eliminar', $checkRole('mod'), 'PrincipioCtrl:eliminar')->name('runEliminarPrincipio');
+//    $app->post('/:idOpi/eliminar', $checkRole('mod'), 'TestimonioCtrl:eliminar')->name('runEliminarOpinion');
+//    $app->get('/:idOpi/modificar', $checkRole('mod'), 'OpinionCtrl:verModificar')->name('shwModifOpinion');
+//    $app->post('/:idOpi/modificar', $checkRole('mod'), 'OpinionCtrl:modificar')->name('runModifOpinion');
 });
 
 // $app->group('/participante', function () use ($app, $checkRole) {

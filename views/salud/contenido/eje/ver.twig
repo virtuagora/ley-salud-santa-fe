@@ -1,0 +1,198 @@
+{% extends "salud/master.twig" %}
+{% set nav = 0 %}
+{% block titulo %}Cronograma de actividades{% endblock titulo %}
+{% block linkhead %}
+
+{% endblock %}
+{% block header %}
+{% endblock header %}
+{% block body %}
+<div class="nothing-navbar"></div>
+<a href="#" class="control-pagina izquierda">
+    <i class="fa fa-chevron-left fa-3x fa-pull-left"></i><h5 class="texto-izquierda pull-right" style="display:none"><b>Integración</b> del sistema provincial</h5>
+</a>
+<a href="#" class="control-pagina derecha">
+    <i class="fa fa-chevron-right fa-3x fa-pull-right"></i><h5 class="texto-derecha pull-left" style="display:none"><b>Integración</b> del sistema provincial</h5>
+</a>
+<div id="eje-box">
+    <div class="container">
+        <div class="block-svg">
+            <div class="svg eje{{eje.orden}}"></div>
+            <div class="row upperbox">
+                <div class="col-xs-12 text-center">
+                    <h1>{{eje.titulo|bbCode}}</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid box">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-xs-12 col-md-10 col-md-offset-1 eje-container">
+                    <div class="descripcion-eje">
+                        <p>
+                            {{eje.descripcion|bbCode}}
+                        </p>
+                        {% if  links|length > 0 %}
+                        <br>
+                        <br>
+                        <p>
+                            <b>Descargar material de consulta:</b>
+                            <br>
+                            {% for link in eje.links %}
+                            <br>
+                            <i class="fa fa-link fa-fw fa-lg"></i><a href="{{link.url}}">{{link.label}}</a>
+                            {% endfor %}
+                        </p>
+                        {% endif %}
+                        <div class="participacion-container">
+                            {% if respuesta == null %}
+                            <div class="block-svg">
+                                <div class="svg participar-comment"></div>
+                                <div class="row upperbox small">
+                                    <div class="col-xs-12 text-center">
+                                        <h2><b>¡Tu opinión nos interesa!</b><br>Queremos que participes<br><b>respondiendo estas preguntas</b></h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="questions">
+                                <form action="{{urlFor('runResponderEje', {'idEje': eje.id})}}" method="POST">
+                                    {% for pregunta in eje.preguntas %}
+                                    <div class="form-group">
+                                        <label for="txt1">{{loop.index}}. {{pregunta}}</label>
+                                        <textarea name="respuesta-pregunta" class="form-control" rows="1" {{ user == null ? 'placeholder="Para participar, por favor registresé o inicie sesión" readonly' }}></textarea>
+                                    </div>
+                                    {% endfor %}
+                                    <input type="text" name="respuestas" hidden>
+                                    <div class="form-group">
+                                        <label for="txt1">¿Que tan importante te parece este eje?</label>
+                                        <br>
+                                        <br>
+                                        <div class="btn-interes btn-group btn-group-justified hidden-xs" data-toggle="buttons">
+                                            <label class="interes btn btn-primary btn-lg" data-numero="3">
+                                                <input type="radio" name="valoracion" value="3" autocomplete="off"> Muy importante
+                                            </label>
+                                            <label class="interes btn btn-primary btn-lg " data-numero="2">
+                                                <input type="radio" name="valoracion" value="2" autocomplete="off"> Importante
+                                            </label>
+                                            <label class="interes btn btn-primary btn-lg " data-numero="1">
+                                                <input type="radio" name="valoracion" value="1" autocomplete="off"> Poco importante
+                                            </label>
+                                            <label class="interes btn btn-primary btn-lg " data-numero="0">
+                                                <input type="radio" name="valoracion" value="0" autocomplete="off"> No me interesa
+                                            </label>
+                                        </div>
+                                        <div class="btn-interes btn-group-vertical hidden-sm hidden-md hidden-lg" data-toggle="buttons">
+                                            <label class="interes btn btn-primary btn-lg" data-numero="3">
+                                                <input type="radio" name="valoracion" value=3 autocomplete="off"> Muy importante
+                                            </label>
+                                            <label class="interes btn btn-primary btn-lg " data-numero="2">
+                                                <input type="radio" name="valoracion" value="2" autocomplete="off"> Importante
+                                            </label>
+                                            <label class="interes btn btn-primary btn-lg " data-numero="1">
+                                                <input type="radio" name="valoracion" value="1" autocomplete="off"> Poco importante
+                                            </label>
+                                            <label class="interes btn btn-primary btn-lg " data-numero="0">
+                                                <input type="radio" name="valoracion" value="0" autocomplete="off"> No me interesa
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group text-center">
+                                        <br>
+                                        <br>
+                                        {% if user is null %}
+                                        <a href="{{urlFor('shwLogin')}}" class="boton primary size-14 is-raleway is-700">REGISTRESÉ o INICIE SESIÓN para poder participar</a>
+                                        {% else %}
+                                         <button type="submit" class="boton primary size-16 is-raleway is-700">Enviar</button>
+                                        {% endif %}
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <a href="javascript:void(0)" class="ver-comentarios-link">Ver respuestas de otros usuarios</a>
+                                    </div>
+                                </form>
+                            </div>
+                            {% else %}
+                            <div id="exito" class="block-svg">
+                                <div class="svg participar-confirmacion"></div>
+                                <div class="row upperbox small">
+                                    <div class="col-xs-12 text-center">
+                                        <br>
+                                        <br>
+                                        <br>
+
+                                        <h2><b>¡Gracias por participar!</b><br>Tus respuestas<br>se cargaron correctamente</h2>
+                                        <br>
+                                        <br>
+                                        <br>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <br>
+                                <br>
+                                <a href="javascript:void(0)" class="ver-comentarios-link">Ver respuestas de otros usuarios</a>
+                            </div>
+
+                            <div class="lista-respuestas-preguntas">
+                               {% for rta in eje.respuestas %}
+                               <hr>
+                                <div id="respuesta-pregunta-{{ rta.id }}">
+                                        {% include 'salud/contenido/eje/respuestas-preguntas.twig' %}
+                                </div>
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body %}
+{% block scripts %}
+<script src="{{ baseUrl() }}/assets-salud/js/autosize.min.js"></script>
+<script>
+    $(document).ready(function() {
+        autosize($('textarea'));
+    });
+
+    $(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+    $(".interes").click(function(e) {
+        $(".interes").removeClass('active focus');
+        $(".interes[data-numero=" + $(this).data('numero') + "]").addClass('active focus');
+        //        console.log( $(this).data('numero'));
+        $("input[type=radio]").prop("checked", false);
+        $("input[value=" + $(this).data('numero') + "]").prop("checked", true);
+    });
+    $( ".control-pagina.izquierda" ).hover(  function() {
+        $( ".control-pagina.izquierda .texto-izquierda" ).show( 200 );
+    }, function() {
+        $( ".control-pagina.izquierda .texto-izquierda" ).hide( 200 );
+    });
+    $( ".control-pagina.derecha" ).hover(  function() {
+        $( ".control-pagina.derecha .texto-derecha" ).show( 200 );
+    }, function() {
+        $( ".control-pagina.derecha .texto-derecha" ).hide( 200 );
+    });
+
+    $('form').submit(function(e) {
+        //        e.preventDefault();
+        var secciones = [];
+        $( "textarea[name=respuesta-pregunta]" ).each(function( index ) {
+            secciones.push($( this ).val());
+        });
+        var seccionesString = secciones.join("&&")
+        $('input[name=respuestas]').val(seccionesString);
+        //        console.log($('[name=valoracion]').val())
+        //        console.log($('[name=respuestas]').val())
+        $('button[type=submit]').html('<i class="fa fa-spin fa-gear fa-lg"></i>');
+        //        return true;
+    })
+
+</script>
+{% endblock scripts %}

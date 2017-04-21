@@ -30,8 +30,14 @@
             &.eje6{
                 background-image: url('../img/icon-eje6.svg');
             }
+            &.eje7{
+                background-image: url('../img/icon-eje6.svg');
+            }
             &.participar-comment{
                 background-image: url('../img/icon-comment.svg');
+            }
+            &.participar-confirmacion{
+                background-image: url('../img/icon-confirmacion-comment.svg');
             }
         }
 
@@ -126,6 +132,77 @@
 
             }
         }
+        .comentario-container{
+            .datos-respuesta-usuario{
+                h4{
+                    margin-top:15px;
+                    font-weight: 400;
+                }
+            }
+            .panel-votacion{
+                margin-top:15px;
+                .votar-respuesta-pregunta img{
+                    width: 25px;
+                }
+                .votar-respuesta-no-me-gusta{
+                    margin-left: 5px;
+                }
+            }
+            img.avatar{
+                width: 70px;
+                &.respuesta{
+                    width: 30px
+                }
+            }
+            .media-body{
+                padding-left: 15px;
+                //padding-top: 10px;
+                font-size: 13px;
+                font-family: "Raleway", Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+                .comment-cuerpo{
+                    font-family:"Open Sans", Arial, Helvetica, sans-serif;
+                    font-size:12px;
+                    line-height: 20px;
+                    strong{
+                        font-size:15px;
+                    }
+                    textarea{
+                        font-size: 12px;
+                        line-height: 20px;
+                        font-family:"Open Sans", Arial, Helvetica, sans-serif;
+
+                    }
+                }
+                .verde{
+                    color: green;
+                }
+                .rojo{
+                    color: red;
+                }
+                a.color-0 {
+                    color: $primary;
+                }
+                a.color-1 {
+                    color: $primary;
+                }
+                a.color-2 {
+                    color: $primary;
+                }
+            }
+            .btn.btn-submit{
+                border-radius: 2px;
+                border: 0;
+                background-color: #379dc9;
+                padding: 6px 20px;
+                color: #FFF;
+                font-family: 'Raleway', Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+                font-weight: 400;
+                font-size: 13px;
+                &:hover {
+                    background-color: darken(blue,10%);
+                }
+            }
+        }
     }
 
 }
@@ -140,8 +217,8 @@
     color: $text;
     display: none;
     &:hover{
-            color: $text;
-        }
+        color: $text;
+    }
     &.izquierda{
         @media (min-width: $screen-sm-min) {
             display: block;

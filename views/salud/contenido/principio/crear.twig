@@ -1,0 +1,71 @@
+{% extends "salud/master.twig" %}
+{% set nav = 0 %}
+{% block titulo %}Crear principio{% endblock titulo %}
+{% block linkhead %}
+{% endblock %}
+{% block header %}
+{% endblock header %}
+{% block body %}
+<div class="nothing-navbar"></div>
+<div id="" class="admin-container">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 text-center">
+                <h1>Nuevo principio</h1>
+                <hr>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <form action="{{ urlFor('runCrearPrincipio') }}" method="POST">
+            <div class="row">
+                <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+                    <div class="form-group">
+                        <h3>Principio</h3>
+                        <input name="titulo" class="form-control input-lg" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+                    <div class="form-group">
+                        <h3>Orden</h3>
+                        <h6 class="text-info"><b>Nota:</b> Es el orden en que aparecera en de los principios de la salud</h6>
+                        <input name="orden" min="1" type="number" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+                    <div class="form-group">
+                        <h3>Descripción corta</h3>
+                        <textarea name="descripcion" rows="2" class="form-control"></textarea>
+                    </div>
+                    <div class="clearfix">
+                        <a href="{{urlFor('shwIndexAdmin')}}" class="btn btn-large btn-default ">Cancelar</a>
+                        <button type="submit" class="btn btn-submit pull-right"><i class="fa fa-check fa-fw"></i> Subir</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <br>
+    </div>
+</div>
+{% endblock body %} {% block scripts %}
+<script src="{{ baseUrl() }}/assets-lpe/js/autosize.min.js"></script>
+<script id="accionTemplate" type="text/template">
+    <div class="accion-container color-numColor">
+        <a id="eliminar-numAccion" href="javascript:void(0)" data-idaccion='numAccion' class="eliminarAccion pull-right" style="font-size:20px;"><i class="mdi mdi-close"></i></a>
+        <textarea name="cuerpo" class="accion form-control" rows="1" placeholder="Describa la acción..."></textarea>
+    </div>
+</script>
+<script>
+
+    $(document).ready(function() {
+        //Events
+        // $("a.eliminarArticulo").on("click", eliminarArticulo);
+        autosize($('textarea'));
+    });
+
+</script>
+{% endblock scripts %}

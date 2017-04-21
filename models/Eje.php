@@ -3,7 +3,8 @@
 class Eje extends Contenible {
     protected $table = 'ejes';
     protected $dates = ['deleted_at'];
-    protected $visible = ['id', 'descripcion', 'preguntas', 'links'];
+    protected $visible = ['id', 'descripcion', 'preguntas', 'respuestas', 'links'];
+    protected $with = ['respuestas'];
 
     public function secciones() {
         return $this->hasMany('Seccion');

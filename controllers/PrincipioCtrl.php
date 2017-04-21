@@ -3,12 +3,12 @@
 class PrincipioCtrl extends Controller {
 
     public function verCrear() {
-        $this->render('costa/contenido/opinion/crear.twig');
+        $this->render('salud/contenido/principio/crear.twig');
     }
 
     public function eliminar($idPri) {
         $vdt = new Validate\QuickValidator([$this, 'notFound']);
-        $vdt->test($idTes, new Validate\Rule\NumNatural());
+        $vdt->test($idPri, new Validate\Rule\NumNatural());
         $testimonio = Principio::findOrFail($idPri);
         $testimonio->delete();
         $this->flash('success', 'El principio ha sido eliminado exitosamente.');

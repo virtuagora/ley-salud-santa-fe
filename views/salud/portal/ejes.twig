@@ -23,35 +23,22 @@ Recordá que es muy importante tu participacion segun tu experiencia. <b>Podés 
         <div class="container">
             <div class="row listado-ejes">
                    {% for eje in ejes %}
-                <div class="col-xs-12 col-md-6">
+                <div class="col-xs-12 {{ (loop.last) and (loop.index is odd) ? 'col-md-12' : 'col-md-6' }}">
                     <div class="eje-container">
                         <div class="block-svg">
-                            <div class="svg eje1"></div>
+                            <div class="svg eje{{eje.orden}}"></div>
                             <div class="informacion">
                             <h2>{{eje.titulo|bbCode}}</h2>
                             <p>{{eje.resumen|bbCode}}</p>
                             </div>
                         </div>
                         <div class="text-center">
-                            <a href="javascript:void(0)" class="boton primary size-16  is-raleway is-700">Participá</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-md-6">
-                    <div class="eje-container">
-                        <div class="block-svg">
-                            <div class="svg eje1"></div>
-                            <div class="informacion">
-                            <h2>{{eje.titulo|bbCode}}</h2>
-                            <p>{{eje.resumen|bbCode}}</p>
-                            </div>
-                        </div>
-                        <div class="text-center">
-                            <a href="javascript:void(0)" class="boton primary size-16  is-raleway is-700">Participá</a>
+                            <a href="{{urlFor('shwEje', {'idEje': eje.id})}}" class="boton primary size-16  is-raleway is-700">Participá</a>
                         </div>
                     </div>
                 </div>
                 {% endfor %}
+<!--
                 <div class="col-xs-12 col-md-6">
                     <div class="eje-container">
                         <div class="block-svg">
@@ -122,6 +109,7 @@ Recordá que es muy importante tu participacion segun tu experiencia. <b>Podés 
                         </div>
                     </div>
                 </div>
+-->
 
             </div>
         </div>
