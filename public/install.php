@@ -680,6 +680,11 @@ try {
         $ajusD->value = '7uulVAHwXi0';
         $ajusD->description = 'Videos que se muestran en la página de inicio.';
         $ajusD->save();
+        $ajusE->key = 'ejes';
+        $ajusE->value_type = 'str';
+        $ajusE->value = '';
+        $ajusE->description = 'Orden de los ejes.';
+        $ajusE->save();
         $usuario = new Usuario;
         $usuario->email = $_POST['usr_email'];
         $usuario->password = password_hash($_POST['usr_password'], PASSWORD_DEFAULT);

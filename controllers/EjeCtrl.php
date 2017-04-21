@@ -12,9 +12,21 @@ class EjeCtrl extends Controller {
         $rta = $this->session->user('id')?
             $eje->respuestas()->where('usuario_id', $this->session->user('id'))->first():
             null;
+
+        $listaEjes = Ajuste::where('key', 'ejes')->first();
+        $listaEjes = is_null($listaEjes)? [$idEje]: explode(',', $listaEjes->value);
+
+        $pos = array_search($idEje, $listaEjes);
+        $idNext = isset($listaEjes[$pos+1])? $listaEjes[$pos+1]: $listaEjes[0];
+        $next = Eje::with('contenido')->find($idNext)->toArray();
+        $idPrev = isset($listaEjes[$pos-1])? $listaEjes[$pos-1]: end($listaEjes);
+        $prev = Eje::with('contenido')->find($idPrev)->toArray();
+
         $this->render('salud/contenido/eje/ver.twig', [
             'eje' => $datosEje,
-            'respuesta' => $rta
+            'respuesta' => $rta,
+            'anterior' => $prev,
+            'siguiente' => $next,
         ]);
     }
 
@@ -54,6 +66,9 @@ class EjeCtrl extends Controller {
         $contenido->autor()->associate($autor);
         $contenido->contenible()->associate($eje);
         $contenido->save();
+        $listaEjes = Ajuste::where('key', 'ejes')->first();
+        $listaEjes->value = empty($listaEjes->value)? $eje->id: $listaEjes->value.','.$eje->id;
+        $listaEjes->save();
         $this->flash('success', 'El eje se creó exitosamente.');
         $this->redirectTo('shwIndexAdmin');
     }
