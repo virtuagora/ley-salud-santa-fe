@@ -10,7 +10,7 @@ class UsuarioCtrl extends RMRController {
     public function queryModel($meth, $repr) {
         switch ($meth) {
             case 0: return Usuario::query();
-            case 1: return Usuario::with('partido');
+            case 1: return Usuario::query();
         }
     }
 
@@ -21,23 +21,24 @@ class UsuarioCtrl extends RMRController {
     public function executeGetCtrl($usuario) {
         $req = $this->request;
         $url = $req->getUrl().$req->getPath();
-        $paginator = new Paginator($usuario->acciones(), $url, $req->get());
-        $acciones = $paginator->rows;
-        $nav = $paginator->links;
+//        $paginator = new Paginator($usuario->acciones(), $url, $req->get());
+//        $acciones = $paginator->rows;
+//        $nav = $paginator->links;
         $datos = $usuario->toArray();
         $comentarios = $usuario->comentarios()->orderBy('created_at', 'desc')->take(5)->get()->toArray();
         $derechos = Contenido::where('contenible_type', 'Derecho')->get()->toArray();
         $datos['contenidos_count'] = $usuario->contenidos()->count();
         $datos['comentarios_count'] = $usuario->comentarios()->count();
-        $this->render('costa/usuario/ver.twig', array('usuario' => $datos,
-                                                'acciones' => $acciones,
+        $this->render('salud/usuario/ver.twig', array('usuario' => $datos,
+//                                                'acciones' => $acciones,
                                                 'comentarios' => $comentarios,
                                                 'derechos' => $derechos,
-                                                'nav' => $nav));
+//                                                'nav' => $nav
+                                                     ));
     }
 
     public function verCambiarClave() {
-        $this->render('/costa/usuario/cambiar-clave.twig');
+        $this->render('/salud/usuario/cambiar-clave.twig');
     }
 
     public function cambiarClave() {
@@ -69,7 +70,7 @@ class UsuarioCtrl extends RMRController {
             'Profesional','Empleado/a en relación de dependencia','Comerciante',
             'Funcionario/a, legislador/a o autoridad gubernamental','Representante de organización social',
             'Trabajador/a doméstico/a no remunerado/a'];
-        $this->render('/costa/usuario/modificar.twig', [
+        $this->render('/salud/usuario/modificar.twig', [
             'usuario' => $usuario->toArray(),
             'departamentos' => $departamentos,
             'ocupaciones' => $ocupaciones,

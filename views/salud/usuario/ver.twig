@@ -1,0 +1,64 @@
+{% extends "salud/master.twig" %}
+{% set nav = 0 %}
+{% block titulo %}
+{{ usuario.nombre }}
+{{ usuario.apellido }}
+{% endblock titulo %}
+{% block linkhead %}
+{% endblock %}
+{% block header %}
+{% endblock header %}
+{% block body %}
+<div class="nothing-navbar"></div>
+<div id="" class="">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 text-center">
+                <h1>{{ usuario.nombre }} {{ usuario.apellido }}
+                </h1>
+                {% if usuario.id == user.id %}
+                <ul class="list-inline">
+                    <li><a href="{{urlFor('shwModifUsuario')}}">Editar Perfil</a></li>
+                    <li><a href="{{urlFor('shwModifClvUsuario')}}">Cambiar contraseña</a></li>
+                </ul>
+                {% endif %}
+                <ul class="list-inline">
+                    <li><strong>Fecha de nacimiento:</strong> {{ usuario.nacimiento|date("d/m/Y")}}</li>
+                    <li><strong>Localidad:</strong> {{ usuario.localidad.nombre == "Otro..." ? usuario.extra : usuario.localidad.nombre }}</li>
+                    <li><strong>Ocupacion:</strong> {{ usuario.ocupacion }}</li>
+                    {% if usuario.institucion != '' %}
+                    <li><strong>Ocupacion:</strong> {{ usuario.institucion }}</li>
+                    {% endif %}
+                </ul>
+                <hr>
+            </div>
+        </div>
+    </div>
+    {#
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h4 class="black">Ultimos Comentarios <small>(Total: {{usuario.comentarios_count}})</small></h4>
+                <div class="comentarios-user">
+                    {% if comentarios|length > 0 %} {% for comentario in comentarios %}
+                    <div class="">
+                        <blockquote>
+                            <p class="">{{ comentario.cuerpo }}</p>
+                            <p class="lead"><small>Comentario hecho el {{ comentario.created_at|date("d/m/Y")}}</small></p>
+                        </blockquote>
+                        <hr>
+                    </div>
+                    {% endfor%} {% else %}
+                    <blockquote>
+                        <p>No hay comentarios..</p>
+                    </blockquote>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    #}
+</div>
+{% endblock body %}
+{% block scripts %}
+{% endblock scripts %}

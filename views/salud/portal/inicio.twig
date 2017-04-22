@@ -19,7 +19,9 @@
 Desde el gobierno de la provincia de Santa Fe, nos proponemos un diálogo ciudadano para construir juntos las bases que guíen nuestro sistema de salud, fundamentadas en la experiencia de la población y sus derechos adquiridos.
                 </p>
                 <br>
+                {% if user == null %}
                 <p><a href="{{urlFor('shwCrearUsuario')}}">Registrate</a> o <a href="{{urlFor('shwLogin')}}">Iniciá sesión</a></p>
+                {% endif %}
             </div>
         </div>
     </div>

@@ -6,7 +6,6 @@ class EjeCtrl extends Controller {
         $vdt = new Validate\QuickValidator([$this, 'notFound']);
         $vdt->test($idEje, new Validate\Rule\NumNatural());
         $eje = Eje::with('contenido')->findOrFail($idEje);
-//        var_dump($eje);
         $contenido = $eje->contenido;
         $datosEje = array_merge($contenido->toArray(), $eje->toArray());
         $rta = $this->session->user('id')?
@@ -18,9 +17,9 @@ class EjeCtrl extends Controller {
 
         $pos = array_search($idEje, $listaEjes);
         $idNext = isset($listaEjes[$pos+1])? $listaEjes[$pos+1]: $listaEjes[0];
-        $next = Eje::with('contenido')->find($idNext)->toArray();
+        $next = Eje::with('contenido')->find($idNext)->contenido->toArray();
         $idPrev = isset($listaEjes[$pos-1])? $listaEjes[$pos-1]: end($listaEjes);
-        $prev = Eje::with('contenido')->find($idPrev)->toArray();
+        $prev = Eje::with('contenido')->find($idPrev)->contenido->toArray();
 
         $this->render('salud/contenido/eje/ver.twig', [
             'eje' => $datosEje,

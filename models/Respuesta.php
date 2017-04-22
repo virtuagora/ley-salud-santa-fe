@@ -2,9 +2,9 @@
 
 class Respuesta extends Eloquent {
     protected $table = 'respuestas';
-    protected $visible = ['id', 'usuario', 'valoracion', 'respuestas', 'puntos'];
+    protected $visible = ['id', 'usuario', 'valoracion', 'respuestas', 'comentarios', 'puntos'];
     protected $fillable = ['eje_id', 'usuario_id'];
-    protected $with = ['usuario'];
+    protected $with = ['usuario', 'comentarios'];
 
     public function setRespuestasAttribute($value) {
         $this->attributes['respuestas'] = json_encode($value);

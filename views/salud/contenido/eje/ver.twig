@@ -8,11 +8,11 @@
 {% endblock header %}
 {% block body %}
 <div class="nothing-navbar"></div>
-<a href="#" class="control-pagina izquierda">
-    <i class="fa fa-chevron-left fa-3x fa-pull-left"></i><h5 class="texto-izquierda pull-right" style="display:none"><b>Integración</b> del sistema provincial</h5>
+<a href="{{urlFor('shwEje',{'idEje':anterior.id})}}" class="control-pagina izquierda">
+    <i class="fa fa-chevron-left fa-3x fa-pull-left"></i><h5 class="texto-izquierda pull-right" style="display:none">{{anterior.titulo|bbCode}}</h5>
 </a>
-<a href="#" class="control-pagina derecha">
-    <i class="fa fa-chevron-right fa-3x fa-pull-right"></i><h5 class="texto-derecha pull-left" style="display:none"><b>Integración</b> del sistema provincial</h5>
+<a href="{{urlFor('shwEje',{'idEje':siguiente.id})}}" class="control-pagina derecha">
+    <i class="fa fa-chevron-right fa-3x fa-pull-right"></i><h5 class="texto-derecha pull-left" style="display:none">{{siguiente.titulo|bbCode}}</h5>
 </a>
 <div id="eje-box">
     <div class="container">
@@ -104,12 +104,10 @@
                                         {% if user is null %}
                                         <a href="{{urlFor('shwLogin')}}" class="boton primary size-14 is-raleway is-700">REGISTRESÉ o INICIE SESIÓN para poder participar</a>
                                         {% else %}
-                                         <button type="submit" class="boton primary size-16 is-raleway is-700">Enviar</button>
+                                        <button type="submit" class="boton primary size-16 is-raleway is-700">Enviar</button>
                                         {% endif %}
                                         <br>
                                         <br>
-                                        <br>
-                                        <a href="javascript:void(0)" class="ver-comentarios-link">Ver respuestas de otros usuarios</a>
                                     </div>
                                 </form>
                             </div>
@@ -121,7 +119,6 @@
                                         <br>
                                         <br>
                                         <br>
-
                                         <h2><b>¡Gracias por participar!</b><br>Tus respuestas<br>se cargaron correctamente</h2>
                                         <br>
                                         <br>
@@ -129,21 +126,21 @@
                                     </div>
                                 </div>
                             </div>
+                            {% endif %}
                             <div class="text-center">
                                 <br>
                                 <br>
-                                <a href="javascript:void(0)" class="ver-comentarios-link">Ver respuestas de otros usuarios</a>
+                                <a href="javascript:verComentarios()" class="ver-comentarios-link">Ver respuestas de otros usuarios</a>
                             </div>
-
-                            <div class="lista-respuestas-preguntas">
-                               {% for rta in eje.respuestas %}
-                               <hr>
+                            <div class="lista-respuestas-preguntas" style="display:none;">
+                                <hr>
+                                {% for rta in eje.respuestas %}
                                 <div id="respuesta-pregunta-{{ rta.id }}">
-                                        {% include 'salud/contenido/eje/respuestas-preguntas.twig' %}
+                                    {% include 'salud/contenido/eje/respuestas-preguntas.twig' %}
                                 </div>
+                                {% include 'salud/contenido/eje/comentarioModal.twig' %}
                                 {% endfor %}
                             </div>
-                            {% endif %}
                         </div>
                     </div>
                 </div>
@@ -151,17 +148,27 @@
         </div>
     </div>
 </div>
+<form id="votarComentario" method="POST">
+    <input type="text" name="valor" hidden>
+</form>
+{% if user.patrulla_id != null %}
+{% include 'salud/contenido/moderar.twig' %}
+{% endif %}
 {% endblock body %}
 {% block scripts %}
 <script src="{{ baseUrl() }}/assets-salud/js/autosize.min.js"></script>
 <script>
     $(document).ready(function() {
         autosize($('textarea'));
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
     });
 
-    $(function () {
-  $('[data-toggle="tooltip"]').tooltip()
-})
+    function verComentarios(){
+        $('.lista-respuestas-preguntas').show();
+        $('.ver-comentarios-link').hide();
+    }
     $(".interes").click(function(e) {
         $(".interes").removeClass('active focus');
         $(".interes[data-numero=" + $(this).data('numero') + "]").addClass('active focus');
@@ -172,27 +179,48 @@
     $( ".control-pagina.izquierda" ).hover(  function() {
         $( ".control-pagina.izquierda .texto-izquierda" ).show( 200 );
     }, function() {
-        $( ".control-pagina.izquierda .texto-izquierda" ).hide( 200 );
+        $( ".control-pagina.izquierda .texto-izquierda" ).hide( );
     });
     $( ".control-pagina.derecha" ).hover(  function() {
         $( ".control-pagina.derecha .texto-derecha" ).show( 200 );
     }, function() {
-        $( ".control-pagina.derecha .texto-derecha" ).hide( 200 );
+        $( ".control-pagina.derecha .texto-derecha" ).hide( );
     });
 
     $('form').submit(function(e) {
-        //        e.preventDefault();
+        //                e.preventDefault();
         var secciones = [];
         $( "textarea[name=respuesta-pregunta]" ).each(function( index ) {
             secciones.push($( this ).val());
         });
-        var seccionesString = secciones.join("&&")
-        $('input[name=respuestas]').val(seccionesString);
+        $('input[name=respuestas]').val(JSON.stringify(secciones));
         //        console.log($('[name=valoracion]').val())
-        //        console.log($('[name=respuestas]').val())
+        //                console.log($('[name=respuestas]').val())
         $('button[type=submit]').html('<i class="fa fa-spin fa-gear fa-lg"></i>');
         //        return true;
     })
 
+    var votarRespuestaEje = function(id, valor) {
+        var action_no = "ponerruta";
+        $('#votarRespuestaEje').find('input[name="postura"]').val(valor)
+        var action_yes = action_no.replace(':idRta', id);
+        $('#votarRespuestaEje').attr('action', action_yes);
+        $('#votarRespuestaEje').submit();
+    }
+
+    var verBoxResponder = function(id) {
+        $('#respComentario-' + id).toggle();
+    }
+
+    var votarComentario = function(id, valor) {
+        var action_no = "{{ urlFor('runVotarComenta') }}";
+        $('#votarComentario').find('input[name="valor"]').val(valor)
+        var action_yes = action_no.replace(':idCom', id);
+        $('#votarComentario').attr('action', action_yes);
+        $('#votarComentario').submit();
+    }
 </script>
+{% if user.patrulla_id != null %}
+{% include 'salud/contenido/moderar.js.twig' %}
+{% endif %}
 {% endblock scripts %}

@@ -3,11 +3,11 @@
 class PortalCtrl extends Controller {
 
     public function verIndex() {
-//        $derechos = Contenido::where('contenible_type', 'Derecho')->get()->toArray();
-//        $testimonios = Testimonio::all()->toArray();
+        //        $derechos = Contenido::where('contenible_type', 'Derecho')->get()->toArray();
+        //        $testimonios = Testimonio::all()->toArray();
         $this->render('salud/portal/inicio.twig',  [
-//            'derechos' => $derechos,
-//            'testimonios' => $testimonios,
+            //            'derechos' => $derechos,
+            //            'testimonios' => $testimonios,
         ]);
     }
 
@@ -26,7 +26,7 @@ class PortalCtrl extends Controller {
         $this->render('salud/registro/login-static.twig');
     }
 
-     public function verAcerca() {
+    public function verAcerca() {
         $this->render('salud/portal/acerca.twig');
     }
 
@@ -71,10 +71,8 @@ class PortalCtrl extends Controller {
 
     public function verRegistrar() {
         $departamentos = Departamento::with('localidades')->get()->sortBy('nombre')->toArray();
-        $ocupaciones = ['Estudiante','Docente','Asistente escolar','Representante gremial',
-            'Profesional','Empleado/a en relación de dependencia','Comerciante',
-            'Funcionario/a, legislador/a o autoridad gubernamental','Representante de organización social',
-            'Trabajador/a doméstico/a no remunerado/a'];
+        $ocupaciones = ['Estudiante','Trabajador de la salud','Comerciante',
+            'Funcionario/a, legislador/a o autoridad gubernamental','Representante gremial','Representante de organización gubernamental','Empleado del estado'];
         $this->render('salud/registro/registro.twig', [
             'departamentos' => $departamentos,
             'ocupaciones' => $ocupaciones,
@@ -95,7 +93,7 @@ class PortalCtrl extends Controller {
             ->addRule('email', new Validate\Rule\Email())
             ->addRule('email', new Validate\Rule\MaxLength(128))
             ->addRule('email', new Validate\Rule\Unique('usuarios'))
-//            ->addRule('genero', new Validate\Rule\InArray(['f', 'm']))
+            //            ->addRule('genero', new Validate\Rule\InArray(['f', 'm']))
             ->addRule('nacimiento', new Validate\Rule\Date('Y-m-d'))
             ->addRule('ocupacion', new Validate\Rule\MaxLength(128))
             ->addRule('extra', new Validate\Rule\MaxLength(128))
@@ -124,7 +122,7 @@ class PortalCtrl extends Controller {
         $preuser->password = password_hash($vdt->getData('password'), PASSWORD_DEFAULT);
         $preuser->nombre = $vdt->getData('nombre');
         $preuser->apellido = $vdt->getData('apellido');
-//        $preuser->genero = $vdt->getData('genero');
+        //        $preuser->genero = $vdt->getData('genero');
         $preuser->genero = 'm';
         $preuser->nacimiento = $cumple;
         $preuser->ocupacion = $vdt->getData('ocupacion');
@@ -133,7 +131,7 @@ class PortalCtrl extends Controller {
         $preuser->localidad_id = $vdt->getData('localidad');
         $preuser->emailed_token = bin2hex(openssl_random_pseudo_bytes(16));
         $preuser->save();
-        
+
         $to = $preuser->email;
         $subject = 'Confirma tu registro - Santa Fe es Salud';
         $message = $this->view->fetch('email/registro.twig', [
@@ -141,7 +139,7 @@ class PortalCtrl extends Controller {
             'token' => $preuser->emailed_token
         ]);
         mail($to, $subject, $message);
-        
+
         $this->render('salud/registro/registro-exito.twig', array('email' => $preuser->email));
     }
 
@@ -172,7 +170,7 @@ class PortalCtrl extends Controller {
             $usuario->save();
             $preuser->delete();
             $this->render('salud/registro/validar-correo.twig', array('usuarioValido' => true,
-                                                                'email' => $usuario->email));
+                                                                      'email' => $usuario->email));
         } else {
             $this->render('salud/registro/validar-correo.twig', array('usuarioValido' => false));
         }
@@ -181,7 +179,7 @@ class PortalCtrl extends Controller {
     public function verRecuperarClave() {
         $this->render('salud/registro/recuperar-clave.twig');
     }
-    
+
     public function recuperarClave() {
         $vdt = new Validate\Validator();
         $vdt->addRule('email', new Validate\Rule\Email())
@@ -198,7 +196,7 @@ class PortalCtrl extends Controller {
         }
         $usuario->token = bin2hex(openssl_random_pseudo_bytes(16));
         $usuario->save();
-        
+
         $to = $usuario->email;
         $subject = 'Reiniciar clave - A Toda salud - Santa Fe';
         $message = $this->view->fetch('email/recuperar.twig', [
@@ -206,10 +204,10 @@ class PortalCtrl extends Controller {
             'token' => $usuario->token
         ]);
         mail($to, $subject, $message);
-        
+
         $this->redirectTo('shwRecuperarClave');
     }
-    
+
     public function verReiniciarClave($idUsu, $token) {
         $vdt = new Validate\QuickValidator(array($this, 'notFound'));
         $vdt->test($idUsu, new Validate\Rule\NumNatural());
@@ -217,7 +215,7 @@ class PortalCtrl extends Controller {
         $vdt->test($token, new Validate\Rule\ExactLength(32));
         $this->render('salud/registro/reiniciar-clave.twig', ['idUsu' => $idUsu, 'token' => $token]);
     }
-    
+
     public function reiniciarClave($idUsu, $token) {
         $vdt = new Validate\QuickValidator(array($this, 'notFound'));
         $vdt->test($idUsu, new Validate\Rule\NumNatural());
@@ -243,7 +241,7 @@ class PortalCtrl extends Controller {
         $usuario->save();
         $this->redirectTo('endReiniciarClave');
     }
-    
+
     public function finReiniciarClave() {
         $this->render('salud/registro/reiniciar-completo.twig');
     }

@@ -114,7 +114,7 @@ $app->group('/eje', function () use ($app, $checkRole) {
     $app->post('/votar/:idSec', $checkRole('usr'), 'EjeCtrl:votar')->name('runVotarRespuesta');
     $app->get('/:idEje/modificar', $checkRole('mod'), 'EjeCtrl:verModificar')->name('shwModifEje');
     $app->post('/:idEje/modificar', $checkRole('mod'), 'EjeCtrl:modificar')->name('runModifEje');
-    $app->post('/:idEje/responder', $checkRole('mod'), 'EjeCtrl:responder')->name('runResponderEje');
+    $app->post('/:idEje/responder', $checkRole('usr'), 'EjeCtrl:responder')->name('runResponderEje');
 });
 
 // TODO Hice que en vez de opinion, sea /testimonio. logicamente no lo cambies de lo que es derecho..
