@@ -130,6 +130,47 @@ class EjeCtrl extends Controller {
         $this->redirectTo('shwEje', ['idEje' => $eje->id . '#exito']);
     }
 
+    public function votarRespuesta($idRes) {
+        $vdt = new Validate\Validator();
+        $vdt->addRule('idRes', new Validate\Rule\NumNatural())
+            ->addRule('valor', new Validate\Rule\InArray(array(-1, 1)));
+        $req = $this->request;
+        $data = array_merge(['idRes' => $idRes], $req->post());
+        if (!$vdt->validate($data)) {
+            throw new TurnbackException($vdt->getErrors());
+        }
+        $usuario = $this->session->getUser();
+        $rta = Respuesta::findOrFail($idRes);
+        $voto = VotoRespuesta::firstOrNew([
+            'respuesta_id' => $rta->id,
+            'usuario_id' => $usuario->id
+        ]);
+        if (!$voto->exists) {
+            $voto->valor = $vdt->getData('valor');
+            $voto->save();
+            $rta->puntos = $rta->votos()->sum('valor');
+            $rta->save();
+        } else {
+            throw new TurnbackException('No puede votar dos veces la misma respuesta.');
+        }
+        $this->flash('success', 'Su voto fue registrado exitosamente.');
+        $this->redirectTo('shwEje', ['idEje' => $eje->id . '#exito']);
+    }
+
+    public function eliminarRespuesta() {
+        $req = $this->request;
+        $vdt = new Validate\QuickValidator([$this, 'notFound']);
+        $vdt->test($req->post('id'), new Validate\Rule\NumNatural());
+        $rta = Respuesta::with('eje.contenido')->findOrFail($req->post('id'));
+        $eje = $rta->eje;
+        $rta->delete();
+        $contenido = $eje->contenido;
+        $contenido->puntos = $eje->respuestas()->sum('valoracion');
+        $contenido->save();
+        $this->flash('success', 'La respuesta ha sido eliminada exitosamente.');
+        $this->redirectTo('shwEje', ['idEje' => $eje->id . '#exito']);
+    }
+
     private function validarEje($data) {
         $vdt = new Validate\Validator();
         $vdt->addRule('titulo', new Validate\Rule\MinLength(1))

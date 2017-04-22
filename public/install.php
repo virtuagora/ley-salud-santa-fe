@@ -191,6 +191,14 @@ try {
             $table->foreign('eje_id')->references('id')->on('ejes')->onDelete('cascade');
             $table->timestamps();
         });
+        Capsule::schema()->create('respuesta_votos', function($table) {
+            $table->engine = 'InnoDB';
+            $table->increments('id');
+            $table->integer('valor');
+            $table->integer('usuario_id')->unsigned();
+            $table->integer('respuesta_id')->unsigned();
+            $table->foreign('respuesta_id')->references('id')->on('respuestas')->onDelete('cascade');
+        });
         Capsule::schema()->create('eventos', function($table) {
             $table->engine = 'InnoDB';
             $table->increments('id');

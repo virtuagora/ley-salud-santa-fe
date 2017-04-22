@@ -111,7 +111,8 @@ $app->group('/eje', function () use ($app, $checkRole) {
     $app->post('/crear', $checkRole('mod'), 'EjeCtrl:crear')->name('runCrearEje');
     $app->get('/:idEje', 'EjeCtrl:ver')->name('shwEje');
 //    $app->get('/:idDer/:idAcc', 'DerechoCtrl:verAccion')->name('shwAccion');
-    $app->post('/votar/:idSec', $checkRole('usr'), 'EjeCtrl:votar')->name('runVotarRespuesta');
+    $app->post('/votar/:idRes', $checkRole('usr'), 'EjeCtrl:votarRespuesta')->name('runVotarRespuesta');
+    $app->post('/respuesta/eliminar', $checkRole('mod'), 'EjeCtrl:eliminarRespuesta')->name('runElimiRespuesta');
     $app->get('/:idEje/modificar', $checkRole('mod'), 'EjeCtrl:verModificar')->name('shwModifEje');
     $app->post('/:idEje/modificar', $checkRole('mod'), 'EjeCtrl:modificar')->name('runModifEje');
     $app->post('/:idEje/responder', $checkRole('usr'), 'EjeCtrl:responder')->name('runResponderEje');

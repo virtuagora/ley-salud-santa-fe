@@ -26,8 +26,21 @@ class Respuesta extends Eloquent {
         return $this->morphMany('Comentario', 'comentable')->orderBy('updated_at', 'DESC');
     }
 
+    public function votos() {
+        return $this->hasMany('VotoRespuesta');
+    }
+
     public function getRaizAttribute() {
         return $this->eje;
     }
 
+    public static function boot() {
+        parent::boot();
+        static::deleting(function($rta) {
+            foreach ($rta->comentarios as $comentario) {
+                $comentario->delete();
+            }
+            return true;
+        });
+    }
 }
