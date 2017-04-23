@@ -151,6 +151,7 @@ $app->group('/admin', function () use ($app, $checkRole) {
     $app->get('/upload', $checkRole('mod'), 'AdminCtrl:verSubirImagen')->name('shwCrearImagen');
     $app->post('/upload', $checkRole('mod'), 'AdminCtrl:subirImagen')->name('runCrearImagen');
     $app->get('/imagen/:idEve', 'AdminCtrl:verImagen')->name('shwImagen');
+    $app->get('/imprimir/:idEje', $checkRole('mod'), 'AdminCtrl:imprimirRespuestas')->name('shwImprimirEje');
     $app->post('/sancionar/:idUsu', $checkRole('mod'), 'AdminCtrl:sancUsuario')->name('runSanUsuario');
     $app->get('/verificar', $checkRole('mod'), 'AdminCtrl:verVerifCiudadano')->name('shwAdmVrfUsuario');
     $app->post('/verificar', $checkRole('mod'), 'AdminCtrl:verifCiudadano')->name('runAdmVrfUsuario');

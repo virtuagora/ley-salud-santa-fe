@@ -3,15 +3,13 @@
         <img src="{{ baseUrl() }}/assets-salud/img/avatar-rta.svg">
     </a>
     <div class="media-body">
-        {% if user and (user.patrulla_id != null) %}
-        <!--
-<a href="javascript:eliminarComentario({{comentario.id}})" class="btn btn-xs btn-warning pull-right" style="margin-left:5px;"
-data-toggle="tooltip" data-placement="bottom" data-original-title="Eliminar"><i class="fa fa-times"></i></a>
--->
-        {% endif %}
         <div class="panel-votacion pull-right">
-            <a href="#" class="votar-respuesta-pregunta votar-respuesta-me-gusta" data-toggle="tooltip" data-placement="bottom" data-toggle="tooltip" data-placement="bottom" title="Me gusta"><img src="{{ baseUrl() }}/assets-salud/img/thumb-up-button.svg" alt="Me gusta"></a>
-            <a href="#"  class="votar-respuesta-pregunta votar-respuesta-no-me-gusta"  data-toggle="tooltip" data-placement="bottom" title="No me gusta"><img src="{{ baseUrl() }}/assets-salud/img/thumb-down-button.svg" alt="No me gusta"></a>
+            {% if user and (user.patrulla_id != null) %}
+                <a href="javascript:eliminarRespuesta({{rta.id}})" class="btn btn-xs btn-warning pull-right" style="margin-left:5px;"
+                   data-toggle="tooltip" data-placement="bottom" data-original-title="Eliminar"><i class="fa fa-times"></i></a>
+                {% endif %}
+            <a href="{{ user == null ?  urlFor('shwLogin') : 'javascript:votarRespuestaEje(' ~ rta.id ~',1)'}}" class="votar-respuesta-pregunta votar-respuesta-me-gusta" data-toggle="tooltip" data-placement="bottom" data-toggle="tooltip" data-placement="bottom" title="Me gusta"><img src="{{ baseUrl() }}/assets-salud/img/thumb-up-button.svg" alt="Me gusta"></a>
+            <a href="{{ user == null ?  urlFor('shwLogin') : 'javascript:votarRespuestaEje(' ~ rta.id ~',-1)'}} "  class="votar-respuesta-pregunta votar-respuesta-no-me-gusta"  data-toggle="tooltip" data-placement="bottom" title="No me gusta"><img src="{{ baseUrl() }}/assets-salud/img/thumb-down-button.svg" alt="No me gusta"></a>
         </div>
         <div class="datos-respuesta-usuario">
             <h4><b>{{rta.usuario.nombre}} {{rta.usuario.apellido}}</b> respondió<br>{{rta.createdAt|date('d-m-Y')}}</h4>
@@ -27,44 +25,14 @@ data-toggle="tooltip" data-placement="bottom" data-original-title="Eliminar"><i 
           method="POST">
         <div class="comentar-respuesta-usuario form-group">
             <div class="input-group">
-                <input class="form-control" name="cuerpo" type="text" placeholder="XX usuarios estan hablando de esto">
+                <input class="form-control" name="cuerpo" type="text" placeholder="Opine sobre la siguiente respuesta{{ user == null ? ' INICIANDO SESION para poder participar' : '...' }} " {{ user == null ? 'readonly'}}>
                 <span class="input-group-btn">
-                    <button class="btn btn-primary" type="submit">Comentar</button>
+                    <button class="btn btn-primary" type="submit" {{ user == null ? 'style="display:none;"' }}>Comentar</button>
                 </span>
                 <span class="input-group-btn">
-                    <a  data-toggle="modal" data-target="#comentarios{{ rta.id }}" class="btn btn-primary"><i class="fa fa-comments fa-fw"></i> {{rta.comentarios|length}}</a>
+                    <a  data-toggle="modal" data-target="#comentarios{{ rta.id }}" class="btn btn-primary"><i class="fa fa-comments fa-fw"></i> {{comentariosSeccion}}</a>
                 </span>
             </div>
         </div>
     </form>
 </div>
-<!--
-<div class="comment-cuerpo">
-<strong>{{ rta.usuario.patrulla_id != null ? "<i class='fa fa-shield fa-fw' title='Moderador'></i>" }} {{ rta.usuario.nombre|capitalize }} {{ rta.usuario.apellido|capitalize }} </strong><br>
-{% for pregunta in eje.preguntas %}
-<p><b>{{pregunta}}</b><br>{{rta.respuestas[loop.index]}}</p>
-{% endfor %}
-</div>
-<div class="" style="margin-top:10px;">
-{% if user is not empty %}
-<a href="javascript:votarComentario({{comentario.id}},1)" class="verde" data-toggle="tooltip" data-placement="bottom"
-data-original-title="Me gusta"><i class="fa fa-arrow-up fa-fw"></i></a>
-<span><b>&nbsp;{{comentario.karma}}&nbsp;</b></span>
-<a href="javascript:votarComentario({{comentario.id}},-1)" class="rojo" data-toggle="tooltip" data-placement="bottom"
-data-original-title="No me gusta"><i class="fa fa-arrow-down fa-fw"></i></a>
-<a href="javascript:verBoxResponder({{comentario.id}})" class="pull-right color-{{(seccionColor) % 3}}" data-toggle="tooltip" data-placement="bottom"
-data-original-title="Responder"><i class="fa fa-reply fa-fw"></i> <b>{{comentario.respuestas|length}}</b></a>
-{% else %}
-<a href="{{urlFor('shwLogin')}}" class="verde" data-toggle="tooltip" data-placement="bottom"
-data-original-title="Me gusta"><i class="fa fa-arrow-up fa-fw"></i></a>
-<span><b>&nbsp;{{comentario.karma}}&nbsp;</b></span>
-<a href="{{urlFor('shwLogin')}}" class="rojo" data-toggle="tooltip" data-placement="bottom"
-data-original-title="No me gusta"><i class="fa fa-arrow-down fa-fw"></i></a>
-<a href="{{urlFor('shwLogin')}}" class="pull-right color-{{(seccionColor) % 3}}" data-toggle="tooltip" data-placement="bottom"
-data-original-title="Responder"><i class="fa fa-reply fa-fw"></i> <b>{{comentario.respuestas|length}}</b></a>
-{% endif %}
--->
-<!--
-</div>
-</div>
--->

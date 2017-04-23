@@ -154,7 +154,7 @@ class EjeCtrl extends Controller {
             throw new TurnbackException('No puede votar dos veces la misma respuesta.');
         }
         $this->flash('success', 'Su voto fue registrado exitosamente.');
-        $this->redirectTo('shwEje', ['idEje' => $eje->id . '#exito']);
+        $this->redirect($req->getReferrer());
     }
 
     public function eliminarRespuesta() {
@@ -168,7 +168,7 @@ class EjeCtrl extends Controller {
         $contenido->puntos = $eje->respuestas()->sum('valoracion');
         $contenido->save();
         $this->flash('success', 'La respuesta ha sido eliminada exitosamente.');
-        $this->redirectTo('shwEje', ['idEje' => $eje->id . '#exito']);
+        $this->redirect($req->getReferrer());
     }
 
     private function validarEje($data) {

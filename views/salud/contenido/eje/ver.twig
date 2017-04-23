@@ -133,13 +133,23 @@
                                 <a href="javascript:verComentarios()" class="ver-comentarios-link">Ver respuestas de otros usuarios</a>
                             </div>
                             <div class="lista-respuestas-preguntas" style="display:none;">
+                               {% if eje.respuestas|length > 0%}
                                 <hr>
                                 {% for rta in eje.respuestas %}
+                                {% set comentariosSeccion = rta.comentarios|length %}
+                                {% for comentario in rta.comentarios %}
+                                {% set comentariosSeccion = comentariosSeccion + comentario.respuestas|length %}
+                                {% endfor %}
                                 <div id="respuesta-pregunta-{{ rta.id }}">
                                     {% include 'salud/contenido/eje/respuestas-preguntas.twig' %}
                                 </div>
                                 {% include 'salud/contenido/eje/comentarioModal.twig' %}
                                 {% endfor %}
+                                {% else %}
+    <div class="text-center">
+        <h3 class="black gris">No hay respuestas<br><small>¡Sea el primero dejando su respuesta!</small></h3>
+    </div>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
@@ -149,6 +159,9 @@
     </div>
 </div>
 <form id="votarComentario" method="POST">
+    <input type="text" name="valor" hidden>
+</form>
+<form id="votarRespuestaEje" method="POST">
     <input type="text" name="valor" hidden>
 </form>
 {% if user.patrulla_id != null %}
@@ -194,16 +207,14 @@
             secciones.push($( this ).val());
         });
         $('input[name=respuestas]').val(JSON.stringify(secciones));
-        //        console.log($('[name=valoracion]').val())
-        //                console.log($('[name=respuestas]').val())
         $('button[type=submit]').html('<i class="fa fa-spin fa-gear fa-lg"></i>');
         //        return true;
     })
 
     var votarRespuestaEje = function(id, valor) {
-        var action_no = "ponerruta";
-        $('#votarRespuestaEje').find('input[name="postura"]').val(valor)
-        var action_yes = action_no.replace(':idRta', id);
+        var action_no = "{{ urlFor('runVotarRespuesta') }}";
+        $('#votarRespuestaEje').find('input[name="valor"]').val(valor)
+        var action_yes = action_no.replace(':idRes', id);
         $('#votarRespuestaEje').attr('action', action_yes);
         $('#votarRespuestaEje').submit();
     }
@@ -219,6 +230,8 @@
         $('#votarComentario').attr('action', action_yes);
         $('#votarComentario').submit();
     }
+
+
 </script>
 {% if user.patrulla_id != null %}
 {% include 'salud/contenido/moderar.js.twig' %}

@@ -48,6 +48,17 @@ class AdminCtrl extends Controller {
         ]);
     }
 
+    public function imprimirRespuestas($idEje) {
+        $vdt = new Validate\QuickValidator([$this, 'notFound']);
+        $vdt->test($idEje, new Validate\Rule\NumNatural());
+        $eje = Eje::with('contenido')->findOrFail($idEje);
+        $contenido = $eje->contenido;
+        $datosEje = array_merge($contenido->toArray(), $eje->toArray());
+        $this->render('salud/admin/imprimirEje.twig', [
+            'eje' => $datosEje,
+        ]);
+    }
+
     public function adminAjustes() {
         $vdt = new Validate\Validator();
         $vdt->addRule('tos', new Validate\Rule\MinLength(8))

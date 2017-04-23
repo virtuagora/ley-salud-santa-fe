@@ -32,8 +32,10 @@ endblock titulo %} {% block opengraph %}
             <div class="col-xs-12">
                 {% for seccion in derecho.secciones %} {% set comentariosListar = seccion.comentarios|slice(0,8) %}
                 {% set botonVerTodos = true %}
-                {% set comentariosSeccion = seccion.comentarios|length %} {% for comentario in seccion.comentarios
-                %} {% set comentariosSeccion = comentariosSeccion + comentario.respuestas|length %} {% endfor %}
+                {% set comentariosSeccion = seccion.comentarios|length %}
+                 {% for comentario in seccion.comentarios %}
+                 {% set comentariosSeccion = comentariosSeccion + comentario.respuestas|length %}
+                  {% endfor %}
                 {% set seccionColor = loop.index - 1 %}
                 <div class="box color-{{(loop.index-1) % 3}}">
                     

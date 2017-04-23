@@ -99,14 +99,4 @@
         <h3 class="black gris">No hay comentarios<br><small>¡Sea el primero dejando su comentario!</small></h3>
     </div>
 </div>
-{% if user is null %}
-<div class="col-xs-12">
-    <div class="no-login color-{{(seccionColor) % 3}}">
-        <h3>¿Desea participar comentando?</h3>
-        <h3><a href="{{urlFor('shwCrearUsuario')}}" class="btn btn-default">Registrese</a>
-            o
-            <a href="{{urlFor('shwLogin')}}" class="btn btn-default">Inicie sesión</a></h3>
-    </div>
-</div>
-{% endif %}
 {% endif %}

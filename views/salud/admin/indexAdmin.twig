@@ -72,9 +72,9 @@
                         Email Usuarios
                     </li>
                     <li class="list-group-item">
-                        Comentarios<br>
-                        {% for derecho in derechos %}
-                        <a href="{{ urlFor('shwComments', {'idDer': derecho.id}) }}" class=""><span class="badge"><i class="fa fa-download"></i> {{derecho.id}}</span></a>
+                        Respuestas a Ejes<br>
+                        {% for eje in ejes %}
+                        <a href="{{ urlFor('shwImprimirEje', {'idEje': eje.id}) }}" class=""><span class="badge"><i class="fa fa-download fa-fw"></i> {{eje.id}}&nbsp;</span></a>
                         {% endfor %}
                     </li>
                 </ul>

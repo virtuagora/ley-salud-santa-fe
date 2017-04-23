@@ -1,0 +1,96 @@
+{% extends "salud/masterImprimir.twig" %}
+{% block titulo %}Respuestas "{{eje.titulo|replace({'[b]': "", '[/b]': ""})}}" {% endblock titulo %}
+{% block linkhead %}
+{% endblock %}
+{% block header %}
+{% endblock header %}
+{% block body %}
+<br>
+<br>
+{% set contarMuyImport = 0 %}
+{% set contarImport = 0 %}
+{% set contarPocoImport = 0 %}
+{% set contarNoInteres = 0 %}
+{% for rta in eje.respuestas %}
+{% if rta.valoracion == 3 %}
+{% set contarMuyImport = contarMuyImport + 1 %}
+{% elseif rta.valoracion == 2 %}
+{% set contarImport = contarImport + 1 %}
+{% elseif rta.valoracion == 1 %}
+{% set contarPocoImport = contarPocoImport +1 %}
+{% else %}
+{% set contarNoInteres = contarNoInteres +1 %}
+{% endif %}
+{% endfor %}
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="clearfix">
+                <img src="{{ baseUrl() }}/assets-salud/img/santafe-logo.svg" class="pull-right" alt="" style="height:100px;">
+                <img src="{{ baseUrl() }}/assets-salud/img/salud-logo.svg" class="pull-left" alt="" style="width:250px;margin-top:10px;">
+            </div>
+            <h1>{{eje.titulo|bbCode}}</h1>
+            <h3><i class="fa fa-comments fa-fw"></i> {{eje.respuestas|length}} respuestas</h3>
+            <ul class="list-inline" style="font-family:'Raleway',sans-serif;font-size:14px;">
+               <li><h4><i class="fa fa-heart fa-lg fa-fw"></i></h4></li>
+                <li><h4><strong>Muy Importante</strong> ( {{ contarMuyImport}} )</h4></li>
+                <li><h4><strong>Importante</strong> ( {{ contarImport }} )</h4></li>
+                <li><h4><strong>Poco importante</strong> ( {{ contarPocoImport }} )</h4></li>
+                <li><h4><strong>No me interesa</strong> ( {{ contarNoInteres }} )</h4></li>
+                            </ul>
+            <hr style="border-color:#557dad style="font-size:13px"">
+            {% if eje.respuestas|length > 0 %}
+            {% for rta in eje.respuestas %}
+            {% set comentariosSeccion = rta.comentarios|length %}
+            {% for comentario in rta.comentarios %}
+            {% set comentariosSeccion = comentariosSeccion + comentario.respuestas|length %}
+            {% endfor %}
+            <div id="respuesta-pregunta-{{ rta.id }}">
+                <div class="comentario-container clearfix">
+                    <div class="media-body">
+                        <div class="datos-respuesta-usuario">
+                            <h3><b><i class="fa fa-comment"></i> {{rta.usuario.nombre}} {{rta.usuario.apellido}}</b> - <i>{{rta.usuario.email}}</i></h3>
+                            <ul class="list-inline" style="font-family:'Raleway',sans-serif;font-size:16px;">
+                                <li><strong>Fecha de nacimiento:</strong> {{ usuario.nacimiento|date("d/m/Y")}}</li>
+                                <li><strong>Localidad:</strong> {{ rta.usuario.localidad.nombre == "Otro..." ? usuario.extra : rta.usuario.localidad.nombre }}</li>
+                                <li><strong>Ocupacion:</strong> {{ rta.usuario.ocupacion }}</li>
+                                {% if rta.usuario.institucion != '' %}
+                                <li><strong>Institución:</strong> {{ rta.usuario.institucion }}</li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="usuario-respuestas text-justify clearfix">
+                        {% for pregunta in eje.preguntas %}
+                        <p class="eje-pregunta" style="font-size:13px"><b>{{loop.index}}. {{pregunta}}</b></p>
+                        <p class="respuesta-eje" style="font-size:13px"><i>{{ rta.respuestas[loop.index-1] }}</i></p>
+                        {% endfor %}
+                    </div>
+                    <div class="clearfix">
+                        <h4 class="pull-right"><b><i><i class="fa fa-heart"></i>
+                            {% if rta.valoracion == 3 %}
+                            Muy importante
+                            {% elseif rta.valoracion == 2 %}
+                            Importante
+                            {% elseif rta.valoracion == 1 %}
+                            Poco importante
+                            {% else %}
+                            No me interesa
+                            {% endif %}</i></b></h4>
+                    </div>
+                </div>
+            </div>
+            <hr style="border-color:#557dad">
+            {% endfor %}
+            {% else %}
+            <div class="text-center">
+                <h3 class="black gris">No hay respuestas<br><small>¡Sea el primero dejando su respuesta!</small></h3>
+            </div>
+            {% endif %}
+
+        </div>
+    </div>
+</div>
+{% endblock body %}
+{% block scripts %}
+{% endblock scripts %}

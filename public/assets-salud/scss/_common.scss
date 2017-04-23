@@ -84,10 +84,14 @@ body {
         }
     }
     p{
-        margin: 20px 0 0;
+        margin: 10px 0 0;
         text-align: center;
         @media (min-width: $screen-sm-min) {
             text-align: left;
+        }
+        img.virtuagora{
+            height: 18px;
+            margin-top: 2px;
         }
     }
 }
