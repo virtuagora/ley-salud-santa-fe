@@ -32,12 +32,12 @@
             <h1>{{eje.titulo|bbCode}}</h1>
             <h3><i class="fa fa-comments fa-fw"></i> {{eje.respuestas|length}} respuestas</h3>
             <ul class="list-inline" style="font-family:'Raleway',sans-serif;font-size:14px;">
-               <li><h4><i class="fa fa-heart fa-lg fa-fw"></i></h4></li>
+                <li><h4><i class="fa fa-heart fa-lg fa-fw"></i></h4></li>
                 <li><h4><strong>Muy Importante</strong> ( {{ contarMuyImport}} )</h4></li>
                 <li><h4><strong>Importante</strong> ( {{ contarImport }} )</h4></li>
                 <li><h4><strong>Poco importante</strong> ( {{ contarPocoImport }} )</h4></li>
                 <li><h4><strong>No me interesa</strong> ( {{ contarNoInteres }} )</h4></li>
-                            </ul>
+            </ul>
             <hr style="border-color:#557dad style="font-size:13px"">
             {% if eje.respuestas|length > 0 %}
             {% for rta in eje.respuestas %}
@@ -66,8 +66,12 @@
                         <p class="respuesta-eje" style="font-size:13px"><i>{{ rta.respuestas[loop.index-1] }}</i></p>
                         {% endfor %}
                     </div>
+                    {% for voto in rta.votos %}
+                    <p>{{voto.usuario.nombre}} {{voto.valor}}</p>
+                    {% endfor %}
                     <div class="clearfix">
-                        <h4 class="pull-right"><b><i><i class="fa fa-heart"></i>
+                        <h4 class="pull-right"><b><i class="fa fa-trophy"></i> <i>{{rta.puntos}} Puntos</i>&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-thumbs-up"></i> <i>{{rta.votos|length}} Votos</i></b></h4>
+                        <h4 class="pull-left"><b><i class="fa fa-heart"></i><i>
                             {% if rta.valoracion == 3 %}
                             Muy importante
                             {% elseif rta.valoracion == 2 %}
