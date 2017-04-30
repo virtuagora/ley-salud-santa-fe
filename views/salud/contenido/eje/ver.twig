@@ -126,29 +126,59 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="text-center">
+                                <br>
+                                <a href="{{urlFor('shwEjes')}}" class="boton primary size-16 is-raleway is-700">Aceptar</a>
+                            </div>
                             {% endif %}
                             <div class="text-center">
                                 <br>
                                 <br>
                                 <a href="javascript:verComentarios()" class="ver-comentarios-link">Ver respuestas de otros usuarios</a>
+                                <a href="javascript:ocultarComentarios()" class="ocultar-comentarios-link" style="display:none;">Ocultar respuestas de otros usuarios</a>
                             </div>
                             <div class="lista-respuestas-preguntas" style="display:none;">
-                               {% if eje.respuestas|length > 0%}
+                                {% if eje.respuestas|length > 0%}
                                 <hr>
-                                {% for rta in eje.respuestas %}
+
+                                {% if eje.respuestas|length > 3 %}
+                                {% set mostrarMasRespuestas = true %}
+                                {% else %}
+                                {% set mostrarMasRespuestas = false %}
+                                {% endif %}
+
+                                {% for rta in eje.respuestas|reverse %}
                                 {% set comentariosSeccion = rta.comentarios|length %}
                                 {% for comentario in rta.comentarios %}
                                 {% set comentariosSeccion = comentariosSeccion + comentario.respuestas|length %}
                                 {% endfor %}
+                                {% if loop.index <= 3 %}
                                 <div id="respuesta-pregunta-{{ rta.id }}">
                                     {% include 'salud/contenido/eje/respuestas-preguntas.twig' %}
                                 </div>
                                 {% include 'salud/contenido/eje/comentarioModal.twig' %}
-                                {% endfor %}
                                 {% else %}
-    <div class="text-center">
-        <h3 class="black gris">No hay respuestas<br><small>¡Sea el primero dejando su respuesta!</small></h3>
-    </div>
+                                <div id="respuesta-pregunta-{{ rta.id }}" class="respuestas-ocultas" style="display:none;">
+                                    {% include 'salud/contenido/eje/respuestas-preguntas.twig' %}
+                                </div>
+                                {% include 'salud/contenido/eje/comentarioModal.twig' %}
+                                {% endif %}
+
+                                {% endfor %}
+                                {% if mostrarMasRespuestas %}
+                                <div class="text-center cargar-mas-respuestas">
+                                    <br>
+                                    <br>
+                                    <br>
+                                <a href="javascript:cargarMasRespuestas()" class="pill login">Cargar más respuestas</a>
+                                <br>
+                                <br>
+                                </div>
+                                {% endif %}
+                                {% else %}
+                                <div class="text-center">
+                                    <h3 class="black gris">No hay respuestas<br><small>¡Sea el primero dejando su respuesta!</small></h3>
+                                </div>
                                 {% endif %}
                             </div>
                         </div>
@@ -181,6 +211,16 @@
     function verComentarios(){
         $('.lista-respuestas-preguntas').show();
         $('.ver-comentarios-link').hide();
+        $('.ocultar-comentarios-link').show();
+    }
+    function ocultarComentarios(){
+        $('.lista-respuestas-preguntas').hide();
+        $('.ocultar-comentarios-link').hide();
+        $('.ver-comentarios-link').show();
+    }
+     function cargarMasRespuestas(){
+        $('.respuestas-ocultas').show();
+        $('.cargar-mas-respuestas').hide();
     }
     $(".interes").click(function(e) {
         $(".interes").removeClass('active focus');

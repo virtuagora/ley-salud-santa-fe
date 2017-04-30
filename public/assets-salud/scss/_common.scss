@@ -248,6 +248,24 @@ h6 {
     &.blanco{
         color:$primary;
     }
+    &.login{
+        padding: 5px 25px;
+        font-size: 12px;
+        &:hover{
+            background-color: #536d8c
+        }
+        background-color: #2b3b4e;
+        color: #FFF;
+    }
+    &.login-comment{
+         padding: 5px 25px;
+        font-size: 12px;
+        &:hover{
+            background-color: darken($primary,10%);
+        }
+        background-color: $primary;
+        color: #FFF;
+    }
 }
 
 .block-svg{

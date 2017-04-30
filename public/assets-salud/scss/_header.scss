@@ -136,18 +136,14 @@ header {
                         }
                     }
                 .user-boton{
-                    background: #53b5ba;
-                    color: #FFF;
-                    font-weight: 600;
+//                    background: #53b5ba;
+                    color: #504f51;
+                    font-weight: 400;
                     padding-left: 8px;
                     padding-right: 8px;
-                    &:hover{
-                        color:#FFF;
-                        text-decoration: underline;
-                    }
                     .img-avatar{
                         width: 20px;
-                        border: 2px solid #FFF;
+//                        border: 2px solid #FFF;
                         margin-left: 3px;
                     }
                 }

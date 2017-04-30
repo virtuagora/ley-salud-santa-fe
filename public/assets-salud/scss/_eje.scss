@@ -60,7 +60,7 @@
     .eje-container{
         margin-top: -150px;
         border-radius: 20px;
-        margin-bottom: 50px;
+        margin-bottom: 120px;
         background-color: #53b5ba;
         padding:15px;
         @media (min-width: $screen-sm-min) {
@@ -162,7 +162,7 @@
             .block-svg{
                 margin-bottom: 30px;
             }
-            a.ver-comentarios-link{
+            a.ver-comentarios-link, a.ocultar-comentarios-link{
                 font-size:14px;
                 color: $primary;
                 text-decoration: underline;
@@ -176,7 +176,7 @@
             }
             .form-control{
                 border: 0;
-                border-bottom: 2px dashed $primary;
+                border-bottom: 1px solid $primary;
                 border-radius: 0;
                 box-shadow: none;
                 padding-left:0;
@@ -236,18 +236,28 @@
                 @media (min-width: $screen-sm-min) {
                     margin-top:25px;
                 }
-                .votar-respuesta-pregunta img{
-                    width: 25px;
+                :hover{
+                    text-decoration: none;
+                }
+                .votar-respuesta-pregunta svg {
+                    width: 20px;
+                    height:auto;
                 }
                 .votar-respuesta-no-me-gusta{
                     margin-left: 5px;
+                }
+                .votar-respuesta-me-gusta:hover svg path{
+                    fill: green;
+                }
+                .votar-respuesta-no-me-gusta:hover svg path{
+                    fill: red;
                 }
             }
             .usuario-respuestas{
                 p{
                     text-align: left;
                     font-size:12px;
-                    line-height:14px;
+                    line-height:16px;
                     font-family: "Open Sans", Arial, Helvetica, sans-serif;
                     &.eje-pregunta{
                         font-weight: 600;
@@ -297,17 +307,17 @@
                 margin:0;
                 margin-top: 20px;
                 input.form-control{
-                    border:1px solid #454545;
+                    border:1px solid #cecece;
                     padding:3px 6px 2px;
                     font-size:12px;
                 }
                 .btn.btn-primary{
-                    background-color: #454545;
+                    background-color: #cecece;
                         padding-bottom: 7px;
                     &:hover{
                         background-color: #767676;
                     }
-                    border-color: #454545;
+                    border-color: #cecece;
                     border-radius: 0;
                     font-weight: 600;
                 }

@@ -9,6 +9,13 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-xs-12 text-center">
+			 {% if user.patrulla_id != null %}
+                <img alt="image" class="img-circle" src="{{ baseUrl() }}/assets-salud/img/avatar/moderador.svg" class="img-circle img-responsive" style="height:200px; margin: 0 auto;"
+                data-toggle="tooltip" data-placement="bottom" data-original-title="Usuario" alt="Avatar">
+                {% else %}
+                <img alt="image" class="img-circle" src="{{ baseUrl() }}/assets-salud/img/avatar/avatars-0{{user.id % 4}}.svg" class="img-circle img-responsive" style="height:200px; margin: 0 auto;"
+                data-toggle="tooltip" data-placement="bottom" data-original-title="Usuario" alt="Avatar">
+                {% endif %}
 				<h1>Cambiar contraseña</h1>
 				<hr>
 			</div>

@@ -23,16 +23,16 @@
 {% endif %}
 -->
             <div class="clearfix">
-                <a class="navbar-brand hidden-lg hidden-md santafe-logo" href="{{urlFor('shwIndex')}}"><img src="{{ baseUrl() }}/assets-salud/img/santafe-logo.svg" class="logo img-responsive" alt=""></a>
+                <a class="navbar-brand hidden-lg hidden-md santafe-logo" href="{{urlFor('shwIndex')}}"><img src="{{ baseUrl() }}/assets-salud/img/santafe-logo.png" class="logo img-responsive" alt=""></a>
                 <a class="navbar-brand hidden-lg hidden-md salud-logo" href="{{urlFor('shwIndex')}}"><img src="{{ baseUrl() }}/assets-salud/img/salud-logo.svg" class="logo img-responsive" alt=""></a>
-                <a class="navbar-brand hidden-xs hidden-sm santafe-logo" href="{{urlFor('shwIndex')}}"><img src="{{ baseUrl() }}/assets-salud/img/santafe-logo.svg" class="logo img-responsive" alt=""></a>
+                <a class="navbar-brand hidden-xs hidden-sm santafe-logo" href="{{urlFor('shwIndex')}}"><img src="{{ baseUrl() }}/assets-salud/img/santafe-logo.png" class="logo img-responsive" alt=""></a>
                 <a class="navbar-brand hidden-xs hidden-sm salud-logo" href="{{urlFor('shwIndex')}}"><img src="{{ baseUrl() }}/assets-salud/img/salud-logo.svg" class="logo img-responsive" alt=""></a>
             </div>
 
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="navbar-collapse collapse" aria-expanded="false" style="height: 0px;" id="bs-example-navbar-collapse-1">
-            <a class="hidden-lg hidden-md hidden-sm santafe-logo mobile" href="{{urlFor('shwIndex')}}"><img src="{{ baseUrl() }}/assets-salud/img/santafe-logo.svg" class="logo img-responsive" alt=""></a>
+            <a class="hidden-lg hidden-md hidden-sm santafe-logo mobile" href="{{urlFor('shwIndex')}}"><img src="{{ baseUrl() }}/assets-salud/img/santafe-logo.png" class="logo img-responsive" alt=""></a>
             <a class="hidden-lg hidden-md hidden-sm salud-logo mobile" href="{{urlFor('shwIndex')}}"><img src="{{ baseUrl() }}/assets-salud/img/salud-logo-blanco.svg" class="logo img-responsive" alt=""></a>
 
 
@@ -45,9 +45,9 @@
                 <li class="">
                     <a href="{{urlFor('shwUsuario', {'idUsu': user.id})}}" class="user-boton" title="Ver perfil">
                         {% if user.patrulla_id != null %}
-                        {{ user.nombre }}<img src="{{ baseUrl() }}/assets-costa/img/avatar/moderador.svg" class="img-circle img-avatar" >
+                        {{ user.nombre }}<img src="{{ baseUrl() }}/assets-salud/img/avatar/moderador.svg" class="img-circle img-avatar" >
                         {% else %}
-                        {{ user.nombre }}<img src="{{ baseUrl() }}/assets-costa/img/avatar/{{user.genero}}-{{user.id % 6}}.svg" class="img-circle img-avatar" >
+                        {{ user.nombre }}<img src="{{ baseUrl() }}/assets-salud/img/avatar/avatars-0{{user.id % 4}}.svg" class="img-circle img-avatar" >
                         {% endif %}
                     </a>
                     {% if user.patrulla_id != null %}
@@ -61,7 +61,7 @@
                 <li class="{{ nav == 3 ? 'active' : '' }} hidden-xs"><a href="javascript:logout()" title="Cerrar sesión"><i class="fa fa-sign-out fa-lg"></i></a></li>
                 <form id="form-salir" action="{{ urlFor('runLogout') }}" method="POST"></form>
                 {% else %}
-                <li class="hidden-xs"><a href="{{urlFor('shwLogin')}}"><span class="boton login size-12">Ingresá</span></a></li>
+                <li class="hidden-xs"><a href="{{urlFor('shwLogin')}}"><span class="pill login">Ingresá</span></a></li>
                 <li class="btn-ingreso hidden-sm hidden-md hidden-lg"><a href="{{urlFor('shwLogin')}}" class="user-boton"><u>Registrate</u> o <u>Inicia Sesión</u></a></li>
                 {% endif %}
             </ul>
