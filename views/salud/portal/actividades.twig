@@ -1,6 +1,13 @@
 {% extends "salud/master.twig" %}
 {% set nav = 0 %}
 {% block titulo %}Cronograma de actividades{% endblock titulo %}
+{% block opengraph %}
+<meta property="og:url" content="{{ baseUrl() }}" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Cronograma de actividades - Santa Fe es Salud" />
+<meta property="og:description" content="Desde el gobierno de la provincia de Santa Fe, nos proponemos un diálogo ciudadano para la construcción conjunta de las bases que guíen nuestro sistema de salud provincial, fundamentadas en la experiencia de la población santafesina y sus derechos adquiridos." />
+<meta property="og:image" content="{{ baseUrl() }}/assets-salud/img/sharer.png" />
+{% endblock %}
 {% block linkhead %}
 
 {% endblock %}

@@ -1,6 +1,13 @@
 {% extends "salud/master.twig" %}
 {% set nav = 0 %}
 {% block titulo %}Principios y valores{% endblock titulo %}
+{% block opengraph %}
+<meta property="og:url" content="{{ baseUrl() }}" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Principios y valores - Santa Fe es Salud" />
+<meta property="og:description" content="Desde el gobierno de la provincia de Santa Fe, nos proponemos un diálogo ciudadano para la construcción conjunta de las bases que guíen nuestro sistema de salud provincial, fundamentadas en la experiencia de la población santafesina y sus derechos adquiridos." />
+<meta property="og:image" content="{{ baseUrl() }}/assets-salud/img/sharer.png" />
+{% endblock %}
 {% block linkhead %}
 <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css" />
 <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick-theme.css" />

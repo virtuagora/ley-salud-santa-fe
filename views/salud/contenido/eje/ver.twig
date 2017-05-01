@@ -1,8 +1,14 @@
 {% extends "salud/master-eje.twig" %}
 {% set nav = 0 %}
-{% block titulo %}{{eje.titulo|replace({'[b]': "", '[/b]': ""})}}{% endblock titulo %}
+{% block titulo %}{{eje.titulo|replace({'[b]': "", '[/b]': "",'[i]': "",'[/i]': ""})}}{% endblock titulo %}
+{% block opengraph %}
+<meta property="og:url" content="{{ baseUrl() }}" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="{{eje.titulo|replace({'[b]': "", '[/b]': "",'[i]': "",'[/i]': ""})}} - Santa Fe es Salud" />
+<meta property="og:description" content="Desde el gobierno de la provincia de Santa Fe, nos proponemos un diálogo ciudadano para la construcción conjunta de las bases que guíen nuestro sistema de salud provincial, fundamentadas en la experiencia de la población santafesina y sus derechos adquiridos." />
+<meta property="og:image" content="{{ baseUrl() }}/assets-salud/img/sharer.png" />
+{% endblock %}
 {% block linkhead %}
-
 {% endblock %}
 {% block header %}
 {% endblock header %}
@@ -153,40 +159,40 @@
                                 {% set comentariosSeccion = comentariosSeccion + comentario.respuestas|length %}
                                 {% endfor %}
                                 {% if loop.index <= 3 %}
-                                <div id="respuesta-pregunta-{{ rta.id }}">
-                                    {% include 'salud/contenido/eje/respuestas-preguntas.twig' %}
-                                </div>
-                                {% include 'salud/contenido/eje/comentarioModal.twig' %}
-                                {% else %}
-                                <div id="respuesta-pregunta-{{ rta.id }}" class="respuestas-ocultas" style="display:none;">
-                                    {% include 'salud/contenido/eje/respuestas-preguntas.twig' %}
-                                </div>
-                                {% include 'salud/contenido/eje/comentarioModal.twig' %}
-                                {% endif %}
+                                                    <div id="respuesta-pregunta-{{ rta.id }}">
+                                {% include 'salud/contenido/eje/respuestas-preguntas.twig' %}
+                            </div>
+                            {% include 'salud/contenido/eje/comentarioModal.twig' %}
+                            {% else %}
+                            <div id="respuesta-pregunta-{{ rta.id }}" class="respuestas-ocultas" style="display:none;">
+                                {% include 'salud/contenido/eje/respuestas-preguntas.twig' %}
+                            </div>
+                            {% include 'salud/contenido/eje/comentarioModal.twig' %}
+                            {% endif %}
 
-                                {% endfor %}
-                                {% if mostrarMasRespuestas %}
-                                <div class="text-center cargar-mas-respuestas">
-                                    <br>
-                                    <br>
-                                    <br>
+                            {% endfor %}
+                            {% if mostrarMasRespuestas %}
+                            <div class="text-center cargar-mas-respuestas">
+                                <br>
+                                <br>
+                                <br>
                                 <a href="javascript:cargarMasRespuestas()" class="pill login">Cargar más respuestas</a>
                                 <br>
                                 <br>
-                                </div>
-                                {% endif %}
-                                {% else %}
-                                <div class="text-center">
-                                    <h3 class="black gris">No hay respuestas<br><small>¡Sea el primero dejando su respuesta!</small></h3>
-                                </div>
-                                {% endif %}
                             </div>
+                            {% endif %}
+                            {% else %}
+                            <div class="text-center">
+                                <h3 class="black gris">No hay respuestas<br><small>¡Sea el primero dejando su respuesta!</small></h3>
+                            </div>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </div>
 <form id="votarComentario" method="POST">
     <input type="text" name="valor" hidden>
@@ -218,7 +224,7 @@
         $('.ocultar-comentarios-link').hide();
         $('.ver-comentarios-link').show();
     }
-     function cargarMasRespuestas(){
+    function cargarMasRespuestas(){
         $('.respuestas-ocultas').show();
         $('.cargar-mas-respuestas').hide();
     }
