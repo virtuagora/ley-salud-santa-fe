@@ -688,6 +688,7 @@ try {
         $ajusD->value = '7uulVAHwXi0';
         $ajusD->description = 'Videos que se muestran en la página de inicio.';
         $ajusD->save();
+		$ajusE = new Ajuste;
         $ajusE->key = 'ejes';
         $ajusE->value_type = 'str';
         $ajusE->value = '';

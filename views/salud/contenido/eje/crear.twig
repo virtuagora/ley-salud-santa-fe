@@ -35,25 +35,26 @@
                         <h6 class="text-info"><b>Nota:</b> El orden es importante, no solo para ordenarlos, sino tambien para asignarles el icono correspondiente al eje (Los que han presentado para manejar en la plataforma).
                             <br>
                             <br>
-                            Elija que icono se le asigna al eje eligiendo entre entre 1 y 7
+                            Elija que icono se le asigna al eje eligiendo entre entre 1 y 8
                             <br>
                             <br>
                             <ul class="list-inline">
-                                {% for i in 1..7 %}
+                                {% for i in 1..8 %}
                                 <li>{{i}} - <img src="{{baseUrl()}}/assets-salud/img/icon-eje{{i}}.svg" class="icono-ilustrativo" alt=""></li>
                                 {% endfor %}
                             </ul>
                             <ol>
                                 <li>Funciones y obligaciones del estado provincial</li>
                                 <li>Integración del sistema provincial de salud</li>
-                                <li>Estrategia, gestión y organización del sistema</li>
+                                <li>Organización del sistema</li>
                                 <li>Niveles de atención</li>
                                 <li>Participación social</li>
-                                <li>Calidad de los servicios</li>
-                                <li>Modelo de financiación del sistema y ejecución presupuestaria</li>
+                                <li>Calidad en los servicios</li>
+                                <li>Tecnología, medicamentos e insumos sanitarios</li>
+                                <li>Modelo de financiamiento del sistema</li>
                             </ol>
                         </h6>
-                        <input name="orden" min="1" max="7" type="number" class="form-control">
+                        <input name="orden" min="1" type="number" class="form-control">
                     </div>
                 </div>
             </div>
@@ -82,7 +83,7 @@
                     <h6 class="text-info"><b>Nota:</b> A cada eje ademas de las preguntas ira agregado la opcion de marcar el eje como "Muy importante", "Importante", "Poco Importante", "No me interesa"</h6>
                     <div class="lista-acciones">
                         <div class="accion-container color-0">
-                            <textarea name="cuerpo" class="pregunta form-control" rows="1" placeholder="Pregunta...">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur et sollicitudin neque. Nunc et rutrum.     </textarea>
+                            <textarea name="cuerpo" class="pregunta form-control" rows="1" placeholder="Pregunta..."></textarea>
                         </div>
                     </div>
                     <a id="nuevaAccion" href="javascript:void(0)" class="btn btn-sm btn-default btn-block"><i class="fa fa-plus "></i> Agregar una pregunta</a>
