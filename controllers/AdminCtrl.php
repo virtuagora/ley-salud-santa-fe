@@ -33,14 +33,14 @@ class AdminCtrl extends Controller {
 
     public function verEstadisticas() {
         $usrData = [
-            'hombres' => Usuario::where('genero', 'm')->count(),
-            'mujeres' => Usuario::where('genero', 'f')->count(),
+            'usuarios' => Usuario::all()->count(),
             'comentadores' => Usuario::has('comentarios')->count(),
             'participantes' => Usuario::has('votos')->count(),
         ];
         $comData = [
-            'aportes' => Comentario::where('comentable_type', 'Seccion')->count(),
-            'respuestas' => Comentario::where('comentable_type', 'Comentario')->count(),
+            'respuestas' => Respuesta::all()->count(),
+            'comentarios' => Comentario::where('comentable_type', 'Respuesta')->count(),
+            'respuestasCom' => Comentario::where('comentable_type', 'Comentario')->count(),
         ];
         $this->render('salud/admin/estadisticas.twig', [
             'datosUsuarios' => $usrData,

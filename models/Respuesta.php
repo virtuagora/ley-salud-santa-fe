@@ -1,4 +1,4 @@
-<?php use Illuminate\Database\Eloquent\Model as Eloquent;
+ <?php use Illuminate\Database\Eloquent\Model as Eloquent;
 
 class Respuesta extends Eloquent {
     protected $table = 'respuestas';

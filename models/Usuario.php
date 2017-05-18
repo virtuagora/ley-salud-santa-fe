@@ -29,7 +29,7 @@ class Usuario extends Eloquent {
     }
 
     public function votos() {
-        return $this->hasMany('VotoSeccion');
+        return $this->hasMany('VotoRespuesta');
     }
 
     public function notificaciones() {
