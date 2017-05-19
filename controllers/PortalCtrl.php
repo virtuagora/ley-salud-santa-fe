@@ -198,7 +198,7 @@ class PortalCtrl extends Controller {
         $usuario->save();
 
         $to = $usuario->email;
-        $subject = 'Reiniciar clave - A Toda salud - Santa Fe';
+        $subject = 'Reiniciar clave - Santa Fe es Salud - Santa Fe';
         $message = $this->view->fetch('email/recuperar.twig', [
             'id' => $usuario->id,
             'token' => $usuario->token
